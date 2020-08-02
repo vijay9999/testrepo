@@ -59,11 +59,25 @@ export class UsersListPage implements OnInit {
 
   getAllUser() {
     this.loginService.getAllUser().then((data: UserModel[]) => {
-      // for (const eachUser of data) {
-      //     console.log(eachUser);
-      // }
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay1', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar1', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.headerName = 'Approved User List';
     });
@@ -72,8 +86,25 @@ export class UsersListPage implements OnInit {
   getPendingUser() {
    // this.loadingService.presentLoading();
     this.loginService.getUserByType(AppConstant.UserTypeConstant.Pending).then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay2', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar2', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.currentUserType = AppConstant.UserTypeConstant.Pending;
       this.headerName = 'Pending User List';
@@ -86,8 +117,25 @@ export class UsersListPage implements OnInit {
   getApprovedUser() {
     // this.loadingService.presentLoading();
     this.loginService.getUserByType('Approved').then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay3', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar3', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.currentUserType = AppConstant.UserTypeConstant.Approved;
       this.headerName = 'Approved User List';
@@ -99,8 +147,25 @@ export class UsersListPage implements OnInit {
 
   getRejectedUser() {
     this.loginService.getUserByType('Rejected').then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay4', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar4', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.currentUserType = AppConstant.UserTypeConstant.Rejected;
       this.headerName = 'Rejected User List';
@@ -109,8 +174,25 @@ export class UsersListPage implements OnInit {
 
   getPendingPaymentUser() {
     this.loginService.getUserByType('PaymentPending').then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay5', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay5', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar5', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.currentUserType = AppConstant.UserTypeConstant.PendingPayment;
       this.headerName = 'Payment Pending User List';
@@ -127,8 +209,25 @@ export class UsersListPage implements OnInit {
   // }
   getAllUpdationRequest() {
     this.loginService.getUserByType('UpdationRequest').then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+      this.users = [{id: 1, firstName: 'Vijay6', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+    , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
+    {id: 1, firstName: 'Bhaskar6', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
+        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
+      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
+       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
+      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
+       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
+       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
+      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
+      this.usersCopy = this.users;
       this.usersAvailable = true;
       this.currentUserType = AppConstant.UserTypeConstant.UpdationRequest;
       this.headerName = 'Updation Request User List';

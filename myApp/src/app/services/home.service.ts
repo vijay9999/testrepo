@@ -36,43 +36,43 @@ export class HomeService {
     }
   }
   getAchieverList(){
-    this.loadingService.presentLoading();
-    const getUserUrl = this.url + 'getAchieverList/';
+    // this.loadingService.presentLoading();
+    // const getUserUrl = this.url + 'getAchieverList/';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+      //   this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }
 
   getGoverningBody(){
-    this.loadingService.presentLoading();
-    const getUserUrl = this.url + 'GetGoverningBody/';
+    // this.loadingService.presentLoading();
+    // const getUserUrl = this.url + 'GetGoverningBody/';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+      //   this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }
 
   getFamousPersonality(){
-    this.loadingService.presentLoading();
+   // this.loadingService.presentLoading();
     const getUserUrl = this.url + 'getFamousPersonality/';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+      //   this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }

@@ -19,9 +19,9 @@ export class LoginService {
   private url = 'http://localhost:59789/api/';
   // private url = 'http://192.168.1.3:5555/api/';
   constructor(private httpClient: HttpClient,
-              private alertService: AlertSrevice,
-              private loadingService: LoadingService,
-              private toastService: ToastService) {
+    private alertService: AlertSrevice,
+    private loadingService: LoadingService,
+    private toastService: ToastService) {
     this.handleErrorMessage.bind(this);
   }
   private responseData;
@@ -83,30 +83,26 @@ export class LoginService {
   }
 
   sendOtp(registerUserOtpModel: RegistrationOtpModel) {
-    this.loadingService.presentLoading();
+    // this.loadingService.presentLoading();
     const otpUrl = this.url + 'user/sendotp/';
     const promise = new Promise(resolve => {
-      this.httpClient.post(`${otpUrl}`, registerUserOtpModel).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.post(`${otpUrl}`, registerUserOtpModel).subscribe(data => {
+    //  this.loadingService.dimissLoading();
+      resolve(true);
+
     });
     return promise;
   }
 
   verifyOtp(registerUserOtpModel: RegistrationOtpModel) {
-    this.loadingService.presentLoading();
+   // this.loadingService.presentLoading();
     const otpUrl = this.url + 'user/verifyotp/';
     const promise = new Promise(resolve => {
       const loadingService = this.loadingService;
-      this.httpClient.post(`${otpUrl}`, registerUserOtpModel).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      //  this.httpClient.post(`${otpUrl}`, registerUserOtpModel).subscribe(data => {
+      // this.loadingService.dimissLoading();
+      resolve(true);
+
     });
     return promise;
   }
@@ -126,43 +122,43 @@ export class LoginService {
   }
 
   getUserByMobile(mobileNumber: number) {
-    this.loadingService.presentLoading();
+   // this.loadingService.presentLoading();
     const getUserUrl = this.url + 'user/';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}` + mobileNumber).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      //this.httpClient.get(`${getUserUrl}` + mobileNumber).subscribe(data => {
+       // this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }
 
   getUserByType(userType: string) {
-    this.loadingService.presentLoading();
+    // this.loadingService.presentLoading();
     const getUserUrl = this.url + 'user/GetUsersByType';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}` + '?userType=' + userType).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.get(`${getUserUrl}` + '?userType=' + userType).subscribe(data => {
+      //   this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }
 
   getUserByMemberId(memberIdNumber: number) {
-    this.loadingService.presentLoading();
+   // this.loadingService.presentLoading();
     const getUserUrl = this.url + 'user/GetByMemberId';
     const promise = new Promise(resolve => {
-      this.httpClient.get(`${getUserUrl}` + '?memberId=' + memberIdNumber).subscribe(data => {
-        this.loadingService.dimissLoading();
-        resolve(data);
-      }, (error) => {
-        this.handleErrorMessage(error);
-      });
+      // this.httpClient.get(`${getUserUrl}` + '?memberId=' + memberIdNumber).subscribe(data => {
+      //   this.loadingService.dimissLoading();
+        resolve();
+      // }, (error) => {
+      //   this.handleErrorMessage(error);
+      // });
     });
     return promise;
   }
