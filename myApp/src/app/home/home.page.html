@@ -125,7 +125,7 @@
           <!-- <div class="homenavbar">
             <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
           </div> -->
-            <div class="navbarpages">
+            <div >
               <div class="homenavbar" style="float: left;width: 70%;">
                 <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
               </div>
@@ -140,18 +140,14 @@
 
               
           <nav class="main-nav">
-            <ul style="overflow: scroll; height: 800px;">
-              <li style="width: 100%;
-              color: white;
-              text-align: left;">
+            <ul>
+              <li class="username">
                 <span>Welcome {{userName}}</span>
               </li>
-              <li style="width: 100%;
-              background-color: #387938;
-              height: 40px; color: white;">
+              <li class="home-banner-text">
                <span class="move">Happy Raksha Bandhan!!</span>
               </li>
-              <li style="width: 100%;">
+              <li style="width: 98%;">
                 <ion-slides scrollbar="true"  pager="true" [options]="slideOpts">
                   <ion-slide *ngFor="let img of images">
                     <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)"/>

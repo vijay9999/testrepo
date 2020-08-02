@@ -6458,12 +6458,12 @@ ion-menu-button{
  font-size:22px;
  line-height:30px;
  font-weight:300;
- color:#d64900;
+ color:#b60001;
  border-bottom:3px #dbdbdb solid;
  }
  blockquote span{
  display:block;
- color:#d64900;
+ color:#b60001;
  font-weight:700;
  font-size:18px;
  text-transform:uppercase;
@@ -6528,13 +6528,13 @@ ion-menu-button{
  bottom  : 0;
  height  : 3px;
  width   : 100px; 
- border-bottom:3px solid #d64900;
+ border-bottom:3px solid #b60001;
  }
  h2.page_title span{
  font-size:12px;
  font-weight:700;
  letter-spacing:0.5px;
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  padding:5px;
  margin:0 0 0 5px;
@@ -6567,7 +6567,6 @@ ion-menu-button{
  /*===============================================*/
  .homenavbar{
  width:100%;
- background:#000;
  }
  .homenavbar h1{
  color:#fff;
@@ -6578,7 +6577,7 @@ ion-menu-button{
  }
  .homenavbar h1 span{
  font-weight:900;
- color:#d64900;
+ color:#b60001;
  }
  .navbarpages{
  position: fixed;
@@ -6606,7 +6605,7 @@ ion-menu-button{
  }
  .logo_text span{
  font-weight:900;
- color:#d64900;
+ color:#b60001;
  }	
  .logo_text a{
  color:#fff;
@@ -6659,11 +6658,11 @@ ion-menu-button{
  text-align:center;
  font-weight:700;
  background-color:#f4f5f9;
- color:#d64900; 
+ color:#b60001; 
  border-bottom:3px #dbdbdb solid;
  }
  a.button_small{
- background-color:#d64900; 
+ background-color:#b60001; 
  display:inline-block;
  color:#ffffff; 
  padding:10px 20px;
@@ -6699,7 +6698,7 @@ ion-menu-button{
  background-color:#f7f7f7;
  }
  .button.active {
- background: #d64900;
+ background: #b60001;
  color: #ffffff;
  }
  .buttons-row .button:first-child {
@@ -6773,7 +6772,7 @@ ion-menu-button{
  padding:70px 0 0 10px;
  text-align:left;
  font-size:14px;
- color:#d64900;
+ color:#b60001;
  }
  .user_details p span{
  display:block;
@@ -6896,7 +6895,6 @@ ion-menu-button{
  width:100%;
  }
  .main-nav ul{
- width:98%;
  list-style:none;
  padding:0 0 60px 0;
  margin:0 auto;
@@ -6906,9 +6904,9 @@ ion-menu-button{
  width:31%;
  list-style:none;
  padding:0px;
- margin:1%;
  display:inline-block;
  text-align:center;
+ margin: 0;
  -webkit-background-size: 100%; 
  -moz-background-size: 100%;
  -o-background-size: 100%;
@@ -7097,7 +7095,7 @@ ion-menu-button{
  /* 7. PAGES LAYOUT GENERAL */
  /*===============================================*/	
  .homepage{
- background-image:url(assets/images/home-logo.jpg);
+//  background-image:url(assets/images/home-logo.jpg);
  width:100%;
  -webkit-background-size: 100%; 
  -moz-background-size: 100%;
@@ -7108,13 +7106,13 @@ ion-menu-button{
  height: 100%;
  }
  .homepagecontent{
- background:url(assets/images/trans_darkblack.png) repeat;
+//  background:url(assets/images/trans_darkblack.png) repeat;
  }
  #pages_maincontent{
  width:100%;
  padding:0 0 30px 0;
  margin:0px;
- position: absolute; 
+ position: relative; 
  top: 70px; 
  left: 0; 
  right: 0; 
@@ -7185,7 +7183,7 @@ ion-menu-button{
  overflow: hidden;
  z-index: 999999;
  height:60px;
- background-color:#d64900;
+ background-color:#b60001;
  }
  .swiper-slide {
  width:100%;
@@ -7239,7 +7237,7 @@ ion-menu-button{
  font-size:75px;
  font-weight:900;
  letter-spacing:-1px;
- color:#d64900;
+ color:#b60001;
  line-height:85px;
  } 
  .slider-caption span.subtitle{
@@ -7271,11 +7269,11 @@ ion-menu-button{
  }
  .swiper-container .swiper-pagination-bullet-active {
  opacity: 1;
- background: #d64900;
+ background: #b60001;
  }
  .swiper-container-pages .swiper-pagination-bullet-active {
  opacity: 1;
- background: #d64900;
+ background: #b60001;
  }
  .swiper-pagination-toolbar{
  position: absolute;
@@ -7314,7 +7312,7 @@ ion-menu-button{
  }
  
  a.swiper_read_more{
- color:#d64900;
+ color:#b60001;
  padding:10px 20px;
  text-decoration:none;
  margin:10px 0 0 0;
@@ -7434,7 +7432,7 @@ ion-menu-button{
  font-weight:300;
  font-size:14px;
  letter-spacing:0.5px;
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  padding:10px 0;
  }
@@ -7507,7 +7505,7 @@ ion-menu-button{
  }
  ul.music_list li h4 span{
  font-weight:400;
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  display:inline-block;
  padding:5px 10px;
@@ -7657,7 +7655,7 @@ ion-menu-button{
  ul.shop_items li a#addtocart{
  width:50%;
  float:right;
- color:#d64900;
+ color:#b60001;
  background-color:#f4f5f9;
  display:inline-block;
  padding:10px 0;
@@ -7750,7 +7748,7 @@ ion-menu-button{
  font-weight:300;
  text-align:center;
  padding:0;
- background-color:#d64900;
+ background-color:#b60001;
  }
  .shop_item a.shopfav{
  position:absolute;
@@ -7795,7 +7793,7 @@ ion-menu-button{
  color:#375a70;
  }
  .size_selectors input[type=radio]:checked + label {
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  }
  .color_selectors{
@@ -7876,7 +7874,7 @@ ion-menu-button{
  padding:5px 0;
  float:right;
  color:#ffffff;
- background-color:#d64900;
+ background-color:#b60001;
  font-size:12px;
  font-weight:900;
  letter-spacing:0.5px;
@@ -7969,8 +7967,8 @@ ion-menu-button{
  clear:both;
  font-size:14px;
  font-weight:400;
- color:#d64900;
- border-left:5px solid #d64900;
+ color:#b60001;
+ border-left:5px solid #b60001;
  }
  .order_item{
  width:100%;
@@ -8104,7 +8102,7 @@ ion-menu-button{
  height:80px;
  text-align:center;
  z-index:999;
- background-color:#d64900;
+ background-color:#b60001;
  }
  .switch_button{
  display:block;
@@ -8191,10 +8189,10 @@ ion-menu-button{
  float:left;
  text-align:center;
  padding:10px 0;
- color:#d64900;
+ color:#b60001;
  }
  .photo-categories a.active{
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  }
  
@@ -8234,7 +8232,7 @@ ion-menu-button{
  text-align:center;
  }
  .list-block .swipeout-actions-right a:nth-child(1){
- background:#d64900;
+ background:#b60001;
  }
  .list-block .swipeout-actions-right a:nth-child(2){
  background:#e00b15;
@@ -8271,7 +8269,7 @@ ion-menu-button{
  .post_category a{
  font-size:15px;
  background-color:#f4f5f9;
- color:#d64900;
+ color:#b60001;
  padding:0 10px;
  display:inline-block;
  }
@@ -8317,7 +8315,7 @@ ion-menu-button{
  padding:10px 0;
  text-align:center;
  background-color:#f4f5f9;
- color:#d64900;
+ color:#b60001;
  font-size:20px;
  border-bottom:3px #dbdbdb solid;
  cursor:pointer;
@@ -8451,7 +8449,7 @@ ion-menu-button{
  border: none;
  cursor:pointer;
  -webkit-appearance: none;
-  background-color:#131313;
+  background-color:#779710;
  }
  .forgot_pass{
  width:100%;
@@ -8693,7 +8691,7 @@ ion-menu-button{
  -moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;
  }  
  ul.responsive_table li:first-child{
- background-color:#d64900;
+ background-color:#b60001;
  color:#ffffff;
  }
  /*===============================================*/
@@ -8786,7 +8784,7 @@ ion-menu-button{
  max-width:60%;
  }
  .main-nav ul li{
- width:47%;
+ width:48%;
  margin:1%;
  }
  .main-nav ul li a{
@@ -8828,7 +8826,7 @@ ion-menu-button{
  font-size:30px;
  padding:0 0 0 2%;
  margin:0px;
- color: #fff!important;
+ color: #779710!important;
  }
  .homenavbar img{
    width: 30px;
@@ -10530,7 +10528,6 @@ ion-menu-button{
    width: 100%;
    text-align: center;
    padding: 20px 0;
-   background-image: linear-gradient(black, white); 
    margin-bottom: 30px;
  }
  .logo-section img{
@@ -10545,7 +10542,7 @@ ion-menu-button{
    padding: 0;
  }
  .logo-section h2 span{
-   color:#d64900;
+   color:#b60001;
    font-weight: 900;
  }
  .login-page{
@@ -10562,8 +10559,9 @@ ion-menu-button{
    width: 100%;
      padding: 10px;
      background: none;
-     border: 1px solid #ccc;
+     border: 2px solid #ccc;
      margin: 2px 0;
+     font-weight: bold;
  }
  
  body .user-list-content .item-content {
@@ -10606,3 +10604,35 @@ ion-menu-button{
     box-shadow: 0px 0px 0px;
     border-radius: 4px;
    }
+
+   .logo-section h2 span.samaj-area-name{
+color: #e8964c;
+   }
+   .logo-section h2{
+   color:#779710;
+   font-weight: 900;
+   }
+
+   body,.pages{
+    background: antiquewhite;
+  }
+   
+  .main-nav .username{
+background:#b20000;
+color: #fff;
+padding: 5px 0;
+width: 98%;
+  }
+  .main-nav .username span{
+    padding: 0;
+  }
+  .main-nav .home-banner-text{
+    background:#779712;
+    color: #fff;
+    padding: 5px 0;
+    width: 98%;
+      }
+      .main-nav .home-banner-text span{
+        height:auto;
+        padding: 0;
+      }
