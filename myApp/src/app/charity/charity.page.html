@@ -1,0 +1,75 @@
+<div data-page="form" class="page no-toolbar no-navbar page-on-center">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div class="navbar_left">
+        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+      </div>
+      <div style="float: right; width: 20%;">
+        <ion-buttons  slot="end" (click)="closeModal()">
+          <ion-icon style="color: #d64900;
+          height: 44px;
+          margin-left: 33px;
+          width: 33px;"  slot="end" name="close-outline" (click)= "closeModal()"></ion-icon> 
+        </ion-buttons>
+      </div>
+    </div>
+
+    <div id="pages_maincontent" class="">
+
+      <h2 class="page_title">{{'Register' | translate}}</h2>
+
+      <div class="page_single layout_fullwidth_padding">
+
+        <div class="contactform">
+          <form [formGroup]="charityForm">
+            <div class="form_row">
+              <label>
+                <h4> Charity Reason <span style='color:red'>*</span> </h4>
+              </label>
+              <label for="SSR">
+                <input type="checkbox" name="SSR" formControlName="socialServiceDonation" value="Social Services">
+                Social Services Donation</label><br>
+              <label for="ST">
+                <input type="checkbox" name="ST" formControlName="educationDonation" value="Study">
+                Education</label><br>
+              <label for="MG">
+                <input type="checkbox" name="MG" formControlName="marraigeDonation" value="Marraige">
+                Marraige</label><br>
+            </div>
+            <div class="form_row">
+              <label>{{'Name' | translate}}:</label>
+              <input type="text" name="first-name" value="" class="form_input" formControlName="name">
+              <!-- <span class="form-error"
+                *ngIf="charityForm.get('firstName').invalid && charityForm.get('firstName').touched">
+                {{'Please enter a valid name.' | translate}}</span> -->
+            </div>
+            <div class="form_row">
+              <label>{{'Mobile Number' | translate}}:</label>
+              <input type="tel" name="MobileNumber" maxlength="10" value="" class="form_input"
+                formControlName="mobileNumber">
+              <!-- <span class="form-error"
+                *ngIf="charityForm.get('mobileNumber').invalid && charityForm.get('mobileNumber').touched">{{'Please enter a valid mobile Number.' | translate}}</span> -->
+            </div>
+            <div class="form_row">
+              <label>Amount: <span style='color:red'>*</span></label>
+              <input type="text" name="amount" value="" class="form_input" formControlName="amount">
+              <span class="form-error" *ngIf="charityForm.get('amount').invalid && charityForm.get('amount').touched">
+                Please enter valid amount</span>
+            </div>
+            <div class="form_row">
+              <label>Message for Charity:</label>
+              <input type="text" name="charityMessage" value="" class="form_input" formControlName="charityMessage">
+              <!-- <span class="form-error"
+                *ngIf="charityForm.get('charityMessage').invalid && charityForm.get('charityMessage').touched">
+                Please enter valid amount</span> -->
+            </div>
+            <input type="submit" [disabled]="charityForm.invalid" (click)="payCharity()" name="Pay"
+              class="form_submit" id="pay" value="Pay">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,122 @@
+
+.divider {
+    display: flex;
+    
+    &:before,
+    &:after {
+      content: "";
+      flex: 1;
+    }
+}
+  
+.line {
+    align-items: center;
+    margin: 1em -1em;
+    color: #cccccc;
+    
+    &:before,
+    &:after {
+      height: 1px;
+      margin: 0 1em;
+    }
+} 
+
+.one-line {
+    &:before,
+    &:after {
+       background: #cccccc;
+    }
+}
+
+.auth-form ion-grid,
+.auth-form ion-row {
+    height: 100%;
+    justify-content: center;
+}
+
+.already {
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+// Image scroler
+.tech-slideshow {
+    height: 150px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .tech-slideshow > div {
+    height: 150px;
+    width: 2526px;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+  .tech-slideshow .mover-1 {
+    animation: moveSlideshow 12s linear infinite;
+  }
+  .tech-slideshow .mover-2 {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    background-position: 0 -200px;
+    animation: moveSlideshow 15s linear infinite;
+  }
+  .tech-slideshow:hover .mover-2 {
+    opacity: 1;
+  }
+  
+  @keyframes moveSlideshow {
+    100% { 
+      transform: translateX(-66.6666%);  
+    }
+  }
+
+
+  #leftbox { 
+    float:left;  
+    background:Red; 
+    width:65%; 
+} 
+#rightbox{ 
+    float:right; 
+    background:blue; 
+    width:35%; 
+} 
+h1{ 
+    color:green; 
+    text-align:center; 
+} 
+
+ion-slides {
+  margin-top: 5%;
+  img{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.move {
+  width: 80%;
+  height: 100px;
+  position: relative;
+  text-align: left;
+  margin-left: 5px;
+  animation: myfirst 10s infinite;
+  animation-direction: normal;
+}
+
+@keyframes myfirst {
+  0%   { left: 0px; top: 0px; color: white;}
+  25%  { left: 50%; top: 0px; color: white;}
+  50%  { left: 50%; top: 0px; color: white;}
+  75%  { left: 0px; top: 0px; color: rgb(182, 176, 176);}
+  100% {left: 0px; top: 0px; color: white;}
+}

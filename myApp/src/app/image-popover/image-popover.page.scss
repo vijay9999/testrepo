@@ -1,0 +1,11 @@
+ion-popover{
+    .popover-wrapper{
+        .popover-content{
+            --top: 100px;
+            --left: 14px;
+            transform-origin: left top;
+            --height: 450px;
+            --width: 330px;
+        }
+    }
+}

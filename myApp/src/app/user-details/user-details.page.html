@@ -1,0 +1,296 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'User Details' | translate}}</ion-title>
+    <ion-buttons  slot="end" (click)="logOut()">
+      <ion-icon  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
+      <ion-icon style="width: 90px;
+      height: 30px;" name="log-out" ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" slot="fixed" *ngIf="dataRecieved" >
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+          <img src="../../assets/img/sonam_bajwa.jpg" alt=""> 
+          <img style="height: 150px;
+          width: 100%;" [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"/>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="user-meta ion-text-center">
+          <h3 class="playername">{{userModel.firstName}} {{userModel.lastName}}</h3>
+          <h5 class="country">{{userModel.email}}</h5>
+          <ion-item>
+            <ion-text>{{'Document Approved' | translate}}</ion-text>
+            <ion-text *ngIf="userModel.isApproved" color="primary">Approved</ion-text>
+            <ion-text *ngIf="userModel.isRejected" color="danger">Rejected</ion-text>
+            <ion-text *ngIf="!userModel.isRejected && !userModel.isApproved" color="secondary">Pending</ion-text>
+          </ion-item>
+          <ion-button *ngIf="userModel.isApproved" size="block" style="height: 45px;
+          width: 140px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          background-color: cornsilk;;" color="primary" (click) = "pay()">Make Payment</ion-button>
+          <h6 class="ranking">Current ranking: <ion-chip>
+              <ion-label>2</ion-label>
+            </ion-chip>
+          </h6>
+        </div>
+
+      </div>
+    </div>
+    <div>
+      <ion-card>
+        <ion-card>
+          <ion-item color="cardheader">
+            <ion-label class="ion-text-center">{{'Address' | translate}}</ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
+            <ion-text>{{userModel.address}}</ion-text>
+          </ion-item>
+        </ion-card>
+      
+        <ion-card>
+          <ion-item color="cardheader">
+            <ion-label class="ion-text-center">{{'Date of Birth' | translate}}</ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
+            <ion-text>{{userModel.dob}}</ion-text>
+          </ion-item>
+        </ion-card>
+      
+        <ion-card>
+          <ion-item color="cardheader">
+            <ion-label class="ion-text-center">{{'Aadhar Number' | translate}}</ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
+            <ion-text>{{userModel.aadharNumber}}</ion-text>
+          </ion-item>
+        </ion-card>
+
+        <ion-card>
+          <ion-item color="cardheader">
+            <ion-label class="ion-text-center">{{'Pan Number' | translate}}</ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
+            <ion-text>{{userModel.panNumber}}</ion-text>
+          </ion-item>
+        </ion-card>
+
+        <ion-card>
+          <ion-item color="cardheader">
+            <ion-label class="ion-text-center">{{'Blood Group' | translate}}</ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
+            <ion-text>{{userModel.bloodGroup}}</ion-text>
+          </ion-item>
+        </ion-card>
+      </ion-card>
+    </div>
+</ion-content> -->
+
+<div data-page="form" class="page no-toolbar no-navbar page-on-center user-detail-page">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div style="width: 20%;float: left;">
+        <ion-buttons slot="end">
+          <ion-menu-button><img style="width: 25px; height: 25px;" src='../../assets/images/icons/red/menu.png'>
+          </ion-menu-button>
+        </ion-buttons>
+      </div>
+      <div class="navbar_left">
+        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+      </div>
+      <div style="float: right; width: 20%;">
+        <ion-buttons  slot="end" (click)="logOut()">
+          <ion-icon style="color: #d64900;
+          height: 44px;
+          margin-left: 33px;
+          width: 33px;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
+        </ion-buttons>
+      </div>
+
+      <!-- <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons> -->
+      <!-- <a  data-panel="left" class="open-panel">
+        <div class="navbar_right"><img src="../../assets/images/icons/red/menu.png" alt="" title=""></div>
+      </a>
+      <a data-panel="right" class="open-panel">
+        <div class="navbar_right whitebg"><img src="../../assets/images/icons/white/user.png" alt="" title=""></div>
+      </a> -->
+    </div>
+    <div id="pages_maincontent" class="">
+
+      <h2 class="page_title">User Profile</h2>
+
+
+
+      <div class="user_login_info" *ngIf="dataAvailable">
+
+        <div class="user_thumb">
+          <div class="user_details">
+            <p>Welcome, <span class="">{{userModel.firstName}} {{userModel.lastName}}</span></p>
+          </div>
+          <div class="user_avatar"><img
+              [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)" alt=""
+              title="" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"></div>
+        </div>
+
+      </div>
+
+      <div class="page_single layout_fullwidth_padding toolbarpage" *ngIf="dataAvailable">
+
+        <ul class="features_list_detailed">
+
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Email</a></h4>
+              <a>{{userModel.email}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Gender</a></h4>
+              <a>{{userModel.gender}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Address</a></h4>
+              <a>{{userModel.address}}</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Date Of Birth</a></h4>
+              <a>{{userModel.dob}}</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Aadhar number</a></h4>
+              <a>{{userModel.aadharNumber}}</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="feat_small_details">
+              <h4><a>PAN Number</a></h4>
+              <a>{{userModel.panNumber}}</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Blood group</a></h4>
+              <a>{{userModel.bloodGroup}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Care Taker Name</a></h4>
+              <a>{{userModel.careTakerName}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Blood Donation</a></h4>
+              <a>{{userModel.bloodDonation}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Business Category</a></h4>
+              <a>{{userModel.businessCategory}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Business SubCategory</a></h4>
+              <a>{{userModel.businessSubCategory}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Mobile Number</a></h4>
+              <a>{{userModel.mobileNumber}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Occupation</a></h4>
+              <a>{{userModel.occupation}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Qualification</a></h4>
+              <a>{{userModel.qualification}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Social Service</a></h4>
+              <a>{{userModel.socialServices}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Ward Number</a></h4>
+              <a>{{userModel.wardNumber}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Whatsapp Number</a></h4>
+              <a>{{userModel.whatsAppNumber}}</a>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>DOB proof</a></h4>
+              <div>
+                <ion-avatar slot="start" style="float: left;">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                </ion-avatar>
+                <input style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
+                  (click)="presentPopover(userModel.idProofByte)" value="Click to View DOB Proof">
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="feat_small_details">
+              <h4><a>Address proof</a></h4>
+              <div>
+                <ion-avatar slot="start" style="float: left;">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                </ion-avatar>
+                <input style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
+                  (click)="presentPopover(userModel.addressProofByte)" value="Click to View Address Proof">
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

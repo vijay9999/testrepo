@@ -1,0 +1,149 @@
+<!-- -->
+<!-- <ion-content class="ion-margin" class="animated fadeIn background">
+  <div>
+    <div class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text style="text-align: center;">
+        <strong>{{'Punjabi Samaj Rewari' | translate}}</strong>
+      </h2>
+    </div>
+    <div text-center style="margin-top: 40%;">
+    <ion-row>
+        <ion-col>
+          <ion-button class="button-left-align" color="secondary" expand="block" (click)="selectHindi()">
+              {{'Hindi' | translate}}</ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button class="button-right-align" color="secondary" expand="block" (click)="selectEnglish()">
+                {{'English' | translate}}</ion-button>
+          </ion-col>
+      </ion-row>
+    </div>
+    <div text-center style="margin-top: 30%;">
+      <form [formGroup]="otpForm" class="list-form animation-slideIn">
+        <ion-item *ngIf="!isOtpSent">
+          <ion-label position="floating">{{'Name' | translate}} <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input required formControlName="userName" type="text"></ion-input>
+        </ion-item>
+        <div class="form-error-margin">
+          <ion-label *ngIf="otpForm.get('userName').invalid && otpForm.get('userName').touched && !isOtpSent">
+            <ion-text color="danger" class="form-error">
+              {{'Please enter a valid name.' | translate}}
+            </ion-text>
+          </ion-label>
+        </div>
+        <ion-item  lines="none">
+         
+        </ion-item> -->
+        <!-- <ion-item>
+          <ion-input *ngIf="!isOtpSent" formControlName="userName" type="text" placeholder="Enter Your Name">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="otpForm.get('userName').invalid && otpForm.get('userName').touched" lines="none">
+          <ion-text color="danger" class="form-error">
+            Please enter a valid name.
+          </ion-text>
+        </ion-item> 
+        <ion-item *ngIf="!isOtpSent">
+          <ion-label floating>
+            <ion-icon name="call-sharp" item-start></ion-icon>
+          </ion-label>
+          <ion-select formControlName="countryCode">
+            <ion-select-option *ngFor="let country of countries">{{ country.code }}
+            </ion-select-option>
+          </ion-select>
+          <ion-item>
+            <ion-label position="floating">{{'Mobile Number' | translate}} <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required formControlName="mobileNumber" type="tel" maxlength="10"></ion-input>
+          </ion-item>
+        </ion-item>
+        <div class="form-error-margin">
+          <ion-label *ngIf="otpForm.get('mobileNumber').invalid && otpForm.get('mobileNumber').touched && !isOtpSent">
+            <ion-text color="danger" class="form-error">
+                {{'Please enter a valid mobile number.' | translate}}
+              
+            </ion-text>
+          </ion-label>
+        </div>
+        <ion-item *ngIf="isOtpSent">
+          <ion-label position="floating">{{'Enter OTP' | translate}}<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input required formControlName="otpNumber" type="tel" minlength="4"></ion-input>
+        </ion-item>
+        <div class="form-error-margin">
+          <ion-label *ngIf="otpForm.get('otpNumber').invalid && otpForm.get('otpNumber').touched && isOtpSent">
+            <ion-text color="danger" class="form-error">
+                {{'Please enter a valid OTP.' | translate}}
+              
+            </ion-text>
+          </ion-label>
+        </div>
+        <ion-row *ngIf="!isOtpSent">
+          <ion-col>
+            <ion-button class="button-center-align" [disabled]="otpForm.get('mobileNumber').invalid || otpForm.get('userName').invalid" type="submit" color="secondary" expand="block" (click)="sendOtp()">
+                {{'Send OTP' | translate}}</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="isOtpSent">
+          <ion-col>
+            <ion-button class="button-center-align" type="submit" [disabled]="otpForm.get('otpNumber').invalid" 
+            color="secondary" expand="block" (click)="verifyOtp()">{{'Submit' | translate}}</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+  </div>
+</ion-content> -->
+
+<div class="login-page">
+  <div class="logo-section">
+    <img src="../../assets/images/home-logo.JPG" alt="" title="">
+    <h2 class="animated fadeInDown" style="color: #328153;">{{'Punjabi' | translate}} <span>{{'Samaj' | translate}}</span> <span style="font-size: 16px; color: goldenrod;"> {{'Rewari' | translate}}</span></h2>
+  </div>
+  <div class="content-block">
+    <h4>
+      Please select your language
+    </h4>
+    <button class="lang-btn" (click)="selectHindi()">{{'Hindi' | translate}}</button>
+    <button class="lang-btn" (click)="selectEnglish()">{{'English' | translate}}</button>
+    <div class="loginform">
+      <form [formGroup]="otpForm" id="LoginForm">
+        <div class="form_row" *ngIf="!isOtpSent">
+          <label>{{'Name' | translate}}<span color="danger">*</span>:</label>
+          <input type="text" name="name" value="" class="form_input" formControlName="userName">
+          <span class="form-error"
+            *ngIf="otpForm.get('userName').invalid && otpForm.get('userName').touched && !isOtpSent">{{'Please enter a valid name.' | translate}}</span>
+        </div>
+        <div class="form_row" *ngIf="!isOtpSent">
+          <select name="" class="form_select" formControlName="countryCode" placeholder="Select Country">
+            <option *ngFor="let country of countries">{{ country.code }}</option>
+          </select>
+          <div class="form_row">
+            <label>{{'Mobile Number' | translate}}:</label>
+            <input formControlName="mobileNumber" type="tel" maxlength="10" class="form_input">
+            <span class="form-error"
+              *ngIf="otpForm.get('mobileNumber').invalid && otpForm.get('mobileNumber').touched && !isOtpSent"> {{'Please enter a valid mobile number.' | translate}}</span>
+          </div>
+        </div>
+        <div class="form_row" *ngIf="isOtpSent">
+          <label>{{'Enter OTP' | translate}}:</label>
+          <input formControlName="otpNumber" type="tel" minlength="4" class="form_input">
+          <span class="form-error"
+            *ngIf="otpForm.get('otpNumber').invalid && otpForm.get('otpNumber').touched && isOtpSent">{{'Please enter a valid OTP.' | translate}}</span>
+        </div>
+        <div class="" *ngIf="!isOtpSent">
+          <input [disabled]="otpForm.get('mobileNumber').invalid || otpForm.get('userName').invalid" type="submit"
+            class="form_submit" value="{{'Send OTP' | translate}}" (click)="sendOtp()">
+        </div>
+        <div class="" *ngIf="isOtpSent">
+          <input [disabled]="otpForm.get('otpNumber').invalid" type="submit" class="form_submit" value="{{'Submit' | translate}}"
+            (click)="verifyOtp()">
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

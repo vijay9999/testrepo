@@ -1,0 +1,78 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Log In' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="floating">Member Id <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input formControlName="memberId"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="loginForm.get('memberId').invalid && loginForm.get('memberId').touched">
+        <ion-text color="danger" class="form-error">
+          Please enter a valid member id.
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item lines="full" *ngIf="isOtpSent">
+      <ion-label  position="floating">{{'Enter OTP' | translate}}</ion-label>
+      <ion-input formControlName="otpNumber" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-row *ngIf="!isOtpSent">
+      <ion-col>
+        <ion-button type="submit" color="secondary" expand="block" (click)="sendOtp()">{{'Next' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isOtpSent">
+      <ion-col>
+        <ion-button type="submit" color="secondary" expand="block" (click)="verifyOtp()">{{'Submit' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content> -->
+
+<div class="content-block">
+  <div style="margin-bottom: 20%"> 
+  <ion-buttons slot="start">
+    <ion-back-button style="color: #d64900;"></ion-back-button>
+  </ion-buttons></div>
+  <h4>{{'LOGIN' | translate}}</h4>
+  <div class="loginform">
+      <form [formGroup]="loginForm">
+          <input type="text" formControlName="memberId" name="Member Id" value="" class="form_input required" placeholder="member id">
+          <div class="form-error-margin">
+            <ion-label *ngIf="loginForm.get('memberId').invalid && loginForm.get('memberId').touched">
+              <ion-text color="danger" class="form-error">
+                Please enter a valid member id.
+              </ion-text>
+            </ion-label>
+          </div>
+          <input  *ngIf="isOtpSent" type="text" formControlName="otpNumber" name="" value="{{'Enter OTP' | translate}}" class="form_input required" placeholder="otp">
+          <div  *ngIf="isOtpSent" class="form-error-margin">
+            <ion-label *ngIf="loginForm.get('otpNumber').invalid && loginForm.get('otpNumber').touched">
+              <ion-text color="danger" class="form-error">
+                Please enter a valid otp.
+              </ion-text>
+            </ion-label>
+          </div>
+          <input *ngIf="!isOtpSent" type="submit"  [disabled]="loginForm.get('memberId').invalid" name="nextsubmit" class="form_submit" (click)="sendOtp()" id="nextsubmit" value="{{'Next' | translate}}">
+          <input *ngIf="isOtpSent" type="submit" [disabled]="loginForm.get('memberId').invalid || loginForm.get('otpNumber').invalid" name="submit" class="form_submit" (click)="verifyOtp()" id="submit" value="{{'Submit' | translate}}">
+      </form>
+      <!-- <div class="signup_bottom">
+          <p>Don't have an account?</p>
+          <a href="#" data-popup=".popup-signup" class="open-popup">SIGN UP</a>
+      </div> -->
+  </div>
+  <div class="close_popup_button">
+      <a href="#" class="close-popup"><img src="menu_close.png" alt="" title=""></a>
+  </div>
+</div>

@@ -1,0 +1,495 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Register' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registrationForm">
+    <ion-item>
+      <ion-label position="floating">{{'First Name' | translate}}<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="firstName" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid fisrt name.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Last Name' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="lastName" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid last name.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label>{{'Gender' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="gender" placeholder="Select Gender">
+        <ion-select-option value="m">{{'Male' | translate}}</ion-select-option>
+        <ion-select-option value="f">{{'Female' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{'Email' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid email.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Date of Birth(mm/dd/yyyy)' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-datetime formControlName="dob" displayFormat="DD-MM-YYYY"></ion-datetime>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid date of birth.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Care Taker Name' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="careTakerName" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('careTakerName').invalid && registrationForm.get('careTakerName').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid care taker name.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+     <ion-item lines="full">
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input type="text" formControlName="mobileNumber" required></ion-input>
+    </ion-item>
+       <ion-item>
+      <ion-label position="floating">{{'Mobile Number' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="mobileNumber" ype="tel" maxlength="10"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid mobile Number.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Whatsapp Number' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="whatsappNumber" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid whatsapp number.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+    <ion-item>
+      <ion-label position="floating">{{'Address' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-textarea required formControlName="address" type="text"></ion-textarea>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid Address.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Ward Number' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="wardNumber" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid ward number.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label>{{'Highest Qualification' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="qualification"  placeholder="Select Qualification">
+        <ion-select-option value="hs">{{'High School' | translate}}</ion-select-option>
+        <ion-select-option value="ss">{{'Sr. Secondary' | translate}}</ion-select-option>
+        <ion-select-option value="gd">{{'Graduation' | translate}}</ion-select-option>
+        <ion-select-option value="pg">{{'Post Graduation' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Occupation' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="occupation" placeholder="Select Occupation">
+        <ion-select-option value="st">{{'Student' | translate}}</ion-select-option>
+        <ion-select-option value="bs">{{'Businessman' | translate}}</ion-select-option>
+        <ion-select-option value="pj">{{'Private Job' | translate}}</ion-select-option>
+        <ion-select-option value="gj">{{'Government Job' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Business Category' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="businessCategory" placeholder="Select Category">
+        <ion-select-option value="tbd">TBD</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Business Sub Category' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="businessSubCategory" placeholder="Select Sub Category">
+        <ion-select-option value="tbd">TBD</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Blood Group' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="bloodGroup" placeholder="Select Blood Group">
+        <ion-select-option value="a+">A+</ion-select-option>
+        <ion-select-option value="a-">A-</ion-select-option>
+        <ion-select-option value="b+">B+</ion-select-option>
+        <ion-select-option value="b-">B-</ion-select-option>
+        <ion-select-option value="o+">O+</ion-select-option>
+        <ion-select-option value="o-">O-</ion-select-option>
+        <ion-select-option value="ab+">AB+</ion-select-option>
+        <ion-select-option value="ab-">AB-</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Volunteer Blood Donation' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="bloodDonation" placeholder="Select Yes/No">
+        <ion-select-option value="yes">{{'Yes' | translate}}</ion-select-option>
+        <ion-select-option value="no">{{'No' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{'Volunteer Social Service' | translate}} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="socialServices" placeholder="Select Yes/No">
+        <ion-select-option value="yes">{{'Yes' | translate}}</ion-select-option>
+        <ion-select-option value="no">{{'No' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{'Aadhar Number' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="aadharNumber" type="text"></ion-input>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please enter a valid aadhar number.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'Pan Number' | translate}} </ion-label>
+      <ion-input formControlName="panNumber" type="number"></ion-input>
+    </ion-item>
+
+    
+
+      <ion-item lines="none">
+        <ion-label>{{'Upload Your Photo' | translate}} <ion-text color="danger">*</ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button>
+          <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+          <input formControlName="userImage" (change)="loadImageFromDevice($event)" type="file" id="userImageInput" accept="image/png, image/jpeg">
+        </ion-button>
+      </ion-item>
+      <div class="form-error-margin">
+        <ion-label *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched">
+          <ion-text color="danger" class="form-error">
+              {{'Please upload user image.' | translate}}
+          </ion-text>
+        </ion-label>
+      </div>
+
+    <ion-item lines="none">
+      <ion-label>{{'Upload DOB Proof' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+    </ion-item>
+      <ion-item lines="full">
+          <ion-button>
+            <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+            <input type="file" formControlName="idProof"  (change)="loadImageFromDevice($event)"  id="idProofInput" accept="image/png, image/jpeg">
+          </ion-button>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please upload id proof.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-item lines="none">
+      <ion-label>{{'Upload Address Proof' | translate}} <ion-text color="danger">*</ion-text>
+      </ion-label>
+    </ion-item>
+      <ion-item lines="full">
+          <ion-button>
+            <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+            <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
+          </ion-button>
+    </ion-item>
+    <div class="form-error-margin">
+      <ion-label *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
+        <ion-text color="danger" class="form-error">
+            {{'Please upload address proof.' | translate}}
+        </ion-text>
+      </ion-label>
+    </div>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" [disabled]="registrationForm.invalid" color="primary" expand="block" (click)="registerUser()">{{'Sign Up' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content> -->
+
+<div data-page="form" class="page no-toolbar no-navbar page-on-center">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div style="width: 20%;float: left;">
+        <ion-buttons slot="end">
+          <ion-back-button style="color: #d64900; background-color: black;"></ion-back-button>
+          <!-- <ion-menu-button><img style="width: 25px; height: 25px;" src='../../assets/images/icons/red/menu.png'>
+          </ion-menu-button> -->
+        </ion-buttons>
+      </div>
+      <div class="navbar_left">
+        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+      </div>
+    </div>
+    <div id="pages_maincontent" class="">
+
+      <h2 class="page_title">{{'Register' | translate}}</h2>
+
+      <div class="page_single layout_fullwidth_padding">
+
+        <div class="contactform">
+          <form [formGroup]="registrationForm">
+            <div class="form_row">
+              <label>{{'First Name' | translate}}:</label>
+              <input type="text" name="first-name" value="" class="form_input" formControlName="firstName">
+              <span class="form-error"
+                *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
+                {{'Please enter a valid fisrt name.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Last Name' | translate}}:</label>
+              <input type="text" name="last-name" value="" class="form_input" formControlName="lastName">
+              <span class="form-error"
+                *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
+                {{'Please enter a valid last name.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Gender' | translate}}:</label>
+              <select name="" class="form_select" formControlName="gender" placeholder="Select Gender">
+                <option value="M">{{'Male' | translate}}</option>
+                <option value="F">{{'Female' | translate}}</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Email' | translate}}:</label>
+              <input type="text" name="email" value="" class="form_input" formControlName="email" type="email"
+                pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+              <span class="form-error"
+                *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">{{'Please enter a valid email.' | translate}}</span>
+            </div>
+
+
+            <div class="form_row">
+              <label>{{'Date of Birth(dd-mm-yyyy)' | translate}}:</label>
+              <ion-datetime style="border: 1px solid lightgray;" formControlName="dob" displayFormat="DD-MM-YYYY"></ion-datetime>
+              <span class="form-error"
+                *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched"> {{'Please enter a valid date of birth.' | translate}}</span>
+            </div>
+
+
+            <div class="form_row">
+              <label>{{'Care Taker Name' | translate}}:</label>
+              <input type="text" name="careTakerName" value="" class="form_input" formControlName="careTakerName">
+              <span class="form-error"
+                *ngIf="registrationForm.get('careTakerName').invalid && registrationForm.get('careTakerName').touched">
+                {{'Please enter a valid care taker name.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Mobile Number' | translate}}:</label>
+              <input type="tel" name="MobileNumber" maxlength="10" value="" class="form_input" formControlName="mobileNumber">
+              <span class="form-error"
+                *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">{{'Please enter a valid mobile Number.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Whatsapp Number' | translate}}:</label>
+              <input type="text" name="WhatsappNumber" value="" class="form_input" formControlName="whatsappNumber">
+              <span class="form-error"
+                *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">{{'Please enter a valid whatsapp number.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Address' | translate}}:</label>
+              <textarea type="text" name="address" value="" class="form_textarea" formControlName="address"></textarea>
+              <span class="form-error"
+                *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">{{'Please enter a valid Address.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Ward Number' | translate}}:</label>
+              <input type="text" name="wardNumber" value="" class="form_input" formControlName="wardNumber">
+              <span class="form-error"
+                *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">{{'Please enter a valid ward number.' | translate}}</span>
+            </div>
+
+
+            <div class="form_row">
+              <label>{{'Highest Qualification' | translate}}:</label>
+              <select name="" class="form_select" formControlName="qualification" placeholder="Select Qualification">
+                <option value="HS">{{'High School' | translate}}</option>
+                <option value="SS">{{'Sr. Secondary' | translate}}</option>
+                <option value="GD">{{'Graduation' | translate}}</option>
+                <option value="PG">{{'Post Graduation' | translate}}</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Occupation' | translate}}:</label>
+              <select name="" class="form_select" formControlName="occupation" placeholder="Select Occupation">
+                <option value="ST">{{'Student' | translate}}</option>
+                <option value="BS">{{'Businessman' | translate}}</option>
+                <option value="PJ">{{'Private Job' | translate}}</option>
+                <option value="GJ">{{'Government Job' | translate}}</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Business Category' | translate}}:</label>
+              <select name="" class="form_select" formControlName="businessCategory" placeholder="Select Category">
+                <option value="TBD">TBD</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Business Sub Category' | translate}}:</label>
+              <select name="" class="form_select" formControlName="businessSubCategory"
+                placeholder="Select Sub Category">
+                <option value="TBD">TBD</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Blood Group' | translate}}:</label>
+              <select name="" class="form_select" formControlName="bloodGroup" placeholder="Select Blood Group">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Volunteer Blood Donation' | translate}}:</label>
+              <select name="" class="form_select" formControlName="bloodDonation"
+                placeholder="Select Volunteer Blood Donation">
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Volunteer Social Service' | translate}}:</label>
+              <select name="" class="form_select" formControlName="socialServices"
+                placeholder="Select Volunteer Social Service">
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Aadhar Number' | translate}}:</label>
+              <input type="text" name="aadharNumber" value="" class="form_input" formControlName="aadharNumber">
+              <span class="form-error"
+                *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">{{'Please enter a valid aadhar number.' | translate}}</span>
+            </div>
+            <div class="form_row">
+              <label>{{'Pan Number' | translate}}:</label>
+              <input type="number" name="pannumber" value="" class="form_input" formControlName="panNumber">
+            </div>
+
+            <div class="form_row">
+              <label>{{'Upload Your Photo' | translate}}:</label>
+              <input class="form_input" formControlName="userImage" (change)="loadImageFromDevice($event)" type="file"
+                id="userImageInput" accept="image/png, image/jpeg">
+              <span class="form-error"
+                *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched"> {{'Please upload user image.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Please upload user image.' | translate}}:</label>
+              <input class="form_input" type="file" formControlName="idProof" (change)="loadImageFromDevice($event)"
+                id="idProofInput" accept="image/png, image/jpeg">
+              <span class="form-error"
+                *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched"> {{'Please dob proof.' | translate}}</span>
+            </div>
+
+            <div class="form_row">
+              <label>{{'Upload Address Proof' | translate}}:</label>
+              <input class="form_input" type="file" type="file" formControlName="addressProof"
+                (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
+              <span class="form-error"
+                *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
+                {{'Please upload address proof.' | translate}}</span>
+            </div>
+            <input type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
+              class="form_submit" id="submit" value="{{'Sign Up' | translate}}">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

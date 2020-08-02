@@ -1,0 +1,211 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Welcome' | translate}}  {{userName}}
+    </ion-title>
+    <ion-buttons  slot="end" (click)="logOut()">
+      <ion-icon style="width: 90px;
+      height: 30px;" name="log-out" ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-row>
+        <ion-col  style="padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;">
+          <ion-searchbar style="padding-left: 8px;
+          padding-right: 8px;
+          padding-bottom: 8px;"></ion-searchbar>
+        </ion-col>
+        </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="tech-slideshow">
+        <div class="mover-1"></div>
+        <div class="mover-2"></div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col width="50%">
+      <ion-button size="block" style="height: 45px;
+      width: 140px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      background-color: cornsilk;" color="secondary">{{'Charity' | translate}}</ion-button>
+    </ion-col>
+      <ion-col width="50%">
+         
+      </ion-col>
+    
+  </ion-row>
+  
+  <ion-row>
+    <ion-col>
+      <ion-card style="height: 145px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      background-color: cornsilk;">
+        <ion-card-header style="text-align: center;
+        background-color: khaki;">
+          <ion-card-subtitle >{{'Achievers List' | translate}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+ 
+  <ion-row>
+    <ion-col>
+      <ion-card style="height: 145px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      background-color: cornsilk;">
+        <ion-card-header style="text-align: center;
+        background-color: khaki;">
+          <ion-card-subtitle >{{'Famous Personalities' | translate}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button *ngIf="showSignUpPage" [routerLink]="['/registration']" expand="block" color="primary">{{'Sign Up' | translate}}</ion-button>
+        <ion-button *ngIf="showDetailsPage" (click)="openTempDetailPage()" expand="block" color="primary">Pending Details</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  [routerLink]="['/login']" expand="block" color="secondary">{{'Sign In' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-content>     
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+            <ion-label (click)="openContactUs()">
+              {{'Contact Us' | translate}}
+            </ion-label>
+        </ion-col>
+        <ion-col>
+            <ion-label>
+              {{'About Us' | translate}}
+            </ion-label>
+        </ion-col>
+        <ion-col>
+            <ion-label (click)="openGoverningBody()">
+              {{'Governing Body' | translate}}
+            </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer> -->
+
+<div class="views">
+  <div class="view view-main" data-page="index">
+    <div class="pages">
+
+      <div data-page="index" class="homepage">
+        <div class="page-content homepagecontent">
+
+          <!-- <div class="homenavbar">
+            <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
+          </div> -->
+            <div class="navbarpages">
+              <div class="homenavbar" style="float: left;width: 70%;">
+                <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
+              </div>
+              <div style="float: right; width: 20%;">
+                <ion-buttons  slot="end" (click)="logOut()">
+                  <ion-icon style="color: #d64900;
+                  height: 44px;
+                  margin-left: 33px;
+                  width: 33px;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
+                </ion-buttons>
+              </div>
+
+              
+          <nav class="main-nav">
+            <ul style="overflow: scroll; height: 800px;">
+              <li style="width: 100%;
+              color: white;
+              text-align: left;">
+                <span>Welcome {{userName}}</span>
+              </li>
+              <li style="width: 100%;
+              background-color: #387938;
+              height: 40px; color: white;">
+               <span class="move">Happy Raksha Bandhan!!</span>
+              </li>
+              <li style="width: 100%;">
+                <ion-slides scrollbar="true"  pager="true" [options]="slideOpts">
+                  <ion-slide *ngFor="let img of images">
+                    <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)"/>
+                  </ion-slide>
+                </ion-slides>
+              </li>
+              <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
+              </li>
+              <li class="navbg2"><a class="navbgtransblack" (click)="openCharityPage()"><img src="mobile(1).png" alt=""
+                    title=""><span>{{'Charity' | translate}}</span></a></li>
+
+              <li class="navbg3"><a class="navbgtransblack" (click)="openAchieverListPage()"><img src="features(1).png" alt=""
+                    title=""><span>{{'Achievers List' | translate}}</span></a></li>
+              <li class="navbg4"><a class="navbgtransgreen" (click)="openFamousPersonalityPage()"><img src="blog(1).png" alt=""
+                    title=""><span>{{'Famous Personalities' | translate}}</span></a></li>
+
+              <li class="navbg5"><a class="navbgtransred"><img src="photos(1).png" alt="" title=""><span>Photo
+                    Gallery</span></a></li>
+              <li class="navbg6"><a [routerLink]="['/login']" class="navbgtransblack"><img src="video(1).png" alt=""
+                    title=""><span>{{'Sign In' | translate}}</span></a></li>
+
+
+              <li *ngIf="showSignUpPage" class="navbg7">
+                <a [routerLink]="['/registration']" class="navbgtransblack">
+                  <img src="shop(1).png" alt="" title=""><span>{{'Sign Up' | translate}}</span>
+                </a>
+              </li>
+              <li *ngIf="showDetailsPage" class="navbg7"><a (click)="openTempDetailPage()" class="navbgtransblack"><img
+                    src="shop(1).png" alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li>
+              <li class="navbg8"><a (click)="openGoverningBody()" class="navbgtransyellow"><img src="cart(1).png" alt=""
+                    title=""><span> {{'Governing Body' | translate}}</span></a></li>
+
+              <!-- <li class="navbg9"><a data-popup=".popup-login" class="open-popup navbgtransviolet"><img
+                    src="lock(1).png" alt="" title=""><span>Login</span></a></li>
+              <li class="navbg10"><a  data-panel="right" class="open-panel navbgtransblack"><img
+                    src="users(1).png" alt="" title=""><span>Account</span></a></li> -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Toolbar-->
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <ul class="toolbar_icons">
+          <li><a href="#" data-panel="right" class="open-panel"><img src="../../assets/images/home-icons/user.png"
+                alt="" title=""></a></li>
+
+          <li><a href="tel:123456789" class="external"><img src="../../assets/images/home-icons/phone.png" alt=""
+                title=""></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

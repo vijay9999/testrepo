@@ -1,0 +1,22 @@
+
+    ion-menu{
+     --background: black !important; 
+     ion-header{ 
+        ion-toolbar{   
+        --background: black !important;
+        --color: #d64900 !important;
+        border-bottom-style: solid; 
+        }  
+    }
+        ion-content{            
+            --background: black !important; 
+           
+            ion-item{
+                --background: black !important;
+                 --color:#d64900 !important;
+                 ion-icon{ padding-right: 10px !important; }
+            }
+        }
+    }
+
+    

@@ -1,0 +1,61 @@
+<div data-page="form" class="page no-toolbar no-navbar page-on-center">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div class="navbar_left">
+        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+      </div>
+      <div style="float: right; width: 20%;">
+        <ion-buttons slot="end" (click)="closeModal()">
+          <ion-icon style="color: #d64900;
+          height: 44px;
+          margin-left: 33px;
+          width: 33px;" slot="end" name="close-outline" (click)="closeModal()"></ion-icon>
+        </ion-buttons>
+      </div>
+    </div>
+
+    <div id="pages_maincontent" class="">
+
+      <h2 class="page_title">Achievers List</h2>
+
+      <div class="page_single layout_fullwidth_padding">
+
+        <div class="contactform">
+          <!-- <div class="form_row">
+            <label>phot upload:</label>
+            <input class="form_input" (change)="loadImageFromDevice($event)" type="file"
+              id="userImageInput" accept="image/png, image/jpeg">
+              <input type="submit" (click)="addAchieverPic()" name="Sign Up"
+              class="form_submit" id="submit" value="Submit">
+          </div> -->
+          <div *ngFor="let user of usersModel" class="item-content" style="float: left; background-color: #d0f0c4;; margin-bottom: 10px;">
+            <div style="float: left; width: 25%;">
+              <img style="padding-left: 5px;"
+                [src]="homeService.getImage('achiever',user.userImageName)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+            </div>
+            <!-- <ion-avatar slot="start">
+                  <img [src]="user.userImageByte ? sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + user.userImageByte): ''"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                </ion-avatar> -->
+            <div style="float: left; width: 75%; padding-left: 10px; padding-bottom: 15px;">
+              <span style="font-size: large;">
+                {{user.firstName}} {{user.lastName}}
+              </span><br>
+              <span style="font-size: larger;">
+                {{user.designation}}
+              </span>
+            </div>
+            <div style="width: 100%; float: left;">
+              <span style="font-size: medium;  padding-left: 5px;">
+                {{user.description}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

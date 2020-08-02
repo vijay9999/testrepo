@@ -1,0 +1,35 @@
+// ion-item.input-disabled {
+//     --opacity: 1;
+//  }
+
+.item-content{
+    --ion-item-background: #e3e2d2c2;
+    box-shadow: 6px 2px 4px 0px;
+    margin-bottom: 6px;
+    color: black;
+}
+.strip-approved {
+    width: 5px;
+    background-color: #90d890;
+    height: 85px;
+}
+
+.strip-pending {
+    width: 5px;
+    background-color: #3d3d3d;
+    height: 85px;
+}
+
+.strip-rejected {
+    width: 5px;
+    background-color: #d89090;
+    height: 85px;
+}
+
+ion-menu-button{
+    --background: black !important; 
+    padding-left:0;
+    padding-right:0;
+    box-shadow: 0px 0px 0px;
+    border-radius: 4px;
+   }

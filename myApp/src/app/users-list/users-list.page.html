@@ -1,0 +1,64 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> 
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'Users List' | translate}}</ion-title>
+    <ion-buttons  slot="end" (click)="logOut()">
+       <ion-icon  slot="end" name="log-out" (click)= "logOut"></ion-icon>
+      <ion-icon style="width: 90px;
+      height: 30px;" name="log-out" ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+<div data-page="form" class="page no-toolbar no-navbar page-on-center user-detail-page">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div style="width: 20%;float: left;">
+        <ion-buttons slot="end">
+          <ion-menu-button><img style="width: 25px; height: 25px;" src='../../assets/images/icons/red/menu.png'>
+          </ion-menu-button>
+        </ion-buttons>
+      </div>
+      <div class="navbar_left">
+        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+      </div>
+      <div style="float: right; width: 20%;">
+        <ion-buttons  slot="end" (click)="logOut()">
+          <ion-icon style="color: #d64900;
+          height: 44px;
+          margin-left: 33px;
+          width: 33px;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
+        </ion-buttons>
+      </div>
+    </div>
+    <div id="pages_maincontent" class="user-list-content">
+      <h2 class="page_title">{{headerName}}</h2>
+      <ion-content>
+        <ion-toolbar>
+          <ion-searchbar (ionInput)="filterList($event)"></ion-searchbar>
+        </ion-toolbar>
+
+        <ion-list *ngIf="usersAvailable">
+          <ion-item *ngFor="let user of users" (click)="openPageModal(user)" class="item-content">
+            <ion-avatar slot="start">
+              <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + user.userImageByte)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{user.firstName}} {{user.lastName}}</h2>
+              <h3>{{user.mobileNumber}}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+            <div [class]="user.isApproved? 'strip-approved' : user.isRejected ? 'strip-rejected': 'strip-pending'">
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+    </div>
+  </div>
+</div>
