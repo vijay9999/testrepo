@@ -145,7 +145,7 @@
           <div class="user_details">
             <p>Welcome, <span class="">{{userModel.firstName}} {{userModel.lastName}}</span></p>
           </div>
-          <div class="user_avatar"><img
+          <div class="user_avatar"><img style="width: 102px; height: 102px;"
               [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)" alt=""
               title="" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"></div>
         </div>

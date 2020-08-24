@@ -11,6 +11,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { ToastService } from './toast.service';
 import { CharityModel } from '../interfaces/charity-model';
+import { SmsModel } from '../interfaces/sms-model';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,7 @@ export class LoginService {
 
   handleErrorMessage(error: any) {
     this.loadingService.dimissLoading();
-    if (error && error.error) {
+    if (error && error.error && error.error.message) {
       this.toastService.presentToast(error.error.message);
     } else {
       this.toastService.presentToast('Something bad happened; please try again later.');
@@ -243,6 +244,20 @@ export class LoginService {
       }, (error) => {
         this.handleErrorMessage(error);
       });
+    });
+    return promise;
+  }
+
+  sendSms(smsModel: SmsModel) {
+    //this.loadingService.presentLoading();
+    //const smsUrl = this.url + 'user/SendSms/';
+    //const promise = new Promise(resolve => {
+      //this.httpClient.post(`${smsUrl}`, smsModel).subscribe(data => {
+        //this.loadingService.dimissLoading();
+        resolve(data);
+      //}, (error) => {
+        //this.handleErrorMessage(error);
+      //});
     });
     return promise;
   }

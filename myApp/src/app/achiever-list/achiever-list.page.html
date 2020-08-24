@@ -2,7 +2,7 @@
   <div class="page-content">
     <div class="navbarpages">
       <div class="navbar_left">
-        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+        <div class="logo_text"><span> Punjabi Samaj Rewari</span></div>
       </div>
       <div style="float: right; width: 20%;">
         <ion-buttons slot="end" (click)="closeModal()">
@@ -29,8 +29,8 @@
               class="form_submit" id="submit" value="Submit">
           </div> -->
           <div *ngFor="let user of usersModel" class="item-content" style="float: left; background-color: #d0f0c4;; margin-bottom: 10px;">
-            <div style="float: left; width: 25%;">
-              <img style="padding-left: 5px;"
+            <div style="float: left; width: 98%;">
+              <img class="famous_image"
                 [src]="homeService.getImage('achiever',user.userImageName)"
                 onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
             </div>
@@ -46,7 +46,7 @@
                 {{user.designation}}
               </span>
             </div>
-            <div style="width: 100%; float: left;">
+            <div style="width: 95%; float: left; margin-left: 10px;">
               <span style="font-size: medium;  padding-left: 5px;">
                 {{user.description}}
               </span>

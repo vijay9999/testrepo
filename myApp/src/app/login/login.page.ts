@@ -78,7 +78,7 @@ export class LoginPage implements OnInit {
         }
       ).catch(response =>  console.log(response));
     } else {
-      this.alertService.presentAlert('Some error Occured..Redirecting to initial page !!', AlertType.error);
+      this.alertService.presentAlert('Some error Occured..Redirecting to initial page', AlertType.error);
       this.router.navigate(['/']);
     }
   }

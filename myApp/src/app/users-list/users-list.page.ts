@@ -8,6 +8,8 @@ import { ModalService } from '../services/modal.service';
 import { EditUserDetailPage } from '../edit-user/edit-user-detail';
 import { LoadingService } from '../services/loading.service';
 import { AppConstant } from '../common/constant';
+import { PopoverController } from '@ionic/angular';
+import { SmsPopOverPage } from '../sms-popover/sms-popover.page';
 
 @Component({
   selector: 'app-users-list',
@@ -20,13 +22,15 @@ export class UsersListPage implements OnInit {
   usersAvailable: boolean;
   currentUserType = '';
   headerName = 'Users List';
+  userSmsList = [];
   constructor(private loginService: LoginService,
               private router: Router,
               private storageService: StorageService,
               public sanitizer: DomSanitizer,
               private modalService: ModalService,
               private route: ActivatedRoute,
-              private loadingService: LoadingService) {
+              private loadingService: LoadingService,
+              private popOverController: PopoverController) {
     this.route.queryParams.subscribe(params => {
       this.getUserByType(params.userType);
     });
@@ -259,6 +263,35 @@ export class UsersListPage implements OnInit {
         return (currentUser.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });
+  }
+
+  addUserToSms(isChecked: boolean, userMobilenumber: string) {
+    if (isChecked) {
+      if (!this.userSmsList.find(mob => mob === userMobilenumber)) {
+        this.userSmsList.push(userMobilenumber);
+      }
+    } else {
+      const index = this.userSmsList.indexOf(userMobilenumber);
+      if (index > -1) {
+        this.userSmsList.splice(index, 1);
+      }
+    }
+    console.log(this.userSmsList);
+  }
+
+  async openSms(){
+
+      const popover = await this.popOverController.create({
+        component: SmsPopOverPage,
+        componentProps: {
+          title: 'SMS',
+          sub: '',
+          userSmsList: this.userSmsList
+        },
+        translucent: true,
+        backdropDismiss: false
+      });
+      return await popover.present();
   }
 
   logOut() {

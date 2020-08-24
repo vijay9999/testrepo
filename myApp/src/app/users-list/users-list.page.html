@@ -37,18 +37,25 @@
     </div>
     <div id="pages_maincontent" class="user-list-content">
       <h2 class="page_title">{{headerName}}</h2>
-      <ion-content>
+      <div>
+      <div>
         <ion-toolbar>
           <ion-searchbar (ionInput)="filterList($event)"></ion-searchbar>
         </ion-toolbar>
 
         <ion-list *ngIf="usersAvailable">
-          <ion-item *ngFor="let user of users" (click)="openPageModal(user)" class="item-content">
-            <ion-avatar slot="start">
+          <ion-item slot="slot">
+            <ion-button (click)="openSms()" expand="block" fill="clear" shape="round">
+              Send SMS
+            </ion-button>
+          </ion-item>
+          <ion-item *ngFor="let user of users" class="item-content">
+            <ion-checkbox slot="start" [id]="user.mobileNumber" (ionChange)="addUserToSms($event.target.checked, user.mobileNumber)"></ion-checkbox>
+            <ion-avatar>
               <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + user.userImageByte)"
                 onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
             </ion-avatar>
-            <ion-label>
+            <ion-label (click)="openPageModal(user)">
               <h2>{{user.firstName}} {{user.lastName}}</h2>
               <h3>{{user.mobileNumber}}</h3>
               <p>{{user.email}}</p>
@@ -57,7 +64,8 @@
             </div>
           </ion-item>
         </ion-list>
-      </ion-content>
+      </div>
+    </div>
 
     </div>
   </div>

@@ -91,9 +91,9 @@ export class EditUserDetailPage implements OnInit {
     else if (this.currentUserType === AppConstant.UserTypeConstant.Pending) {
       this.approveButtonName = 'Approve Document';
     }
-    // else if (this.currentUserType === AppConstant.UserTypeConstant.PaymentDone){
-    //   this.approveButtonName = 'Approve Payment';
-    // }
+    else if (this.currentUserType === AppConstant.UserTypeConstant.Approved){
+      
+    }
 
 
   }
@@ -201,14 +201,14 @@ export class EditUserDetailPage implements OnInit {
       }
       // this.formData.append('memberID', this.userModel.memberID.toString());
       this.loginService.updateUser(this.formData).then(data => {
-        this.alertService.presentAlert('User Updated!!', AlertType.sucess);
+        this.alertService.presentAlert('User Updated', AlertType.sucess);
         this.closeModal();
       }
       ).catch(data => {
         console.log(data);
       });
     } else {
-      this.alertService.presentAlert('Please enter mandatory details !!', AlertType.error);
+      this.alertService.presentAlert('Please enter mandatory details', AlertType.error);
     }
   }
 
@@ -225,7 +225,7 @@ export class EditUserDetailPage implements OnInit {
       rejectReason: ''
     };
     this.loginService.changeProfileStatus(profileModel).then(data => {
-      this.alertService.presentAlert('Profile Approved!!', AlertType.sucess);
+      this.alertService.presentAlert('Profile Approved', AlertType.sucess);
       this.closeModal();
     }
     ).catch(data => {
@@ -247,14 +247,14 @@ export class EditUserDetailPage implements OnInit {
         rejectReason: this.registrationForm.get('rejectReason').value
       };
       this.loginService.changeProfileStatus(profileModel).then(data => {
-        this.alertService.presentAlert('Profile Rejected!!', AlertType.sucess);
+        this.alertService.presentAlert('Profile Rejected', AlertType.sucess);
         this.closeModal();
       }
       ).catch(data => {
         console.log(data);
       });
     } else {
-      this.alertService.presentAlert('Please enter reject reason !!', AlertType.error);
+      this.alertService.presentAlert('Please enter reject reason', AlertType.error);
     }
   }
 
@@ -267,7 +267,7 @@ export class EditUserDetailPage implements OnInit {
       rejectReason: ''
     };
     this.loginService.changeUpdateUserStatus(updateUserStatusModel).then(data => {
-      this.alertService.presentAlert('Profile Approved!!', AlertType.sucess);
+      this.alertService.presentAlert('Profile Approved', AlertType.sucess);
       this.closeModal();
     }
     ).catch(data => {
@@ -285,7 +285,7 @@ export class EditUserDetailPage implements OnInit {
         rejectReason: this.registrationForm.get('rejectReason').value
       };
       this.loginService.changeUpdateUserStatus(updateUserStatusModel).then(data => {
-        this.alertService.presentAlert('Profile Rejected!!', AlertType.sucess);
+        this.alertService.presentAlert('Profile Rejected', AlertType.sucess);
         this.closeModal();
       }
       ).catch(data => {
@@ -311,15 +311,16 @@ export class EditUserDetailPage implements OnInit {
   }
   changeProfileStatus(status: string) {
     if (status === 'Approve') {
-      this.alertService.presentAlertConfirm('Approve', 'Are you sure you want to approve!!'
+      this.alertService.presentAlertConfirm('Approve', 'Are you sure you want to approve'
         , AlertType.sucess, this.onApproval.bind(this), () => { });
     } else {
-      this.alertService.presentAlertConfirm('Reject', 'Are you sure you want to reject!!',
+      this.alertService.presentAlertConfirm('Reject', 'Are you sure you want to reject',
         AlertType.error, this.onRejection.bind(this), () => { });
     }
   }
 
   pay() {
+    console.log(this.platform);
     if (this.platform.is('mobile') && !this.platform.is('android')) {
       const paymentModel: PaymentModel = {
         amount: 100,
@@ -327,7 +328,9 @@ export class EditUserDetailPage implements OnInit {
         paymentDoneForTempUserId: this.userModel.id,
         paymentDoneById: this.userModel.id.toString(),
         paymentDoneForMemberId: 0,
-        upiId: ''
+        upiId: '',
+        transactionRef: '',
+        transactionId: ''
       };
       this.loginService.registerPayment(paymentModel).then((data) => {
         console.log('Payment Successfull');
@@ -347,25 +350,29 @@ export class EditUserDetailPage implements OnInit {
         action: this.webIntent.ACTION_VIEW,
         url
       };
-      this.webIntent.startActivityForResult(option).then(Success => {
-        console.log(Success);
-        if (Success.extras.status === 'SUCCESS') {
+      this.webIntent.startActivityForResult(option).then(Response => {
+        console.log(Response);
+        if (Response.extras.Status === 'SUCCESS') {
           const paymentModel: PaymentModel = {
             amount: 100,
             id: 0,
             paymentDoneForTempUserId: this.userModel.id,
             paymentDoneById: this.userModel.id.toString(),
             paymentDoneForMemberId: 0,
-            upiId: ''
+            upiId: payeeVPA,
+            transactionId: Response.extras.txnId,
+            transactionRef: Response.extras.txnRef
           };
           this.loginService.registerPayment(paymentModel).then((data) => {
-            console.log('Payment Successfull');
+            this.alertService.presentAlert('Payment Successfull', AlertType.sucess);
+            this.closeModal();
+            this.router.navigate(['/home']);
           }).catch((data) => {
             console.log('Payment not successfull');
           });
-        } else if (Success.extras.status === 'SUBMITTED') {
+        } else if (Response.extras.Status === 'SUBMITTED') {
           console.log('SUBMITTED');
-        } else if (Success.extras.status === 'Failed' || Success.extras.status === 'FAILURE') {
+        } else if (Response.extras.Status === 'Failed' || Response.extras.Status === 'FAILURE') {
           console.log('FAILED');
         }
       });

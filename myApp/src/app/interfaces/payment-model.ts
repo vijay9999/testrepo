@@ -5,4 +5,6 @@ export interface PaymentModel {
     paymentDoneForTempUserId: number;
     paymentDoneForMemberId: number;
     upiId: string;
+    transactionId: string;
+    transactionRef: string;
 }

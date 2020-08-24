@@ -29,7 +29,7 @@ export class HomeService {
 
   handleErrorMessage(error: any) {
     this.loadingService.dimissLoading();
-    if (error && error.error) {
+    if (error && error.error && error.error.message) {
       this.toastService.presentToast(error.error.message);
     } else {
       this.toastService.presentToast('Something bad happened; please try again later.');
@@ -106,7 +106,23 @@ export class HomeService {
   }
 
   getImage(imageType: string, imageName: string) {
-    return 'http://localhost:59789/Resources/Images/' + imageType + '/' + imageName;
+    // return 'http://192.168.1.4:5555/Resources/Images/' + imageType + '/' + imageName;
+    // return 'http://localhost:59789/Resources/Images/' + imageType + '/' + imageName;
+    return 'http://manish23-001-site1.ftempurl.com/Resources/Images/' + imageType + '/' + imageName;
+  }
+
+  getGalleryImageName() {
+   // this.loadingService.presentLoading();
+    //const galleryUrl = this.url + 'getgallery';
+    const promise = new Promise(resolve => {
+     // this.httpClient.get(`${galleryUrl}`).subscribe(data => {
+     //   this.loadingService.dimissLoading();
+        resolve(data);
+     // }, (error) => {
+       // this.handleErrorMessage(error);
+     // });
+    });
+    return promise;
   }
 
 }

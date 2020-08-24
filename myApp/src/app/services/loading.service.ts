@@ -13,7 +13,8 @@ export class LoadingService {
   async createLoading(){
     this.loading = await this.loadingController.create({
         cssClass: 'my-custom-class',
-        message: 'Please wait...'
+        message: 'Please wait...',
+        duration: 10000
       });
   }
   async presentLoading() {

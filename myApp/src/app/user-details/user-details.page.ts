@@ -38,11 +38,11 @@ export class UserDetailsPage {
           this.userModel = data as any as UserModel;
           this.dataAvailable = true;
         } else {
-          this.alertService.presentAlert('Please Login Again!!', AlertType.error);
+          this.alertService.presentAlert('Please Login Again', AlertType.error);
           this.router.navigate(['/login']);
         }
       }).catch(() => {
-        this.alertService.presentAlert('Please Login Again!!', AlertType.error);
+        this.alertService.presentAlert('Please Login Again', AlertType.error);
         this.router.navigate(['/login']);
       });
   }

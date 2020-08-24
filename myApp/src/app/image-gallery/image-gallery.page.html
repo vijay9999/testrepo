@@ -1,0 +1,37 @@
+<div data-page="form" class="page no-toolbar no-navbar page-on-center">
+  <div class="page-content">
+    <div class="navbarpages">
+      <div class="navbar_left">
+        <div class="logo_text"><span> Punjabi Samaj Rewari</span></div>
+      </div>
+      <div style="float: right; width: 20%;">
+        <ion-buttons slot="end" (click)="closeModal()">
+          <ion-icon style="color: #d64900;
+          height: 44px;
+          margin-left: 33px;
+          width: 33px;" slot="end" name="close-outline" (click)="closeModal()"></ion-icon>
+        </ion-buttons>
+      </div>
+    </div>
+
+    <div id="pages_maincontent" class="">
+
+      <h2 class="page_title">Gallery</h2>
+
+      <div class="page_single layout_fullwidth_padding">
+        <div class="contactform">
+          <ion-grid>
+            <ion-row>
+              <ion-col sizeLg="4" sizeMd="4" sizeXs="6"  *ngFor="let image of images" >
+                <div class="img-wrapper" (click)="openPreview(image)" [style.background-image]="'url(' + homeService.getImage('Gallery',image) + ')'"></div>
+                <!-- <div class="image-container">
+                  <img [src]="homeService.getImage('gallery',image)"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                </div> -->
+                <!-- <div class="image-container" [style.background-image]="'url(homeService.getImage('Gallery',image))'"></div> -->
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </div>

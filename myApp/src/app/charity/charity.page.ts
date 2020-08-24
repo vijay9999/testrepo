@@ -66,9 +66,8 @@ export class CharityPage implements OnInit {
         action: this.webIntent.ACTION_VIEW,
         url
       };
-          this.webIntent.startActivityForResult(option).then(Success => {
-            console.log(Success);
-            if (Success.extras.status === 'SUCCESS') {
+          this.webIntent.startActivityForResult(option).then(Response => {
+            if (Response.extras.Status === 'SUCCESS') {
               this.homeService.addCharity(this.charityModel).then(data => {
                 this.alertService.presentAlert('Payment Successfull', AlertType.sucess);
                 this.closeModal();
@@ -76,9 +75,9 @@ export class CharityPage implements OnInit {
               ).catch(data => {
                 console.log(data);
               });
-            } else if (Success.extras.status === 'SUBMITTED') {
+            } else if (Response.extras.status === 'SUBMITTED') {
               console.log('SUBMITTED');
-            } else if (Success.extras.status === 'Failed' || Success.extras.status === 'FAILURE') {
+            } else if (Response.extras.status === 'Failed' || Response.extras.status === 'FAILURE') {
               console.log('FAILED');
             }
           });

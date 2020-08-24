@@ -44,7 +44,7 @@ export class AdminUserPage implements OnInit {
       //   this.userImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
       // });
     }).catch(() => {
-      this.alertService.presentAlert('Please Login Again!!', AlertType.error);
+      this.alertService.presentAlert('Please Login Again', AlertType.error);
       this.router.navigate(['/login']);
     });
   }

@@ -19,23 +19,25 @@ export class OtpLoginComponent implements OnInit {
   isOtpSent: boolean;
   mobileNumberForm: AbstractControl;
   userNameForm: AbstractControl;
+  isEnglish = true;
+  // timer = 60;
+  // m = 1;
   constructor(
     private loginService: LoginService,
     private router: Router,
     private storageService: StorageService,
     private loadingService: LoadingService,
     private languageService: LanguageService) {
-      this.storageService.getString('userMobileNumber')
+    this.storageService.getString('userMobileNumber')
       .then((data) => {
-        if (data != null)
-        {
+        if (data != null) {
           this.router.navigate(['/home']);
         }
       });
 
 
-      this.storageService.clear();
-      this.getCountriesList();
+    this.storageService.clear();
+    this.getCountriesList();
   }
   ngOnInit() {
     // this.phoneNumber = "^(\+\d{1,3}[- ]?)?\d{10}$";
@@ -63,9 +65,11 @@ export class OtpLoginComponent implements OnInit {
   }
   selectHindi() {
     this.languageService.setLanguage('hi');
+    this.isEnglish = false;
   }
   selectEnglish() {
     this.languageService.setLanguage('en');
+    this.isEnglish = true;
   }
   sendOtp() {
     this.mobileNumberForm = this.otpForm.get('mobileNumber');
@@ -76,14 +80,40 @@ export class OtpLoginComponent implements OnInit {
       const mobileNumber = this.mobileNumberForm.value;
       const userName = this.userNameForm.value;
       const registerUserOtpModel: RegistrationOtpModel = { MobileNumber: mobileNumber, UserName: userName };
-     // this.loadingService.presentLoading();
+      // this.loadingService.presentLoading();
       this.loginService.sendOtp(registerUserOtpModel).then(data => {
+       //  this.startTimer(360);
         this.isOtpSent = true;
-      //  this.loadingService.dimissLoading();
+        //  this.loadingService.dimissLoading();
       }
       ).catch(data => console.log(data));
     }
   }
+  // startTimer(timerValue) {
+  //   const IntervalVar = setInterval(function() {
+  //     this.timer = timerValue / 60;
+  //     this.timer--;
+
+  //     if (this.timer === 0) {
+
+  //       this.timer = 60;
+
+  //       this.m -= 1;
+
+  //     }
+
+  //     if (this.m === 0) {
+
+  //       this.timer = '00';
+
+  //       this.m = '00';
+
+  //       clearInterval(IntervalVar);
+
+  //     }
+
+  //   }.bind(this), 1000);
+  // }
 
   verifyOtp() {
     const otpNumberForm = this.otpForm.get('otpNumber');
@@ -95,13 +125,14 @@ export class OtpLoginComponent implements OnInit {
         UserName: this.userNameForm.value,
         Otp: +otpNumberForm.value
       };
-     // this.loadingService.presentLoading();
+      // this.loadingService.presentLoading();
       this.loginService.verifyOtp(registerUserOtpModel).then(data => {
-        this.isOtpSent = false;
+
         this.storageService.setString(AppConstant.StorageConstant.MobileNumber, this.mobileNumberForm.value).then(() => {
           this.storageService.setString(AppConstant.StorageConstant.UserName, this.userNameForm.value).then(() => {
-            //this.loadingService.dimissLoading();
-            this.router.onSameUrlNavigation = 'reload';
+            // this.loadingService.dimissLoading();
+            // this.router.onSameUrlNavigation = 'reload';
+            this.isOtpSent = false;
             this.router.navigate(['/home']);
           });
         });

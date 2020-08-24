@@ -80,10 +80,19 @@ export class HomePage implements OnInit {
     this.modalService.presentModal(GoverningBodyPage, '');
   }
 
+  openPhotoGallery() {
+    this.modalService.presentModal(ImageGalleryPage, '');
+  }
   openTempDetailPage() {
     this.modalService.presentModal(EditUserDetailPage, {
       userModel: this.userDetails,
       currentUserType: AppConstant.UserTypeConstant.TempUserDetail
+    }, this.refreshTabs.bind(this));
+  }
+
+  refreshTabs(){
+    this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
+      this.getUserDetailsByMobile(+data);
     });
   }
 

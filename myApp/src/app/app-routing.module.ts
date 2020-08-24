@@ -53,6 +53,14 @@ const routes: Routes = [
   {
     path: 'famous-personality',
     loadChildren: () => import('./famous-personality/famous-personality.module').then( m => m.FamousPersonalityPageModule)
+  },
+  {
+    path: 'image-gallery',
+    loadChildren: () => import('./image-gallery/image-gallery.module').then( m => m.ImageGalleryPageModule)
+  },
+  {
+    path: 'sms-popover',
+    loadChildren: () => import('./sms-popover/sms-popover.module').then( m => m.SmsPopOverPageModule)
   }
 
 

@@ -6575,27 +6575,26 @@ ion-menu-button{
  padding:10px 0 0 2%;
  margin:0px;
  }
- .homenavbar h1 span{
- font-weight:900;
- color:#b60001;
- }
+//  .homenavbar h1 span{
+//  font-weight:900;
+//  color:#b60001;
+//  }
  .navbarpages{
  position: fixed;
  top:0px;
  width:100%;
  height:70px;
  z-index:999999;
- background-color:#000000;
+ background-color:#0077a3;
  }
  /* HEADER LEFT */	
  .navbar_left{
  float:left;
- width:50%;
  padding:0 0 0 5%;
  }
  .navbar_left a img{
  display:inline-block;
- max-width:100%;
+ max-width:10%;
  padding:8px 0 0 0;
  }
  .logo_text{ 
@@ -6605,7 +6604,7 @@ ion-menu-button{
  }
  .logo_text span{
  font-weight:900;
- color:#b60001;
+ color:#eeee90;
  }	
  .logo_text a{
  color:#fff;
@@ -7521,8 +7520,8 @@ ion-menu-button{
  }
  .popup h4,.login-page h4{
  color:#222222;
- font-size:22px;
- font-weight:700;
+ font-size:19px;
+ font-weight:500;
  text-align:center;
  padding:0 0 20px 0;
  margin:0px;
@@ -8393,8 +8392,19 @@ ion-menu-button{
  width:100%;
  padding:0;
  position: relative;
- margin-top: 20px;
+ margin-top: 50px;
+ } 
+ .loginform .form_row{
+  margin-bottom: 35px;
  }
+ .loginform label{
+  font-size:15px;
+  color:black;
+  font-weight:600;
+  }
+  .loginform .error{
+    color: red;
+  }
  .loginform label.error{
  padding:0 0 20px 0; 
  margin:0px;
@@ -8410,7 +8420,7 @@ ion-menu-button{
  .loginform input.form_input{
  padding:10px 3%; 
  width:100%; 
- margin:0 0 15px 0;
+ margin:5px 0 5px 0;
  border-bottom:1px solid #d5d5d5;
  border-left:none;
  border-right:none;
@@ -8419,13 +8429,25 @@ ion-menu-button{
  color:#000000;
  -webkit-appearance: none;
  }
+ .loginform input.form_input2{
+  padding:10px 3%; 
+  width:85%; 
+  margin:5px 0 5px 5px;
+  border-bottom:1px solid #d5d5d5;
+  border-left:none;
+  border-right:none;
+  border-top:none;
+  background-color:#ffffff;
+  color:#000000;
+  -webkit-appearance: none;
+ }
  .loginform input.form_input:focus{
   background-color:#f5f5f5;
  }
  .loginform .form_select{
- padding:2% 3%; 
- width:100%; 
- margin:20px 0 10px 0;
+ padding:10px 3%; 
+ width:13%; 
+ margin:0px 0 10px 0;
  border-bottom:1px solid #d5d5d5;
  border-left:none;
  border-right:none;
@@ -8438,7 +8460,7 @@ ion-menu-button{
  padding:3px;
  }
  .loginform input.form_submit{ 
- width:100%;
+ width:80%;
  padding:12px 0; 
  margin:10px 0 0 0; 
  text-align:center;
@@ -8449,7 +8471,8 @@ ion-menu-button{
  border: none;
  cursor:pointer;
  -webkit-appearance: none;
-  background-color:#779710;
+  background-color: #005a85;
+  border-radius: 10px;
  }
  .forgot_pass{
  width:100%;
@@ -8524,6 +8547,9 @@ ion-menu-button{
  color:#f65821;
  font-weight:400;
  }
+ .contactform .error{
+  color: red;
+}
  .contactform input.form_input,.sc-ion-input-ios-h{
  padding:3%; 
  width:100%; 
@@ -8558,7 +8584,7 @@ ion-menu-button{
  .contactform textarea.form_textarea{
  padding:3%; 
  width:100%; 
- height:50px; 
+ height:70px; 
  margin:0 0 5px 0;
  border:1px solid #ddd;
  }
@@ -8575,6 +8601,37 @@ ion-menu-button{
  border: none;
  cursor:pointer;
  }
+
+ .contactform input.form_approve{ 
+  width:50%;
+  padding:3% 3% 3% 3%; 
+  margin:10px 0 0 0; 
+  font-weight:700;
+  text-align:center;
+  cursor:pointer; 
+  font-size:16px;
+  background-color:#5e9469;
+  color:#fff;
+  border: none;
+  cursor:pointer;
+  border-radius: 10px;
+  }
+
+  .contactform input.form_reject{ 
+    width:50%;
+    padding:3% 3% 3% 3%; 
+    margin:10px 0 0 10px; 
+    font-weight:700;
+    text-align:center;
+    cursor:pointer; 
+    font-size:16px;
+    background-color:#e06b6b;
+    color:#fff;
+    border: none;
+    cursor:pointer;
+    border-radius: 10px;
+    }
+
  h2#Note{
    display:none;
  }
@@ -8823,10 +8880,10 @@ ion-menu-button{
  padding:17px 0 0 0;
  }
  .homenavbar h1{
- font-size:30px;
+ font-size:25px;
  padding:0 0 0 2%;
  margin:0px;
- color: #779710!important;
+ color: #fffdcb !important;
  }
  .homenavbar img{
    width: 30px;
@@ -10543,7 +10600,7 @@ ion-menu-button{
  }
  .logo-section h2 span{
    color:#b60001;
-   font-weight: 900;
+   font-weight: 700;
  }
  .login-page{
    float: left;
@@ -10556,13 +10613,18 @@ ion-menu-button{
  }
  
  .lang-btn{
-   width: 100%;
+   width: 40%;
      padding: 10px;
      background: none;
      border: 2px solid #ccc;
-     margin: 2px 0;
+     margin: 2px 4px;
      font-weight: bold;
  }
+
+ .active, .lang-btn:hover {
+  background-color: #005a85;
+  color: white;
+}
  
  body .user-list-content .item-content {
    --ion-item-background: #e8e8e8c2;
@@ -10614,7 +10676,8 @@ color: #e8964c;
    }
 
    body,.pages{
-    background: antiquewhite;
+    // background: antiquewhite;
+    background-image: linear-gradient(#ffa504f0, #efefef, #8cd28c);
   }
    
   .main-nav .username{
@@ -10636,3 +10699,10 @@ width: 98%;
         height:auto;
         padding: 0;
       }
+
+.famous_image{
+  padding-left: 5px;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+}

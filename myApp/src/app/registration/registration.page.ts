@@ -3,7 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserModel } from '../interfaces/user-model';
 import { LoginService } from '../services/login.service';
 import { AlertSrevice, AlertType } from '../services/alert.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StorageService } from '../services/storage.service';
+import { AppConstant } from '../common/constant';
 
 @Component({
   selector: 'app-registration',
@@ -14,9 +16,21 @@ export class RegistrationPage implements OnInit {
   registrationForm: FormGroup;
   registrationModel: UserModel;
   formData: FormData;
-  constructor(private loginService: LoginService, private alertService: AlertSrevice, private router: Router) { }
+  isAdmin = false;
+  constructor(private loginService: LoginService,
+              private alertService: AlertSrevice,
+              private router: Router,
+              private route: ActivatedRoute,
+              private storageService: StorageService) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params && params.userType && params.userType === 'Admin'){
+        this.isAdmin = true;
+      } else{
+        this.isAdmin = false;
+      }
+    });
     this.registrationForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, Validators.required),
@@ -39,7 +53,8 @@ export class RegistrationPage implements OnInit {
       panNumber: new FormControl(null),
       userImage: new FormControl(null, Validators.required),
       idProof: new FormControl(null, Validators.required),
-      addressProof: new FormControl(null, Validators.required)
+      addressProof: new FormControl(null, Validators.required),
+      termsCondition: new FormControl(null, Validators.required)
     });
     this.setDefaultSelectedValue();
     // this.seedData();
@@ -65,11 +80,17 @@ export class RegistrationPage implements OnInit {
     this.registrationForm.get('gender').setValue('M');
     this.registrationForm.get('qualification').setValue('HS');
     this.registrationForm.get('occupation').setValue('BS');
-    this.registrationForm.get('businessCategory').setValue('TBD');
-    this.registrationForm.get('businessSubCategory').setValue('TBD');
+    this.registrationForm.get('businessCategory').setValue('NA');
+    this.registrationForm.get('businessSubCategory').setValue('NA');
     this.registrationForm.get('bloodGroup').setValue('AB+');
     this.registrationForm.get('bloodDonation').setValue('YES');
     this.registrationForm.get('socialServices').setValue('YES');
+    if(!this.isAdmin){
+    this.storageService.getString(AppConstant.StorageConstant.MobileNumber)
+      .then((data) => {
+        this.registrationForm.get('mobileNumber').setValue(+data);
+      });
+    }
   }
   loadImageFromDevice(event) {
 
@@ -120,7 +141,7 @@ export class RegistrationPage implements OnInit {
         }
       }
       this.loginService.registerUser(this.formData).then(data => {
-        this.alertService.presentAlert('Registered Successfully!!', AlertType.sucess);
+        this.alertService.presentAlert('Registered Successfully', AlertType.sucess);
         if (this.router.routerState.snapshot.url === '/menu/registration'){
           this.router.navigate(['/menu/admin-user']);
         } else {
@@ -131,7 +152,7 @@ export class RegistrationPage implements OnInit {
         console.log(data);
       });
     } else {
-      this.alertService.presentAlert('Please enter mandatory details !!', AlertType.error);
+      this.alertService.presentAlert('Please enter mandatory details', AlertType.error);
     }
   }
 }

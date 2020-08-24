@@ -2,30 +2,15 @@
 <div data-page="form" class="page no-toolbar no-navbar page-on-center user-detail-page">
   <div class="page-content">
     <div class="navbarpages">
-      <!-- <div class="navbar_left">
-        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
-      </div> -->
-      <!-- <ion-buttons slot="end">
-        <ion-menu-button><img style="width: 25px; height: 25px;" src='../../assets/images/icons/red/menu.png'>
-        </ion-menu-button>
-      </ion-buttons> -->
-      <!-- <ion-button style="--background: black;
-      padding-left: 0px;
-      padding-right: 0px;
-      color: red; box-shadow: 0px 0px 0px;
-      border-radius: 20px;" class="closeButton" slot="end" (click)="closeModal()">
-        <ion-icon name="close-outline"></ion-icon>
-      </ion-button> -->
-
       <div class="navbar_left">
-        <div class="logo_text"><a>Punjabi<span>Samaj</span></a></div>
+        <div class="logo_text"><span> Punjabi Samaj Rewari</span></div>
       </div>
       <div style="float: right; width: 20%;">
-        <ion-buttons  slot="end" (click)="closeModal()">
+        <ion-buttons slot="end" (click)="closeModal()">
           <ion-icon style="color: #d64900;
           height: 44px;
           margin-left: 33px;
-          width: 33px;"  slot="end" name="close-outline" (click)= "closeModal()"></ion-icon> 
+          width: 33px;" slot="end" name="close-outline" (click)="closeModal()"></ion-icon>
         </ion-buttons>
       </div>
     </div>
@@ -47,7 +32,7 @@
         <button *ngIf="showTempPayButton" class="user-btn float-right" (click)="pay()" [color]="'tertiary'"
           shape="round">Pay</button>
       </div>
-      
+
       <ion-item *ngIf="isTempUser" style="--background: #2e2d2d;">
         <ul>
           <li style="color: darkkhaki;">{{userNotificationMessage1}}</li>
@@ -58,8 +43,8 @@
         <form [formGroup]="registrationForm">
           <div class="form_row">
             <label>First Name:</label>
-            <input [attr.disabled]="isDetail? true: null" type="text" [(ngModel)]="userModel.firstName" name="first-name" value=""
-              class="form_input" formControlName="firstName">
+            <input [attr.disabled]="isDetail? true: null" type="text" [(ngModel)]="userModel.firstName"
+              name="first-name" value="" class="form_input" formControlName="firstName">
             <span class="form-error"
               *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">Please
               enter a valid fisrt name.</span>
@@ -67,8 +52,8 @@
 
           <div class="form_row">
             <label>Last Name:</label>
-            <input type="text" [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.lastName" name="last-name" value="" class="form_input"
-              formControlName="lastName">
+            <input type="text" [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.lastName" name="last-name"
+              value="" class="form_input" formControlName="lastName">
             <span class="form-error"
               *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">Please enter
               a valid last name.</span>
@@ -78,15 +63,15 @@
             <label>Gender:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="gender"
               placeholder="Select Gender">
-              <option value="M">M</option>
-              <option value="F">F</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
             </select>
           </div>
 
           <div class="form_row">
             <label>Email:</label>
-            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.email" type="text" name="email" value="" class="form_input" formControlName="email"
-              type="email"
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.email" type="text" name="email"
+              value="" class="form_input" formControlName="email" type="email"
               pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
             <span class="form-error"
               *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">Please enter a
@@ -95,9 +80,9 @@
 
 
           <div class="form_row">
-            <label>Date of Birth(mm/dd/yyyy):</label>
-            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.dob" type="datetime" name="dob" value="" class="form_input" formControlName="dob"
-              displayFormat="DD-MM-YYYY">
+            <label>{{'Date of Birth(dd-mm-yyyy)' | translate}}:</label>
+            <ion-datetime style="border: 1px solid lightgray;" [attr.disabled]="isDetail? true: null"
+              [(ngModel)]="userModel.dob" formControlName="dob" displayFormat="DD-MM-YYYY"></ion-datetime>
             <span class="form-error"
               *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched">Please enter a valid
               date of birth.</span>
@@ -106,8 +91,8 @@
 
           <div class="form_row">
             <label>Care Taker Name:</label>
-            <input [attr.disabled]="isDetail? true: null"  [(ngModel)]="userModel.careTakerName" type="text" name="careTakerName" value="" class="form_input"
-              formControlName="careTakerName">
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.careTakerName" type="text"
+              name="careTakerName" value="" class="form_input" formControlName="careTakerName">
             <span class="form-error"
               *ngIf="registrationForm.get('careTakerName').invalid && registrationForm.get('careTakerName').touched">Please
               enter a valid care taker name.</span>
@@ -115,8 +100,9 @@
 
           <div class="form_row">
             <label>Mobile Number:</label>
-            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.mobileNumber" type="tel" name="MobileNumber" value="" class="form_input"
-              formControlName="mobileNumber">
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.mobileNumber" type="number"
+              pattern="\d*" onKeyPress="if(this.value.length==10) return false;" name="MobileNumber" value=""
+              class="form_input" formControlName="mobileNumber">
             <span class="form-error"
               *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">Please
               enter a valid mobileNumber.</span>
@@ -124,8 +110,9 @@
 
           <div class="form_row">
             <label>Whatsapp Number:</label>
-            <input [attr.disabled]="isDetail? true: null"  [(ngModel)]="userModel.whatsAppNumber" type="text" name="WhatsappNumber" value="" class="form_input"
-              formControlName="whatsappNumber">
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.whatsAppNumber" type="number"
+              pattern="\d*" onKeyPress="if(this.value.length==10) return false;" name="WhatsappNumber" value=""
+              class="form_input" formControlName="whatsappNumber">
             <span class="form-error"
               *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">Please
               enter a valid whatsapp number.</span>
@@ -133,8 +120,8 @@
 
           <div class="form_row">
             <label>Address:</label>
-            <textarea [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.address" type="text" name="address" value="" class="form_textarea"
-              formControlName="address"></textarea>
+            <textarea [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.address" type="text" name="address"
+              value="" class="form_textarea" formControlName="address"></textarea>
             <span class="form-error"
               *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">Please enter a
               valid Address.</span>
@@ -142,8 +129,8 @@
 
           <div class="form_row">
             <label>Ward Number:</label>
-            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.wardNumber" type="text" name="wardNumber" value="" class="form_input"
-              formControlName="wardNumber">
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.wardNumber" type="text"
+              name="wardNumber" value="" class="form_input" formControlName="wardNumber">
             <span class="form-error"
               *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">Please
               enter a valid ward number.</span>
@@ -176,16 +163,16 @@
 
           <div class="form_row">
             <label>Business Category:</label>
-            <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="businessCategory"
-              placeholder="Select Category">
+            <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
+              formControlName="businessCategory" placeholder="Select Category">
               <option value="TBD">TBD</option>
             </select>
           </div>
 
           <div class="form_row">
             <label>Business Sub Category:</label>
-            <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="businessSubCategory"
-              placeholder="Select Sub Category">>
+            <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
+              formControlName="businessSubCategory" placeholder="Select Sub Category">>
               <option value="TBD">TBD</option>
             </select>
           </div>
@@ -203,6 +190,7 @@
               <option value="O-">O-</option>
               <option value="AB+">AB+</option>
               <option value="AB-">AB-</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -228,24 +216,24 @@
 
           <div class="form_row">
             <label>Aadhar Number:</label>
-            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.aadharNumber" type="text" name="aadharNumber" value="" class="form_input"
-              formControlName="aadharNumber">
+            <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.aadharNumber" type="number"
+              name="aadharNumber" value="" class="form_input" formControlName="aadharNumber">
             <span class="form-error"
               *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">Please
               enter a valid aadhar number.</span>
           </div>
           <div class="form_row">
             <label>Pan Number:</label>
-            <input [(ngModel)]="userModel.panNumber" [attr.disabled]="isDetail? true: null" type="number" name="pannumber" value="" class="form_input"
-              formControlName="panNumber">
+            <input [(ngModel)]="userModel.panNumber" [attr.disabled]="isDetail? true: null" type="text" name="pannumber"
+              value="" class="form_input" formControlName="panNumber">
           </div>
 
           <ion-item lines="none" *ngIf="!isDetail">
             <ion-label color="dark">Upload Your Photo <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'" lines="full">
-              <!-- <ion-avatar slot="start">
+          <ion-item lines="full">
+            <!-- <ion-avatar slot="start">
                   <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
                 </ion-avatar>
             <ion-button *ngIf="!isDetail">
@@ -261,25 +249,26 @@
             </ion-avatar>
             <ion-button *ngIf="!isDetail">
               <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input type="file" formControlName="userImage" (change)="loadImageFromDevice($event)" id="userImageInput" accept="image/png, image/jpeg">
+              <input type="file" formControlName="userImage" (change)="loadImageFromDevice($event)" id="userImageInput"
+                accept="image/png, image/jpeg">
             </ion-button>
             <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
               (click)="presentPopover(userModel.userImageByte)" value="Click to View User Image">
           </ion-item>
-           <div class="form-error-margin">
+          <div class="form-error-margin">
             <ion-label *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched">
               <ion-text color="danger" class="form-error">
                 Please upload user image.
               </ion-text>
-            </ion-label> 
+            </ion-label>
           </div>
-    
-        <ion-item lines="none" *ngIf="!isDetail">
-          <ion-label color="dark">Upload DOB Proof <ion-text color="danger">*</ion-text>
-          </ion-label>
-        </ion-item>
-          <ion-item  lines="full">
-              <!-- <ion-avatar slot="start">
+
+          <ion-item lines="none" *ngIf="!isDetail">
+            <ion-label color="dark">Upload DOB Proof <ion-text color="danger">*</ion-text>
+            </ion-label>
+          </ion-item>
+          <ion-item lines="full">
+            <!-- <ion-avatar slot="start">
                   <img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
                 </ion-avatar>
               <ion-button *ngIf="!isDetail">
@@ -289,31 +278,32 @@
               <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.idProofByte)">
                 <ion-text>Click to View Id Proof</ion-text>
               </ion-button> -->
-              <ion-avatar slot="start" style="float: left;">
-                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
-                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-              </ion-avatar>
-              <ion-button *ngIf="!isDetail">
-                <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-                <input type="file" formControlName="idProof" (change)="loadImageFromDevice($event)" id="idProofInput" accept="image/png, image/jpeg">
-              </ion-button>
-              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
-                (click)="presentPopover(userModel.idProofByte)" value="Click to View DOB Proof">
-        </ion-item>
-         <div class="form-error-margin">
-          <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
-            <ion-text color="danger" class="form-error">
-              Please upload id proof.
-            </ion-text>
-          </ion-label>
-        </div>
-    
-        <ion-item lines="none" *ngIf="!isDetail">
-          <ion-label color="dark">Upload Address Proof <ion-text color="danger">*</ion-text>
-          </ion-label>
-        </ion-item>
+            <ion-avatar slot="start" style="float: left;">
+              <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+            </ion-avatar>
+            <ion-button *ngIf="!isDetail">
+              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+              <input type="file" formControlName="idProof" (change)="loadImageFromDevice($event)" id="idProofInput"
+                accept="image/png, image/jpeg">
+            </ion-button>
+            <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
+              (click)="presentPopover(userModel.idProofByte)" value="Click to View DOB Proof">
+          </ion-item>
+          <div class="form-error-margin">
+            <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
+              <ion-text color="danger" class="form-error">
+                Please upload dob proof.
+              </ion-text>
+            </ion-label>
+          </div>
+
+          <ion-item lines="none" *ngIf="!isDetail">
+            <ion-label color="dark">Upload Address Proof <ion-text color="danger">*</ion-text>
+            </ion-label>
+          </ion-item>
           <ion-item lines="full">
-              <!-- <ion-avatar slot="start">
+            <!-- <ion-avatar slot="start">
                   <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
                 </ion-avatar>
               <ion-button *ngIf="!isDetail">
@@ -323,379 +313,53 @@
               <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.addressProofByte)">
                 <ion-text>Click to View Address Proof</ion-text>
               </ion-button> -->
-              <div>
-                <ion-avatar slot="start" style="float: left;">
-                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"
-                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-                </ion-avatar>
-                <ion-button *ngIf="!isDetail">
-                  <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-                  <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
-                </ion-button>
-                <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
-                  (click)="presentPopover(userModel.addressProofByte)" value="Click to View Address Proof">
-              </div>
-        </ion-item>
-         <div class="form-error-margin">
-          <ion-label *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
-            <ion-text color="danger" class="form-error">
-              Please upload address proof.
-            </ion-text>
-          </ion-label>
-        </div>
-        <ion-item *ngIf="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-          <ion-label position="floating" color="dark">Reject Reason</ion-label>
-          <ion-textarea formControlName="rejectReason"  type="text"></ion-textarea>
-        </ion-item>
-  
-        <ion-footer class="ion-no-border">
-          <ion-toolbar *ngIf="!isTempUser">
-            <ion-item *ngIf="isDetail" color="primary">
-              <ion-button style="background-color: #e06d14;"  class="button-center-align"  type="submit"  color="secondary" (click)="changeProfileStatus('Approve')" expand="block">{{approveButtonName}}</ion-button>
-              <ion-button  class="button-center-align" style="background-color:  #eb445a; margin-left: 15px;" type="submit"  color="danger" (click)= "changeProfileStatus('Reject')" expand="block">Reject</ion-button>
-            </ion-item>
-            <ion-item *ngIf="!isDetail" color="primary">
-               <!-- [disabled]="registrationForm.invalid" -->
-              <ion-button  class="button-center-align" [disabled]="registrationForm.invalid"  type="submit"  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
-            </ion-item>
-          </ion-toolbar>
-          <ion-toolbar *ngIf="isTempUser">
-            <ion-item *ngIf="!isDetail" color="primary">
-              <!-- [disabled]="registrationForm.invalid" -->
-              <ion-button  class="button-center-align" [disabled]="registrationForm.invalid"  type="submit"  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
-            </ion-item>
-          </ion-toolbar>
-        </ion-footer>
+            <div>
+              <ion-avatar slot="start" style="float: left;">
+                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              </ion-avatar>
+              <ion-button *ngIf="!isDetail">
+                <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+                <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)"
+                  id="addressProofInput" accept="image/png, image/jpeg">
+              </ion-button>
+              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
+                (click)="presentPopover(userModel.addressProofByte)" value="Click to View Address Proof">
+            </div>
+          </ion-item>
+          <div class="form-error-margin">
+            <ion-label
+              *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
+              <ion-text color="danger" class="form-error">
+                Please upload address proof.
+              </ion-text>
+            </ion-label>
+          </div>
+          <ion-item *ngIf="isDetail && currentUserType !== 'Approved'" [class]="isDetail? 'registration-detail-form': 'registration-form'">
+            <ion-label position="floating" color="dark">Reject Reason</ion-label>
+            <ion-textarea formControlName="rejectReason" type="text"></ion-textarea>
+          </ion-item>
+
+          <ion-footer class="ion-no-border">
+            <ion-toolbar *ngIf="!isTempUser && currentUserType !== 'Approved'">
+              <ion-item *ngIf="isDetail">
+                <input type="submit" class="form_approve" value="Approve" (click)="changeProfileStatus('Approve')">
+                <input type="submit" class="form_reject" value="Reject" (click)="changeProfileStatus('Reject')">
+              </ion-item>
+              <ion-item *ngIf="!isDetail" color="primary">
+                <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
+                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
+              </ion-item>
+            </ion-toolbar>
+            <ion-toolbar *ngIf="isTempUser">
+              <ion-item *ngIf="!isDetail" color="primary">
+                <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
+                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
+              </ion-item>
+            </ion-toolbar>
+          </ion-footer>
         </form>
       </div>
     </div>
   </div>
 </div>
-<!-- <ion-header>
-    <ion-toolbar color="primary">
-        <ion-title>User Details</ion-title>
-        <ion-button slot="end" (click)="closeModal()">
-            <ion-icon name="close-outline"></ion-icon>
-        </ion-button>
-    </ion-toolbar>
-</ion-header> -->
-<!-- <ion-content>
-  <ion-item *ngIf="!isTempUser">
-    <ion-button  (click)="isDetail = true"  class="button-center-align" [color]="isDetail? 'primary' : 'medium'" shape="round">Details</ion-button>
-    <ion-button *ngIf="currentUserType === 'UpdationRequired'"  (click)="isDetail = false" class="button-center-align" [color]="isDetail? 'medium' : 'secondary'" shape="round">Edit</ion-button>
-  </ion-item>
-  <ion-item *ngIf="isTempUser">
-    <ion-button  (click)="isDetail = true"  class="button-center-align" [color]="isDetail? 'primary' : 'medium'" shape="round">Details</ion-button>
-    <ion-button *ngIf="showTempUpdateButton"  (click)="isDetail = false" class="button-center-align" [color]="isDetail? 'medium' : 'secondary'" shape="round">Edit</ion-button>
-    <ion-button *ngIf="showTempPayButton"  (click)="pay()" class="button-center-align" [color]="'tertiary'" shape="round">Pay</ion-button>
-  </ion-item>
-  <ion-item *ngIf="isTempUser" style="--background: #2e2d2d;">
-    <ul>
-      <li style="color: darkkhaki;">{{userNotificationMessage1}}</li>
-      <li style="color: darkkhaki;"*ngIf="userNotificationMessage2 !== ''">{{userNotificationMessage2}}</li>
-    </ul>
-  </ion-item>
-    <form [formGroup]="registrationForm">
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label position="floating" color="dark">First Name <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required formControlName="firstName"  [(ngModel)]="userModel.firstName" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid fisrt name.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label position="floating" color="dark">Last Name <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required formControlName="lastName" [(ngModel)]="userModel.lastName  " type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid last name.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Gender <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select  formControlName="gender" placeholder="Select Gender">
-          <ion-select-option value="m">Male</ion-select-option>
-          <ion-select-option value="f">Female</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Email <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input  required  [(ngModel)]="userModel.email" formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid email.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Date of Birth(mm/dd/yyyy) <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-datetime formControlName="dob" [(ngModel)]="userModel.dob" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" value="2002-09-23T15:03:46.789"></ion-datetime>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid date of birth.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Care Taker Name <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input  required [(ngModel)]="userModel.careTakerName" formControlName="careTakerName" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('careTakerName').invalid && registrationForm.get('careTakerName').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid care taker name.
-          </ion-text>
-        </ion-label>
-      </div>
-
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Mobile Number <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required [(ngModel)]="userModel.mobileNumber" formControlName="mobileNumber" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid mobile number.
-          </ion-text>
-        </ion-label>
-      </div>
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Whatsapp Number <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required [(ngModel)]="userModel.whatsAppNumber" formControlName="whatsappNumber" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid whatsapp number.
-          </ion-text>
-        </ion-label>
-      </div>
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Address <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-textarea required [(ngModel)]="userModel.address" formControlName="address" type="text"></ion-textarea>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid Address.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Ward Number <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required [(ngModel)]="userModel.wardNumber" formControlName="wardNumber" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid ward number.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Highest Qualification <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select formControlName="qualification"  placeholder="Select Qualification">
-          <ion-select-option value="hs">High School</ion-select-option>
-          <ion-select-option value="ss">Sr. Secondary</ion-select-option>
-          <ion-select-option value="gd">Graduation</ion-select-option>
-          <ion-select-option value="pg">Post Graduation</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Occupation <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select formControlName="occupation" placeholder="Select Occupation">
-          <ion-select-option value="st">Student</ion-select-option>
-          <ion-select-option value="bs">Businessman</ion-select-option>
-          <ion-select-option value="pj">Private Job</ion-select-option>
-          <ion-select-option value="gj">Government Job</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Business Category <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select formControlName="businessCategory" placeholder="Select Category">
-          <ion-select-option value="tbd">TBD</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Business Sub Category <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select  formControlName="businessSubCategory" placeholder="Select Sub Category">
-          <ion-select-option value="tbd">TBD</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Blood Group <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select formControlName="bloodGroup" placeholder="Select Blood Group">
-          <ion-select-option value="a+">A+</ion-select-option>
-          <ion-select-option value="a-">A-</ion-select-option>
-          <ion-select-option value="b+">B+</ion-select-option>
-          <ion-select-option value="b-">B-</ion-select-option>
-          <ion-select-option value="o+">O+</ion-select-option>
-          <ion-select-option value="o-">O-</ion-select-option>
-          <ion-select-option value="ab+">AB+</ion-select-option>
-          <ion-select-option value="ab-">AB-</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Volunteer Blood Donation <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select  formControlName="bloodDonation" placeholder="Select Yes/No">
-          <ion-select-option value="yes">Yes</ion-select-option>
-          <ion-select-option value="no">No</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label style="font-size: 16px;" color="dark">Volunteer Social Service <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select formControlName="socialServices" placeholder="Select Yes/No">
-          <ion-select-option value="yes">Yes</ion-select-option>
-          <ion-select-option value="no">No</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Aadhar Number <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required [(ngModel)]="userModel.aadharNumber" formControlName="aadharNumber" type="text"></ion-input>
-      </ion-item>
-      <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">
-          <ion-text color="danger" class="form-error">
-            Please enter a valid aadhar number.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label color="dark" position="floating">Pan Number </ion-label>
-        <ion-input [(ngModel)]="userModel.panNumber" formControlName="panNumber" type="text"></ion-input>
-      </ion-item>
-  
-      
-  
-        <ion-item lines="none">
-          <ion-label color="dark">Upload Your Photo <ion-text color="danger">*</ion-text>
-          </ion-label>
-        </ion-item>
-        <ion-item [disabled]="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'" lines="full">
-            <ion-avatar slot="start">
-                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-              </ion-avatar>
-          <ion-button *ngIf="!isDetail">
-            <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-            <input formControlName="userImage" (change)="loadImageFromDevice($event)" type="file" id="userImageInput" accept="image/png, image/jpeg">
-          </ion-button>
-          <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.userImageByte)">
-            <ion-text>Click to View User Image</ion-text>
-          </ion-button>
-        </ion-item>
-         <div class="form-error-margin">
-          <ion-label *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched">
-            <ion-text color="danger" class="form-error">
-              Please upload user image.
-            </ion-text>
-          </ion-label> 
-        </div>
-  
-      <ion-item lines="none">
-        <ion-label color="dark">Upload Id Proof <ion-text color="danger">*</ion-text>
-        </ion-label>
-      </ion-item>
-        <ion-item  lines="full">
-            <ion-avatar slot="start">
-                <img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-              </ion-avatar>
-            <ion-button *ngIf="!isDetail">
-              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input type="file" formControlName="idProof"  (change)="loadImageFromDevice($event)"  id="idProofInput" accept="image/png, image/jpeg">
-            </ion-button>
-            <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.idProofByte)">
-              <ion-text>Click to View Id Proof</ion-text>
-            </ion-button>
-      </ion-item>
-       <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
-          <ion-text color="danger" class="form-error">
-            Please upload id proof.
-          </ion-text>
-        </ion-label>
-      </div>
-  
-      <ion-item lines="none">
-        <ion-label color="dark">Upload Address Proof <ion-text color="danger">*</ion-text>
-        </ion-label>
-      </ion-item>
-        <ion-item lines="full">
-            <ion-avatar slot="start">
-                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-              </ion-avatar>
-            <ion-button *ngIf="!isDetail">
-              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
-            </ion-button>
-            <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.addressProofByte)">
-              <ion-text>Click to View Address Proof</ion-text>
-            </ion-button>
-      </ion-item>
-       <div class="form-error-margin">
-        <ion-label *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
-          <ion-text color="danger" class="form-error">
-            Please upload address proof.
-          </ion-text>
-        </ion-label>
-      </div>
-      <ion-item *ngIf="isDetail" [class]="isDetail? 'registration-detail-form': 'registration-form'">
-        <ion-label position="floating" color="dark">Reject Reason</ion-label>
-        <ion-textarea formControlName="rejectReason"  type="text"></ion-textarea>
-      </ion-item>
-
-      <ion-footer class="ion-no-border">
-        <ion-toolbar *ngIf="!isTempUser">
-          <ion-item *ngIf="isDetail" color="primary">
-            <ion-button  class="button-center-align"  type="submit"  color="secondary" (click)="changeProfileStatus('Approve')" expand="block">{{approveButtonName}}</ion-button>
-            <ion-button  class="button-center-align" style="width: 25%;" type="submit"  color="danger" (click)= "changeProfileStatus('Reject')" expand="block">Reject</ion-button>
-          </ion-item>
-          <ion-item *ngIf="!isDetail" color="primary">
-             [disabled]="registrationForm.invalid"
-            <ion-button  class="button-center-align" [disabled]="registrationForm.invalid"  type="submit"  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
-          </ion-item>
-        </ion-toolbar>
-        <ion-toolbar *ngIf="isTempUser">
-          <ion-item *ngIf="!isDetail" color="primary">
-            [disabled]="registrationForm.invalid"
-            <ion-button  class="button-center-align" [disabled]="registrationForm.invalid"  type="submit"  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
-          </ion-item>
-        </ion-toolbar>
-      </ion-footer>
-    </form>
-  </ion-content> -->

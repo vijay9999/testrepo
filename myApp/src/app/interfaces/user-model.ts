@@ -22,7 +22,7 @@ export interface UserModel {
     lastName: string;
     mobileNumber: number;
     occupation: string;
-    panNumber: number;
+    panNumber: string;
     paymentStatus: string;
     qualification: string;
     socialServices: string;

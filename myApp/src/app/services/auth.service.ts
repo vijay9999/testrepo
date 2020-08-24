@@ -39,7 +39,7 @@ export class AuthService {
                     });
                 });
             }).catch((data) => {
-                this.alertService.presentAlert('Some error Occured.. Please login Again!!', AlertType.error);
+                this.alertService.presentAlert('Some error Occured.. Please login Again', AlertType.error);
                 this.router.navigate(['/']);
             });
     }

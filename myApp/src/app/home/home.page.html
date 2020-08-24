@@ -126,17 +126,22 @@
             <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
           </div> -->
             <div >
-              <div class="homenavbar" style="float: left;width: 70%;">
-                <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
+              <div class="homenavbar" style="float: left;
+              width: 100%;
+              background-color: #003300;">
+                <h1 class="">
+                  <img style="max-width: 30px;" src="../../assets/images/home-logo.JPG" alt="" title=""> <span style="font-size: 500;">  Punjabi Samaj Rewari</span>
+                  <ion-buttons style="width: 40px;
+                  float: right;
+                  margin-top: 10px;"  slot="end" (click)="logOut()">
+                    <ion-icon style="color: #ffffff;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
+                  </ion-buttons>
+                </h1>
+                
               </div>
-              <div style="float: right; width: 20%;">
-                <ion-buttons  slot="end" (click)="logOut()">
-                  <ion-icon style="color: #d64900;
-                  height: 44px;
-                  margin-left: 33px;
-                  width: 33px;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
-                </ion-buttons>
-              </div>
+              <!-- <div style="float: right; width: 20%;">
+               
+              </div> -->
 
               
           <nav class="main-nav">
@@ -147,37 +152,37 @@
               <li class="home-banner-text">
                <span class="move">Happy Raksha Bandhan!!</span>
               </li>
-              <li style="width: 98%;">
+              <li style="width: 98%; height: 375px;">
                 <ion-slides scrollbar="true"  pager="true" [options]="slideOpts">
                   <ion-slide *ngFor="let img of images">
                     <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)"/>
                   </ion-slide>
                 </ion-slides>
               </li>
-              <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
-              </li>
+              <!-- <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
+              </li> -->
               <li class="navbg2"><a class="navbgtransblack" (click)="openCharityPage()"><img src="mobile(1).png" alt=""
                     title=""><span>{{'Charity' | translate}}</span></a></li>
 
               <li class="navbg3"><a class="navbgtransblack" (click)="openAchieverListPage()"><img src="features(1).png" alt=""
                     title=""><span>{{'Achievers List' | translate}}</span></a></li>
-              <li class="navbg4"><a class="navbgtransgreen" (click)="openFamousPersonalityPage()"><img src="blog(1).png" alt=""
+              <li class="navbg4"><a class="navbgtransblack" (click)="openFamousPersonalityPage()"><img src="blog(1).png" alt=""
                     title=""><span>{{'Famous Personalities' | translate}}</span></a></li>
 
-              <li class="navbg5"><a class="navbgtransred"><img src="photos(1).png" alt="" title=""><span>Photo
+              <li class="navbg5"><a class="navbgtransblue" (click)="openPhotoGallery()"><img src="photos(1).png" alt="" title=""><span>Photo
                     Gallery</span></a></li>
-              <li class="navbg6"><a [routerLink]="['/login']" class="navbgtransblack"><img src="video(1).png" alt=""
+              <li *ngIf="showSignInPage" class="navbg6"><a [routerLink]="['/login']" class="navbgtransblack"><img src="video(1).png" alt=""
                     title=""><span>{{'Sign In' | translate}}</span></a></li>
 
 
               <li *ngIf="showSignUpPage" class="navbg7">
-                <a [routerLink]="['/registration']" class="navbgtransblack">
+                <a [routerLink]="['/registration']" class="navbgtransblue">
                   <img src="shop(1).png" alt="" title=""><span>{{'Sign Up' | translate}}</span>
                 </a>
               </li>
               <li *ngIf="showDetailsPage" class="navbg7"><a (click)="openTempDetailPage()" class="navbgtransblack"><img
                     src="shop(1).png" alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li>
-              <li class="navbg8"><a (click)="openGoverningBody()" class="navbgtransyellow"><img src="cart(1).png" alt=""
+              <li class="navbg8"><a (click)="openGoverningBody()" class="navbgtransblue"><img src="cart(1).png" alt=""
                     title=""><span> {{'Governing Body' | translate}}</span></a></li>
 
               <!-- <li class="navbg9"><a data-popup=".popup-login" class="open-popup navbgtransviolet"><img

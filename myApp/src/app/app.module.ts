@@ -59,7 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     ModalService,
     LanguageService,
     LoginService,
-    HomeService,
+    HomeService
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HttpConfigInterceptor,

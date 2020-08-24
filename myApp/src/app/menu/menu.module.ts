@@ -13,6 +13,8 @@ import { AdminUserPageModule } from '../admin-user/admin-user.module';
 import { UserDetailsPageModule } from '../user-details/user-details.module';
 import { RegistrationPageModule } from '../registration/registration.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { UsersListPageModule } from '../users-list/users-list.module';
+import { UsersListPageRoutingModule } from '../users-list/users-list-routing.module';
 
 @NgModule({
   imports: [
@@ -24,6 +26,8 @@ import { TranslateModule } from '@ngx-translate/core';
     UserDetailsPageRoutingModule,
     AdminUserPageModule,
     UserDetailsPageModule,
+    UsersListPageModule,
+    UsersListPageRoutingModule,
     RegistrationPageModule,
     TranslateModule
   ],

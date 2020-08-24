@@ -62,7 +62,7 @@ export class MenuPage implements OnInit {
           {
             name: 'Create User',
             path: '/menu/registration',
-            param: ''
+            param: 'Admin'
           }
         ];
       } else if (userDetails.userRole == null || userDetails.userRole === undefined ||  userDetails.userRole === 'User'){
@@ -73,7 +73,7 @@ export class MenuPage implements OnInit {
           }
         ];
       } else {
-          this.alertService.presentAlert('Some error Occured!!', AlertType.error);
+          this.alertService.presentAlert('Some error Occured', AlertType.error);
           this.router.navigate(['/home']);
           // this.router.navigate(['/menu/admin-user']);
       }
