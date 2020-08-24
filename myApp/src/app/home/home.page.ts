@@ -16,6 +16,7 @@ import { CharityPage } from '../charity/charity.page';
 import { AchieverListPage } from '../achiever-list/achiever-list.page';
 import { FamousPersonalityPage } from '../famous-personality/famous-personality.page';
 import { getMaxListeners } from 'process';
+import { ImageGalleryPage } from '../image-gallery/image-gallery.page';
 
 @Component({
   selector: 'app-home',
@@ -122,7 +123,7 @@ export class HomePage implements OnInit {
         , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
       , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
        mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
       qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
        addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
        paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false

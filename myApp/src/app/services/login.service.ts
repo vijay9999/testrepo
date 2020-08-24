@@ -251,10 +251,10 @@ export class LoginService {
   sendSms(smsModel: SmsModel) {
     //this.loadingService.presentLoading();
     //const smsUrl = this.url + 'user/SendSms/';
-    //const promise = new Promise(resolve => {
+    const promise = new Promise(resolve => {
       //this.httpClient.post(`${smsUrl}`, smsModel).subscribe(data => {
         //this.loadingService.dimissLoading();
-        resolve(data);
+        resolve();
       //}, (error) => {
         //this.handleErrorMessage(error);
       //});

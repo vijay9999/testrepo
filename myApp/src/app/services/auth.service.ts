@@ -24,7 +24,7 @@ export class AuthService {
                     , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
                   , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
                    mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-                  , panNumber: 1000, whatsAppNumber: 1234567890, memberID: 1001,
+                  , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
                   qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
                    addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
                    paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
