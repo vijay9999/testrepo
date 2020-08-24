@@ -5269,14 +5269,15 @@ ion-menu-button{
    -o-transform: translate3d(0, 0, 0);
    transform: translate3d(0, 0, 0);
    z-index: 10;
+   text-align: center;
  }
  .swiper-pagination.swiper-pagination-hidden {
    opacity: 0;
  }
  .swiper-pagination-bullet {
    width: 12px;
-   height: 3px;
-   display: inline-block;
+   height: 12px;
+   display: inline-block!important;
    background: #fff;
    opacity: 0.5;
  }
@@ -6895,7 +6896,7 @@ ion-menu-button{
  }
  .main-nav ul{
  list-style:none;
- padding:0 0 60px 0;
+ padding:0 0 10px 0;
  margin:0 auto;
  display:block;
  }
@@ -8460,7 +8461,7 @@ ion-menu-button{
  padding:3px;
  }
  .loginform input.form_submit{ 
- width:80%;
+ width:100%;
  padding:12px 0; 
  margin:10px 0 0 0; 
  text-align:center;
@@ -8870,6 +8871,11 @@ ion-menu-button{
  /* 5.1 TOP NAVIGATION AND HEADER */
  .navbarpages{
  height:50px;
+ .button{
+   background: none!important;
+   margin: 4px 0 0 0;
+   color: #d64900;
+ }
  }
  .logo_text{ 
  font-size:22px;
@@ -8884,6 +8890,7 @@ ion-menu-button{
  padding:0 0 0 2%;
  margin:0px;
  color: #fffdcb !important;
+ text-align: center;
  }
  .homenavbar img{
    width: 30px;
@@ -8891,6 +8898,12 @@ ion-menu-button{
    border-radius: 100%;
    display: inline-block;
    margin: 10px 0 0 0;
+   float: left;
+ }
+ .homenavbar span{
+  display: inline-block;
+  text-align: center;
+  margin: 10px 0;
  }
  .toolbar-icon a img{
  margin:20% auto 0 auto;
@@ -10705,4 +10718,33 @@ width: 98%;
     height: 300px;
     width: 100%;
     border-radius: 10px;
+}
+
+body.backdrop-no-scroll {
+  overflow: auto!important;
+}
+.ion-page{
+  overflow: auto!important;
+}
+
+.navbarpages ion-menu-button{
+background: none !important;
+}
+.navbarpages ion-menu-button.button{
+  --background: transparent !important;
+  margin-top: 4px;
+}
+
+.logout-btn{
+width: 40px;
+float: right;
+margin: 6px 4px 0 0;
+}
+
+.back-btn{
+  color: #d64900;
+}
+.back-btn.button{
+background: none;
+padding: 0;
 }
