@@ -6981,11 +6981,9 @@ background-color: #4b4b4b;
  background-position:center;
  display:block;
  width:100%;
- height:100%;
  padding:10% 0;
  background:rgba(119,151,16,0.6);
  border-radius: 15px 0 15px 0;
- text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
  }
 //  .main-nav ul li a.navbgtransblue{
 //  background-image:url(assets/images/trans_blue.png);
@@ -8864,15 +8862,17 @@ background-color: #4b4b4b;
  border-radius: 15px 0 15px 0;
  min-height: 120px;
  position: relative;
+ border: 1px solid #efdd00;
  }
  .main-nav ul li a{
  font-size:16px;
- padding:40px 0;
+ padding:0px 0;
  left: 0;
- bottom: 0;
+ bottom: -1px;
  height: auto;
  background: #fff!important;
  color: #000;
+ position:absolute;
  }
  .toolbar {
  height: 70px;
