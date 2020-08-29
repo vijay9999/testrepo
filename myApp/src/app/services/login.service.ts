@@ -17,7 +17,8 @@ import { SmsModel } from '../interfaces/sms-model';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = 'http://localhost:59789/api/';
+ // private url = 'http://localhost:59789/api/';
+  private url = 'http://www.punjabisamajrewari.com/api/';
   // private url = 'http://192.168.1.3:5555/api/';
   constructor(private httpClient: HttpClient,
     private alertService: AlertSrevice,
@@ -140,12 +141,12 @@ export class LoginService {
     // this.loadingService.presentLoading();
     const getUserUrl = this.url + 'user/GetUsersByType';
     const promise = new Promise(resolve => {
-      // this.httpClient.get(`${getUserUrl}` + '?userType=' + userType).subscribe(data => {
-      //   this.loadingService.dimissLoading();
+      this.httpClient.get(`${getUserUrl}` + '?userType=' + userType).subscribe(data => {
+        this.loadingService.dimissLoading();
         resolve();
-      // }, (error) => {
-      //   this.handleErrorMessage(error);
-      // });
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }
@@ -258,6 +259,20 @@ export class LoginService {
       //}, (error) => {
         //this.handleErrorMessage(error);
       //});
+    });
+    return promise;
+  }
+
+  getAllPayment(tempUserId: number) {
+    this.loadingService.presentLoading();
+    const getUserUrl = this.url + 'user/getPayment/';
+    const promise = new Promise(resolve => {
+      this.httpClient.get(`${getUserUrl}` + '?tempUserId=' + tempUserId).subscribe(data => {
+        this.loadingService.dimissLoading();
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }

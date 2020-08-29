@@ -18,6 +18,13 @@
     <div id="pages_maincontent" class="edit-user-detail">
 
       <h2 class="page_title">User Detail</h2>
+      
+      <ion-item style="--background: #2e2d2d; width: 100%;">
+        <ul>
+          <li style="color: darkkhaki;">{{userNotificationMessage1}}</li>
+          <li style="color: red" *ngIf="userNotificationMessage2 !== ''">{{userNotificationMessage2}}</li>
+        </ul>
+      </ion-item>
       <div class="user-btn-container" *ngIf="!isTempUser">
         <button class="user-btn float-left" (click)="isDetail=true" [color]="isDetail? 'primary' : 'medium'"
           shape="round">Details</button>
@@ -25,20 +32,23 @@
           [color]="isDetail? 'medium' : 'secondary'" shape="round">Edit</button>
       </div>
       <div class="user-btn-container" *ngIf="isTempUser">
-        <button class="user-btn float-left" (click)="isDetail = true" [color]="isDetail? 'primary' : 'medium'"
+        <ion-chip [color]="isDetail? 'primary' : 'medium'" (click)="isDetail = true">
+          <ion-label>Details</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="showTempUpdateButton" (click)="isDetail = false;isPay=false" [color]="isDetail? 'medium' : 'secondary'">
+          <ion-label>Edit</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="showTempPayButton" (click)="isDetail = false;isPay=true" [color]="isDetail? 'medium' : 'secondary'">
+          <ion-label>Pay & Edit</ion-label>
+        </ion-chip>
+        <!-- <button class="user-btn float-left" (click)="isDetail = true" [color]="isDetail? 'primary' : 'medium'"
           shape="round">Details</button>
-        <button *ngIf="showTempUpdateButton" class="user-btn float-right" (click)="isDetail = false"
+        <button  *ngIf="showTempUpdateButton" class="user-btn float-right" (click)="isDetail = false"
           [color]="isDetail? 'primary' : 'medium'" shape="round">Edit</button>
-        <button *ngIf="showTempPayButton" class="user-btn float-right" (click)="pay()" [color]="'tertiary'"
-          shape="round">Pay</button>
+        <button  *ngIf="showTempPayButton" class="user-btn float-right" (click)="pay()" [color]="'tertiary'"
+          shape="round">Pay</button> -->
       </div>
 
-      <ion-item *ngIf="isTempUser" style="--background: #2e2d2d;">
-        <ul>
-          <li style="color: darkkhaki;">{{userNotificationMessage1}}</li>
-          <li style="color: darkkhaki;" *ngIf="userNotificationMessage2 !== ''">{{userNotificationMessage2}}</li>
-        </ul>
-      </ion-item>
       <div class="contactform">
         <form [formGroup]="registrationForm">
           <div class="form_row">
@@ -165,7 +175,15 @@
             <label>Business Category:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
               formControlName="businessCategory" placeholder="Select Category">
-              <option value="TBD">TBD</option>
+              <option value="NA">Not Available</option>
+                <option value="RT">Retailer</option>
+                <option value="HP">Health Practitioner</option>
+                <option value="DFG">Distributor (Finished Goods)</option>
+                <option value="FS">Food Service</option>
+                <option value="SR">Supplier/Raw Ingredient Distributor</option>
+                <option value="MF">Manufacturer</option>
+                <option value="BSS">Business Services</option>
+                <option value="IR">Investor</option>
             </select>
           </div>
 
@@ -173,7 +191,7 @@
             <label>Business Sub Category:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
               formControlName="businessSubCategory" placeholder="Select Sub Category">>
-              <option value="TBD">TBD</option>
+              <option value="NA">Not Available</option>
             </select>
           </div>
 
@@ -248,8 +266,8 @@
                 onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
             </ion-avatar>
             <ion-button *ngIf="!isDetail">
-              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input type="file" formControlName="userImage" (change)="loadImageFromDevice($event)" id="userImageInput"
+              <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
+              <input type="file" style="width: 90%;" formControlName="userImage" (change)="loadImageFromDevice($event)" id="userImageInput"
                 accept="image/png, image/jpeg">
             </ion-button>
             <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
@@ -283,8 +301,8 @@
                 onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
             </ion-avatar>
             <ion-button *ngIf="!isDetail">
-              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input type="file" formControlName="idProof" (change)="loadImageFromDevice($event)" id="idProofInput"
+              <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
+              <input type="file" style="width: 90%;" formControlName="idProof" (change)="loadImageFromDevice($event)" id="idProofInput"
                 accept="image/png, image/jpeg">
             </ion-button>
             <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
@@ -319,8 +337,8 @@
                   onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
               </ion-avatar>
               <ion-button *ngIf="!isDetail">
-                <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-                <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)"
+                <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
+                <input type="file" style="width: 90%;" formControlName="addressProof" (change)="loadImageFromDevice($event)"
                   id="addressProofInput" accept="image/png, image/jpeg">
               </ion-button>
               <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
@@ -341,20 +359,27 @@
           </ion-item>
 
           <ion-footer class="ion-no-border">
-            <ion-toolbar *ngIf="!isTempUser && currentUserType !== 'Approved'">
+            <ion-toolbar *ngIf="!isTempUser && currentUserType !== 'Approved' && currentUserType !== 'Rejected'">
               <ion-item *ngIf="isDetail">
                 <input type="submit" class="form_approve" value="Approve" (click)="changeProfileStatus('Approve')">
                 <input type="submit" class="form_reject" value="Reject" (click)="changeProfileStatus('Reject')">
               </ion-item>
-              <ion-item *ngIf="!isDetail" color="primary">
-                <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
-                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
+              <ion-item *ngIf="!isDetail">
+                <input type="submit" [disabled]="registrationForm.invalid" (click)="updateUser()" name="Sign Up"
+              class="form_approve" id="submit" value="Update User">
+                <!-- <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
+                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button> -->
               </ion-item>
             </ion-toolbar>
             <ion-toolbar *ngIf="isTempUser">
-              <ion-item *ngIf="!isDetail" color="primary">
-                <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
-                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button>
+              <ion-item *ngIf="!isDetail">
+                <input type="submit" *ngIf="!isPay" [disabled]="registrationForm.invalid" (click)="updateUser()" name="Sign Up"
+                class="form_approve" id="submit" value="Update User">
+
+                <input type="submit" *ngIf="isPay" [disabled]="registrationForm.invalid" (click)="payAndRaiseUpdate()" name="payUpdate"
+                class="form_approve" id="pay" value="Pay & Update">
+                <!-- <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
+                  color="secondary" expand="block" (click)="updateUser()">Update User</ion-button> -->
               </ion-item>
             </ion-toolbar>
           </ion-footer>

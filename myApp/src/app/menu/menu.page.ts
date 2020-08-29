@@ -39,26 +39,31 @@ export class MenuPage implements OnInit {
             path: '/menu/users-list',
             param: AppConstant.UserTypeConstant.Pending
           },
-          {
-            name: 'Registered User',
-            path: '/menu/users-list',
-            param: AppConstant.UserTypeConstant.Approved
-          },
+          // {
+          //   name: 'Approve Payment',
+          //   path: '/menu/users-list',
+          //   param: AppConstant.UserTypeConstant.PaymentDone
+          // },
           {
             name: 'Rejected User',
             path: '/menu/users-list',
             param: AppConstant.UserTypeConstant.Rejected
           },
           {
-            name: 'Payment Pending',
-            path: '/menu/users-list',
-            param: AppConstant.UserTypeConstant.PendingPayment
-          },
-          {
-            name: 'Updation Required',
+            name: 'Updation Request User',
             path: '/menu/users-list',
             param: AppConstant.UserTypeConstant.UpdationRequest
           },
+          {
+            name: 'Registered User',
+            path: '/menu/users-list',
+            param: AppConstant.UserTypeConstant.Approved
+          },
+          // {
+          //   name: 'Payment Pending',
+          //   path: '/menu/users-list',
+          //   param: AppConstant.UserTypeConstant.PendingPayment
+          // },
           {
             name: 'Create User',
             path: '/menu/registration',
@@ -78,35 +83,6 @@ export class MenuPage implements OnInit {
           // this.router.navigate(['/menu/admin-user']);
       }
     });
-    // if (currentRouteUrl === '/menu/admin-user' ) {
-    //   this.pages = [
-    //     {
-    //       name: 'Admin Profile',
-    //       path: '/menu/admin-user'
-    //     },
-    //     {
-    //       name: 'Users List',
-    //       path: '/menu/users-list'
-    //     },
-    //     {
-    //       name: 'Create User',
-    //       path: '/menu/registration'
-    //     }
-    //   ];
-    // }
-    //  else if (currentRouteUrl === '/menu/user-details') {
-    //   this.pages = [
-    //     {
-    //       name: 'User Details',
-    //       path: '/menu/user-details'
-    //     }
-    //   ];
-    // }
-    //  else{
-    //   this.alertService.presentAlert('Some error Occured!!', AlertType.error);
-    //   this.router.navigate(['/home']);
-    //   // this.router.navigate(['/menu/admin-user']);
-    // }
   }
 
   ngOnInit(): void {

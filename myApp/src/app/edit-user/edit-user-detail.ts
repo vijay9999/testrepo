@@ -218,11 +218,13 @@ export class EditUserDetailPage implements OnInit {
       isDocumentApproved: true,
       isDoucmentRejected: false,
       isPaymentApproved: false,
+      currentProfileStatus: AppConstant.CurrentProfileStatus.DocumentRejected,
       isUpdationApproved: false,
       userType: AppConstant.UserTypeConstant.Approved,
       memberID: null,
       statusChangedBy: this.loggedInUser,
-      rejectReason: ''
+      rejectReason: '',
+      tempUserID: this.userModel.id
     };
     this.loginService.changeProfileStatus(profileModel).then(data => {
       this.alertService.presentAlert('Profile Approved', AlertType.sucess);
@@ -238,7 +240,9 @@ export class EditUserDetailPage implements OnInit {
       const profileModel: ProfileStatus = {
         id: this.userModel.id,
         isDocumentApproved: false,
+        currentProfileStatus: AppConstant.CurrentProfileStatus.DocumentRejected,
         isDoucmentRejected: true,
+        tempUserID: this.userModel.id,
         isPaymentApproved: false,
         isUpdationApproved: false,
         userType: AppConstant.UserTypeConstant.Rejected,
@@ -330,7 +334,8 @@ export class EditUserDetailPage implements OnInit {
         paymentDoneForMemberId: 0,
         upiId: '',
         transactionRef: '',
-        transactionId: ''
+        transactionId: '',
+        mobileNumber: 1234567890
       };
       this.loginService.registerPayment(paymentModel).then((data) => {
         console.log('Payment Successfull');
@@ -361,7 +366,8 @@ export class EditUserDetailPage implements OnInit {
             paymentDoneForMemberId: 0,
             upiId: payeeVPA,
             transactionId: Response.extras.txnId,
-            transactionRef: Response.extras.txnRef
+            transactionRef: Response.extras.txnRef,
+            mobileNumber: 1234567890
           };
           this.loginService.registerPayment(paymentModel).then((data) => {
             this.alertService.presentAlert('Payment Successfull', AlertType.sucess);

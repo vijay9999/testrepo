@@ -7,4 +7,5 @@ export interface PaymentModel {
     upiId: string;
     transactionId: string;
     transactionRef: string;
+    mobileNumber: number;
 }

@@ -61,6 +61,14 @@ const routes: Routes = [
   {
     path: 'sms-popover',
     loadChildren: () => import('./sms-popover/sms-popover.module').then( m => m.SmsPopOverPageModule)
+  },
+  {
+    path: 'directory-list',
+    loadChildren: () => import('./directory-list/directory-list.module').then( m => m.DirectoryListPageModule)
+  },
+  {
+    path: 'business-search',
+    loadChildren: () => import('./business-search/business-search.module').then( m => m.BusinessSearchPageModule)
   }
 
 

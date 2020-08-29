@@ -1,11 +1,13 @@
 export interface ProfileStatus{
     memberID: number;
+    tempUserID: number;
+    currentProfileStatus: string;
+    statusChangedBy: string;
+    userType: string;
     id: number;
     isDocumentApproved: boolean;
     isDoucmentRejected: boolean;
-    rejectReason: string;
     isPaymentApproved: boolean;
     isUpdationApproved: boolean;
-    statusChangedBy: string;
-    userType: string;
+    rejectReason: string;
 }

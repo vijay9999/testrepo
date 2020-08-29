@@ -9,8 +9,9 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeService {
-   private url = 'http://localhost:59789/api/home/';
-  // private url = 'http://192.168.1.3:5555/api/';
+   // private url = 'http://localhost:59789/api/home/';
+    private url = 'http://www.punjabisamajrewari.com/api/home/';
+   // private url = 'http://192.168.1.4:5555/api/home/';
   constructor(private httpClient: HttpClient,
               private toastService: ToastService,
               private loadingService: LoadingService) { }
@@ -36,43 +37,43 @@ export class HomeService {
     }
   }
   getAchieverList(){
-    // this.loadingService.presentLoading();
-    // const getUserUrl = this.url + 'getAchieverList/';
+    this.loadingService.presentLoading();
+    const getUserUrl = this.url + 'getAchieverList/';
     const promise = new Promise(resolve => {
-      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-      //   this.loadingService.dimissLoading();
-        resolve();
-      // }, (error) => {
-      //   this.handleErrorMessage(error);
-      // });
+      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+        this.loadingService.dimissLoading();
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }
 
   getGoverningBody(){
-    // this.loadingService.presentLoading();
-    // const getUserUrl = this.url + 'GetGoverningBody/';
+    this.loadingService.presentLoading();
+    const getUserUrl = this.url + 'GetGoverningBody/';
     const promise = new Promise(resolve => {
-      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-      //   this.loadingService.dimissLoading();
-        resolve();
-      // }, (error) => {
-      //   this.handleErrorMessage(error);
-      // });
+      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+        this.loadingService.dimissLoading();
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }
 
   getFamousPersonality(){
-   // this.loadingService.presentLoading();
+    this.loadingService.presentLoading();
     const getUserUrl = this.url + 'getFamousPersonality/';
     const promise = new Promise(resolve => {
-      // this.httpClient.get(`${getUserUrl}`).subscribe(data => {
-      //   this.loadingService.dimissLoading();
-        resolve();
-      // }, (error) => {
-      //   this.handleErrorMessage(error);
-      // });
+      this.httpClient.get(`${getUserUrl}`).subscribe(data => {
+        this.loadingService.dimissLoading();
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }
@@ -108,19 +109,19 @@ export class HomeService {
   getImage(imageType: string, imageName: string) {
     // return 'http://192.168.1.4:5555/Resources/Images/' + imageType + '/' + imageName;
     // return 'http://localhost:59789/Resources/Images/' + imageType + '/' + imageName;
-    return 'http://manish23-001-site1.ftempurl.com/Resources/Images/' + imageType + '/' + imageName;
+    return 'http://www.punjabisamajrewari.com/Resources/Images/' + imageType + '/' + imageName;
   }
 
   getGalleryImageName() {
-   // this.loadingService.presentLoading();
-    //const galleryUrl = this.url + 'getgallery';
+    this.loadingService.presentLoading();
+    const galleryUrl = this.url + 'getgallery';
     const promise = new Promise(resolve => {
-     // this.httpClient.get(`${galleryUrl}`).subscribe(data => {
-     //   this.loadingService.dimissLoading();
+      this.httpClient.get(`${galleryUrl}`).subscribe(data => {
+        this.loadingService.dimissLoading();
         resolve(data);
-     // }, (error) => {
-       // this.handleErrorMessage(error);
-     // });
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
     });
     return promise;
   }

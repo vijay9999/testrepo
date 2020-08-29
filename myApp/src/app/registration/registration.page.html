@@ -214,8 +214,10 @@
                 <input type="checkbox" name="TC" required formControlName="termsCondition" value="Terms Condition">
                 I agree all the information provided are valid to prove my identity</label><br>
             </div>
-            <input type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
-              class="form_submit" id="submit" value="{{'Sign Up' | translate}}">
+            <!-- <input type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
+              class="form_submit" id="submit" value="{{'Sign Up' | translate}}"> -->
+              <input type="submit" [disabled]="registrationForm.invalid" (click)="payAndRegister()" name="Sign Up"
+              class="form_submit" id="submit" value="Pay and Register">
           </form>
         </div>
       </div>

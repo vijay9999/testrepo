@@ -35,6 +35,7 @@ export class CharityPage implements OnInit {
     this.charityForm.get('socialServiceDonation').setValue(true);
     this.charityForm.get('marraigeDonation').setValue(false);
     this.charityForm.get('educationDonation').setValue(false);
+    this.charityForm.get('medicalDonation').setValue(false);
   }
 
   async closeModal() {
@@ -91,7 +92,8 @@ export class CharityPage implements OnInit {
   validateDonationReason() {
     if (this.charityForm.get('socialServiceDonation').value === false &&
       this.charityForm.get('educationDonation').value === false &&
-      this.charityForm.get('marraigeDonation').value === false) {
+      this.charityForm.get('marraigeDonation').value === false &&
+      this.charityForm.get('medicalDonation').value === false) {
       return false;
     }
     return true;
