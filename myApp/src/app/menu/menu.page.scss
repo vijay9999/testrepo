@@ -1,22 +1,22 @@
 
     ion-menu{
-     --background: black !important; 
+     
      ion-header{ 
         ion-toolbar{   
-        --background: black !important;
+        --background: transparent !important;
         --color: #d64900 !important;
         border-bottom-style: solid; 
         }  
     }
         ion-content{            
-            --background: black !important; 
+            --background: transparent !important; 
            
             ion-item{
-                --background: black !important;
+                --background: transparent !important;
                  --color:#d64900 !important;
+                 font-size: 13px;
                  ion-icon{ padding-right: 10px !important; }
+                
             }
         }
     }
-
-    
