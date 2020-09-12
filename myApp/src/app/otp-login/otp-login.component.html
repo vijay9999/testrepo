@@ -99,7 +99,7 @@
 
 <div class="login-page">
   <div class="logo-section">
-    <img src="../../assets/images/home-logo.JPG" alt="" title="">
+    <img src="../../assets/images/logo.png" alt="" title="">
     <h2 class="animated fadeInDown"><span>{{'PUNJABI' | translate}} {{'SAMAJ' | translate}}
         {{'REWARI' | translate}}</span></h2>
   </div>
@@ -107,7 +107,7 @@
     <h4>
       Please select your language
     </h4>
-    <div style="margin-left: 10%;">
+    <div class="lang-btn-container">
       <button class="lang-btn" [class]= "isEnglish ? '': 'active'" (click)="selectHindi()">{{'Hindi' | translate}}</button>
       <button class="lang-btn" [class]= "isEnglish ? 'active': ''" (click)="selectEnglish()">{{'English' | translate}}</button>
     </div>
