@@ -38,7 +38,8 @@ const routes: Routes = [
   {
     path: 'users-list',
     loadChildren: () => import('./users-list/users-list.module').then(m => m.UsersListPageModule)
-  },  {
+  },
+  {
     path: 'image-modal',
     loadChildren: () => import('./image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   },
@@ -61,15 +62,19 @@ const routes: Routes = [
   {
     path: 'sms-popover',
     loadChildren: () => import('./sms-popover/sms-popover.module').then( m => m.SmsPopOverPageModule)
-  },
-  {
+  },  {
     path: 'directory-list',
     loadChildren: () => import('./directory-list/directory-list.module').then( m => m.DirectoryListPageModule)
   },
   {
     path: 'business-search',
     loadChildren: () => import('./business-search/business-search.module').then( m => m.BusinessSearchPageModule)
+  },
+  {
+    path: 'matrimony',
+    loadChildren: () => import('./matrimony/matrimony.module').then( m => m.MatrimonyPageModule)
   }
+
 
 
 

@@ -28,16 +28,18 @@ export class OtpLoginComponent implements OnInit {
     private storageService: StorageService,
     private loadingService: LoadingService,
     private languageService: LanguageService) {
-    this.storageService.getString('userMobileNumber')
+    this.storageService.getString(AppConstant.StorageConstant.MobileNumber)
       .then((data) => {
         if (data != null) {
           this.router.navigate(['/home']);
+        } else {
+          this.storageService.clear();
+          this.getCountriesList();
         }
+      }).catch(() => {
+        this.storageService.clear();
+        this.getCountriesList();
       });
-
-
-    this.storageService.clear();
-    this.getCountriesList();
   }
   ngOnInit() {
     // this.phoneNumber = "^(\+\d{1,3}[- ]?)?\d{10}$";
@@ -55,10 +57,6 @@ export class OtpLoginComponent implements OnInit {
       {
         code: '+91',
         name: 'India'
-      },
-      {
-        code: '+1',
-        name: 'America'
       }
     ];
     this.isOtpSent = false;

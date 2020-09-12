@@ -4,4 +4,5 @@ export interface UpdateUserStatusModel {
     isUpdationApproved: boolean;
     isUpdationRejected: boolean;
     rejectReason: string;
+    statusChangedBy: string;
 }

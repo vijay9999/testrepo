@@ -17,12 +17,57 @@
 
       <h2 class="page_title">Business Search</h2>
       <ion-toolbar>
-        <ion-searchbar (ionInput)="filterList($event)"></ion-searchbar>
+        <ion-searchbar placeholder="Search By Business" (ionInput)="filterList($event)"></ion-searchbar>
       </ion-toolbar>
+      <form [formGroup]="businessForm" class="contactform">
+        <div class="form_row" style="width: 90%;
+        margin-left: 16px;">
+          <label>Business Category</label>
+          <select name="" class="form_select" (change)="filterList($event)" formControlName="businessCategory" placeholder="Select Category">
+            <option value="All">Select All</option>
+            <option *ngFor="let category of businessCatModel" [value]="category.key">
+              {{category.value}}
+            </option>
+          </select>
+        </div>
+     <!-- <div class="form_row" style="margin-left: 5%;">
+        <label>Select Business Sub Category</label><br/>
+        <select name="" class="form_select" formControlName="businessSubCategory" placeholder="Select Category" (change)="onBusinesSubCatChange()">
+          <option value="NA">Not Available</option>
+        </select>
+      </div> -->
+      </form>
       <div class="page_single layout_fullwidth_padding">
 
         <div class="contactform">
-          
+          <div *ngFor="let user of users" class="item-content" style="float: left; background-color: #d0f0c4;; margin-bottom: 10px; width: 98%;">
+            <div>
+              <img *ngIf="user.userImageByte" class="famous_image" style="width: 95px; float: left;height: 95px;"
+              [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + user.userImageByte)" alt=""
+              title="" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              <img *ngIf="!user.userImageByte" class="famous_image" style="width: 95px; float: left;height: 95px;"
+                [src]="homeService.getImage('directory',user.userImageName)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+
+              <!-- <img class="famous_image" style="width: 95px; float: left;height: 95px;"
+                [src]="homeService.getImage('directory',user.userImageName)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"> -->
+              <div>
+                <span style="font-size: large; padding-left: 10px; font-weight: 700;">
+                  {{user.firstName}} {{user.lastName}}
+                </span><br>
+                <span style="font-size: larger; padding-left: 10px;">
+                  {{user.businessCategory}}
+                </span><br>
+                <span style="font-size: larger; padding-left: 10px;">
+                  {{user.businessSubCategory}}
+                </span><br>
+                <span style="font-size: larger; padding-left: 10px;">
+                  {{user.mobileNumber}}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

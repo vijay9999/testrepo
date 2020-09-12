@@ -26,6 +26,8 @@ export class ImageModalPage implements OnInit {
       this.src = this.homeService.getImage('Gallery', param.img);
     } else if (param.type === 'slide') {
       this.src = 'assets/img/' + param.img;
+    } else {
+      this.src = param.img;
     }
   }
 

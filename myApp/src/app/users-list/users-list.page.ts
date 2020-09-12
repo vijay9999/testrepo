@@ -10,6 +10,7 @@ import { LoadingService } from '../services/loading.service';
 import { AppConstant } from '../common/constant';
 import { PopoverController } from '@ionic/angular';
 import { SmsPopOverPage } from '../sms-popover/sms-popover.page';
+import { HomeService } from '../services/home.service';
 
 @Component({
   selector: 'app-users-list',
@@ -22,7 +23,11 @@ export class UsersListPage implements OnInit {
   usersAvailable: boolean;
   currentUserType = '';
   headerName = 'Users List';
+  uniqueMobUserLength: number;
   userSmsList = [];
+  selectAllChk = {
+    isChecked : false
+  };
   constructor(private loginService: LoginService,
               private router: Router,
               private storageService: StorageService,
@@ -30,16 +35,20 @@ export class UsersListPage implements OnInit {
               private modalService: ModalService,
               private route: ActivatedRoute,
               private loadingService: LoadingService,
-              private popOverController: PopoverController) {
+              private popOverController: PopoverController,
+              private homeService: HomeService) {
     this.route.queryParams.subscribe(params => {
+      this.usersAvailable = false;
       this.getUserByType(params.userType);
+      this.userSmsList = [];
+      this.selectAllChk.isChecked = false;
     });
-
+    
     // this.getAllUser();
     // this.usersAvailable = false;
   }
 
-  getUserByType(userType: string){
+  getUserByType(userType: string) {
     switch (userType) {
       case AppConstant.UserTypeConstant.Pending:
         this.getPendingUser();
@@ -47,9 +56,12 @@ export class UsersListPage implements OnInit {
       case AppConstant.UserTypeConstant.Approved:
         this.getApprovedUser();
         break;
-      case AppConstant.UserTypeConstant.PendingPayment:
-        this.getPendingPaymentUser();
-        break;
+      // case AppConstant.UserTypeConstant.PendingPayment:
+      //   this.getPendingPaymentUser();
+      //   break;
+      // case AppConstant.UserTypeConstant.PaymentDone:
+      //     this.getPaymentDoneUser();
+      //     break;
       case AppConstant.UserTypeConstant.Rejected:
         this.getRejectedUser();
         break;
@@ -63,57 +75,34 @@ export class UsersListPage implements OnInit {
 
   getAllUser() {
     this.loginService.getAllUser().then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay1', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar1', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
+      // for (const eachUser of data) {
+      //     console.log(eachUser);
+      // }
+      this.users = data;
+      this.usersCopy = data;
+      if (this.users && this.users.length > 0){
+        this.usersAvailable = true;
+        this.uniqueMobUserLength =
+         this.users.filter((thing, i, arr) => arr.findIndex(t => t.mobileNumber === thing.mobileNumber) === i).length;
+      }
       this.headerName = 'Approved User List';
     });
   }
 
   getPendingUser() {
-   // this.loadingService.presentLoading();
+    // this.loadingService.presentLoading();
     this.loginService.getUserByType(AppConstant.UserTypeConstant.Pending).then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay2', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar2', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
+      this.users = data;
+      this.usersCopy = data;
+      if (this.users && this.users.length > 0){
+        this.usersAvailable = true;
+        this.uniqueMobUserLength =
+         this.users.filter((thing, i, arr) => arr.findIndex(t => t.mobileNumber === thing.mobileNumber) === i).length;
+      }
       this.currentUserType = AppConstant.UserTypeConstant.Pending;
-      this.headerName = 'Pending User List';
-     // this.loadingService.dimissLoading();
-    }).catch(() =>{}
+      this.headerName = 'Pending Users';
+      // this.loadingService.dimissLoading();
+    }).catch(() => { }
       // this.loadingService.dimissLoading()
     );
   }
@@ -121,87 +110,44 @@ export class UsersListPage implements OnInit {
   getApprovedUser() {
     // this.loadingService.presentLoading();
     this.loginService.getUserByType('Approved').then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay3', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar3', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
+      this.users = data;
+      this.usersCopy = data;
+      if (this.users && this.users.length > 0){
+        this.usersAvailable = true;
+        this.uniqueMobUserLength =
+         this.users.filter((thing, i, arr) => arr.findIndex(t => t.mobileNumber === thing.mobileNumber) === i).length;
+      }
       this.currentUserType = AppConstant.UserTypeConstant.Approved;
-      this.headerName = 'Approved User List';
-     // this.loadingService.dimissLoading();
-    }).catch(() => {}
-     // this.loadingService.dimissLoading()
+      this.headerName = 'Approved Users';
+      // this.loadingService.dimissLoading();
+    }).catch(() => { }
+      // this.loadingService.dimissLoading()
     );
   }
 
   getRejectedUser() {
     this.loginService.getUserByType('Rejected').then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay4', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar4', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
+      this.users = data;
+      this.usersCopy = data;
+      if (this.users && this.users.length > 0){
+        this.usersAvailable = true;
+        this.uniqueMobUserLength =
+         this.users.filter((thing, i, arr) => arr.findIndex(t => t.mobileNumber === thing.mobileNumber) === i).length;
+      }
       this.currentUserType = AppConstant.UserTypeConstant.Rejected;
-      this.headerName = 'Rejected User List';
+      this.headerName = 'Rejected Users';
     });
   }
 
-  getPendingPaymentUser() {
-    this.loginService.getUserByType('PaymentPending').then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay5', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay5', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar5', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
-      this.currentUserType = AppConstant.UserTypeConstant.PendingPayment;
-      this.headerName = 'Payment Pending User List';
-    });
-  }
+  // getPendingPaymentUser() {
+  //   this.loginService.getUserByType('PaymentPending').then((data: UserModel[]) => {
+  //     this.users = data;
+  //     this.usersCopy = data;
+  //     this.usersAvailable = true;
+  //     this.currentUserType = AppConstant.UserTypeConstant.PendingPayment;
+  //     this.headerName = 'Payment Pending Users';
+  //   });
+  // }
 
   // getPaymentDoneUser() {
   //   this.loginService.getUserByType('PaymentDone').then((data: UserModel[]) => {
@@ -209,41 +155,29 @@ export class UsersListPage implements OnInit {
   //     this.usersCopy = data;
   //     this.usersAvailable = true;
   //     this.currentUserType = AppConstant.UserTypeConstant.PaymentDone;
+  //     this.headerName = 'Payment Recieved Users';
   //   });
   // }
   getAllUpdationRequest() {
     this.loginService.getUserByType('UpdationRequest').then((data: UserModel[]) => {
-      this.users = [{id: 1, firstName: 'Vijay6', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-      , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-    , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-     mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-    , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-    qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-     addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-     paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-    , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  },
-    {id: 1, firstName: 'Bhaskar6', lastName: 'Vij', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: "1000", whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  }];
-      this.usersCopy = this.users;
-      this.usersAvailable = true;
+      this.users = data;
+      this.usersCopy = data;
+      if (this.users && this.users.length > 0){
+        this.usersAvailable = true;
+        this.uniqueMobUserLength =
+         this.users.filter((thing, i, arr) => arr.findIndex(t => t.mobileNumber === thing.mobileNumber) === i).length;
+      }
       this.currentUserType = AppConstant.UserTypeConstant.UpdationRequest;
-      this.headerName = 'Updation Request User List';
+      this.headerName = 'Updation Request Users';
     });
   }
   openPageModal(user: UserModel) {
     this.modalService.presentModal(EditUserDetailPage,
-                                  {userModel : user, currentUserType : this.currentUserType },
-                                  this.refreshOnModalClose.bind(this));
+      { userModel: user, currentUserType: this.currentUserType },
+      this.refreshOnModalClose.bind(this));
   }
 
-  refreshOnModalClose(){
+  refreshOnModalClose() {
     this.getUserByType(this.currentUserType);
     console.log('modal close.. refresh..');
   }
@@ -269,29 +203,33 @@ export class UsersListPage implements OnInit {
     if (isChecked) {
       if (!this.userSmsList.find(mob => mob === userMobilenumber)) {
         this.userSmsList.push(userMobilenumber);
+        if (this.userSmsList.length === this.uniqueMobUserLength){
+          this.selectAllChk.isChecked = true;
+        }
       }
     } else {
       const index = this.userSmsList.indexOf(userMobilenumber);
       if (index > -1) {
         this.userSmsList.splice(index, 1);
+        this.selectAllChk.isChecked = false;
       }
     }
-    console.log(this.userSmsList);
+    // console.log(this.userSmsList);
   }
 
-  async openSms(){
+  async openSms() {
 
-      const popover = await this.popOverController.create({
-        component: SmsPopOverPage,
-        componentProps: {
-          title: 'SMS',
-          sub: '',
-          userSmsList: this.userSmsList
-        },
-        translucent: true,
-        backdropDismiss: false
-      });
-      return await popover.present();
+    const popover = await this.popOverController.create({
+      component: SmsPopOverPage,
+      componentProps: {
+        title: 'SMS',
+        sub: '',
+        userSmsList: this.userSmsList
+      },
+      translucent: true,
+      backdropDismiss: false
+    });
+    return await popover.present();
   }
 
   logOut() {
@@ -299,4 +237,18 @@ export class UsersListPage implements OnInit {
       this.router.navigate(['/home'])
     );
   }
+  selectAll(isChecked: boolean) {
+    for (const user of this.users) {
+      if (isChecked) {
+        user.isChecked = true;
+       // this.addUserToSms(true, user.mobileNumber.toString());
+      } else {
+        user.isChecked = false;
+      //  this.addUserToSms(false, user.mobileNumber.toString());
+      }
+    }
+     // // this.selectAllChk.isChecked = !isChecked;
+    //  console.log(event);
+  }
+
 }

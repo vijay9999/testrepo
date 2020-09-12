@@ -110,18 +110,24 @@
 
             <div class="form_row">
               <label>{{'Occupation' | translate}}<span class="error">*</span></label>
-              <select name="" class="form_select" formControlName="occupation" placeholder="Select Occupation">
-                <option value="ST">{{'Student' | translate}}</option>
+              <select name="" class="form_select" formControlName="occupation" (change)="onOccupationChange($event.target.value)" placeholder="Select Occupation">
+                <option *ngFor="let occupation of occupationModel" [value]="occupation.key">
+                  {{occupation.value}}
+                </option>
+                <!-- <option value="ST">{{'Student' | translate}}</option>
                 <option value="BS">{{'Businessman' | translate}}</option>
                 <option value="PJ">{{'Private Job' | translate}}</option>
-                <option value="GJ">{{'Government Job' | translate}}</option>
+                <option value="GJ">{{'Government Job' | translate}}</option> -->
               </select>
             </div>
 
-            <div class="form_row" *ngIf="registrationForm.get('occupation').value === 'BS'">
+            <div class="form_row">
               <label>{{'Business Category' | translate}}<span class="error">*</span></label>
               <select name="" class="form_select" formControlName="businessCategory" placeholder="Select Category">
-                <option value="NA">Not Available</option>
+                <option *ngFor="let category of businessCatModel" [value]="category.key">
+                  {{category.value}}
+                </option>
+                <!-- <option value="NA">Not Available</option>
                 <option value="RT">Retailer</option>
                 <option value="HP">Health Practitioner</option>
                 <option value="DFG">Distributor (Finished Goods)</option>
@@ -129,16 +135,18 @@
                 <option value="SR">Supplier/Raw Ingredient Distributor</option>
                 <option value="MF">Manufacturer</option>
                 <option value="BSS">Business Services</option>
-                <option value="IR">Investor</option>
+                <option value="IR">Investor</option> -->
               </select>
             </div>
 
-            <div class="form_row" *ngIf="registrationForm.get('occupation').value === 'BS'">
-              <label>{{'Business Sub Category' | translate}}<span class="error">*</span></label>
+            <div class="form_row">
+              <label>Firm Name</label>
+              <input type="text" name="businessSubCategory" value="" class="form_input" formControlName="businessSubCategory">
+              <!-- <label>{{'Business Sub Category' | translate}}<span class="error">*</span></label>
               <select name="" class="form_select" formControlName="businessSubCategory"
                 placeholder="Select Sub Category">
                 <option value="NA">Not Available</option>
-              </select>
+              </select> -->
             </div>
 
             <div class="form_row">
@@ -214,9 +222,9 @@
                 <input type="checkbox" name="TC" required formControlName="termsCondition" value="Terms Condition">
                 I agree all the information provided are valid to prove my identity</label><br>
             </div>
-            <!-- <input type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
-              class="form_submit" id="submit" value="{{'Sign Up' | translate}}"> -->
-              <input type="submit" [disabled]="registrationForm.invalid" (click)="payAndRegister()" name="Sign Up"
+            <input *ngIf="isAdmin" type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
+              class="form_submit" id="submit" value="{{'Sign Up' | translate}}">
+              <input *ngIf="!isAdmin" type="submit" [disabled]="registrationForm.invalid" (click)="payAndRegister()" name="Sign Up"
               class="form_submit" id="submit" value="Pay and Register">
           </form>
         </div>

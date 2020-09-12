@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeService {
-   // private url = 'http://localhost:59789/api/home/';
+  //  private url = 'http://localhost:59789/api/home/';
     private url = 'http://www.punjabisamajrewari.com/api/home/';
    // private url = 'http://192.168.1.4:5555/api/home/';
   constructor(private httpClient: HttpClient,
@@ -109,7 +109,7 @@ export class HomeService {
   getImage(imageType: string, imageName: string) {
     // return 'http://192.168.1.4:5555/Resources/Images/' + imageType + '/' + imageName;
     // return 'http://localhost:59789/Resources/Images/' + imageType + '/' + imageName;
-    return 'http://www.punjabisamajrewari.com/Resources/Images/' + imageType + '/' + imageName;
+     return 'http://www.punjabisamajrewari.com/Resources/Images/' + imageType + '/' + imageName;
   }
 
   getGalleryImageName() {
@@ -118,6 +118,42 @@ export class HomeService {
     const promise = new Promise(resolve => {
       this.httpClient.get(`${galleryUrl}`).subscribe(data => {
         this.loadingService.dimissLoading();
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
+    });
+    return promise;
+  }
+
+  getConfigSectionValue(configType: string, showLoader: boolean) {
+    if (showLoader) {
+      this.loadingService.presentLoading();
+    }
+    const configUrl = this.url + 'getConfigSectionValue/';
+    const promise = new Promise(resolve => {
+      this.httpClient.get(`${configUrl}` + '?configType=' + configType).subscribe(data => {
+        if (showLoader) {
+          this.loadingService.dimissLoading();
+        }
+        resolve(data);
+      }, (error) => {
+        this.handleErrorMessage(error);
+      });
+    });
+    return promise;
+  }
+
+  getConfigValue(configType: string, showLoader: boolean) {
+    if (showLoader){
+      this.loadingService.presentLoading();
+    }
+    const configUrl = this.url + 'GetConfigValue/';
+    const promise = new Promise(resolve => {
+      this.httpClient.get(`${configUrl}` + '?configType=' + configType).subscribe(data => {
+        if (showLoader){
+          this.loadingService.dimissLoading();
+        }
         resolve(data);
       }, (error) => {
         this.handleErrorMessage(error);

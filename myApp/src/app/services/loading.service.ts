@@ -10,22 +10,24 @@ export class LoadingService {
     this.createLoading();
   }
 
-  async createLoading(){
+  async createLoading(loderMessage = 'Please wait...'){
     this.loading = await this.loadingController.create({
         cssClass: 'my-custom-class',
-        message: 'Please wait...',
+        message: loderMessage,
         duration: 10000
       });
   }
-  async presentLoading() {
-    await this.createLoading();
+  async presentLoading(loderMessage?: string) {
+    await this.createLoading(loderMessage);
     await this.loading.present();
 
     // const { role, data } =
   }
 
   async dimissLoading(){
+    if (this.loading){
     await this.loading.dismiss();
+    }
     console.log('Loading dismissed!');
   }
 

@@ -20,17 +20,19 @@
       <div class="user-btn-container" *ngIf="!isTempUser">
         <button class="user-btn float-left" (click)="isDetail=true" [color]="isDetail? 'primary' : 'medium'"
           shape="round">Details</button>
-        <button class="user-btn float-right" *ngIf="currentUserType === 'UpdationRequired'" (click)="isDetail = false"
+        <button class="user-btn float-right" *ngIf="currentUserType === 'UpdationRequired' || currentUserType === 'Approved'" (click)="isDetail = false"
           [color]="isDetail? 'medium' : 'secondary'" shape="round">Edit</button>
       </div>
       <div class="user-btn-container" *ngIf="isTempUser">
         <ion-chip [color]="isDetail? 'primary' : 'medium'" (click)="isDetail = true">
           <ion-label>Details</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="showTempUpdateButton" (click)="isDetail = false;isPay=false" [color]="isDetail? 'medium' : 'secondary'">
+        <ion-chip *ngIf="showTempUpdateButton" (click)="isDetail = false;isPay=false"
+          [color]="isDetail? 'medium' : 'secondary'">
           <ion-label>Edit</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="showTempPayButton" (click)="isDetail = false;isPay=true" [color]="isDetail? 'medium' : 'secondary'">
+        <ion-chip *ngIf="showTempPayButton" (click)="isDetail = false;isPay=true"
+          [color]="isDetail? 'medium' : 'secondary'">
           <ion-label>Pay & Edit</ion-label>
         </ion-chip>
         <!-- <button class="user-btn float-left" (click)="isDetail = true" [color]="isDetail? 'primary' : 'medium'"
@@ -40,15 +42,13 @@
         <button  *ngIf="showTempPayButton" class="user-btn float-right" (click)="pay()" [color]="'tertiary'"
           shape="round">Pay</button> -->
       </div>
-      
-      <ion-item style="--background: #2e2d2d; width: 100%;">
-        <ul class="user-notifications">
-          <li style="color: darkkhaki;">{{userNotificationMessage1}}</li>
+
+      <ion-item *ngIf="currentUserType !== 'Approved'" style="--background: #2e2d2d; width: 100%;">
+        <ul>
+          <li style="color: darkkhaki;" *ngIf="userNotificationMessage1 !== ''">{{userNotificationMessage1}}</li>
           <li style="color: red" *ngIf="userNotificationMessage2 !== ''">{{userNotificationMessage2}}</li>
         </ul>
       </ion-item>
- 
-
 
       <div class="contactform">
         <form [formGroup]="registrationForm">
@@ -163,12 +163,15 @@
           <div class="form_row">
             <label>Occupation:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="occupation"
-              placeholder="Select Occupation">
-              <option value="option">Select Occupation</option>
+              placeholder="Select Occupation" (change)="onOccupationChange($event.target.value)">
+              <!-- <option value="option">Select Occupation</option>
               <option value="ST">Student</option>
               <option value="BS">Businessman</option>
               <option value="PJ">Private Job</option>
-              <option value="GJ">Government Job</option>
+              <option value="GJ">Government Job</option> -->
+              <option *ngFor="let occupation of occupationModel" [value]="occupation.key">
+                {{occupation.value}}
+              </option>
             </select>
           </div>
 
@@ -176,7 +179,10 @@
             <label>Business Category:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
               formControlName="businessCategory" placeholder="Select Category">
-              <option value="NA">Not Available</option>
+              <option *ngFor="let category of businessCatModel" [value]="category.key">
+                {{category.value}}
+              </option>
+              <!-- <option value="NA">Not Available</option>
                 <option value="RT">Retailer</option>
                 <option value="HP">Health Practitioner</option>
                 <option value="DFG">Distributor (Finished Goods)</option>
@@ -184,16 +190,19 @@
                 <option value="SR">Supplier/Raw Ingredient Distributor</option>
                 <option value="MF">Manufacturer</option>
                 <option value="BSS">Business Services</option>
-                <option value="IR">Investor</option>
+                <option value="IR">Investor</option> -->
             </select>
           </div>
 
           <div class="form_row">
-            <label>Business Sub Category:</label>
-            <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
+            <!-- <label>Business Sub Category:</label>
+            <select  name="" class="form_select"
               formControlName="businessSubCategory" placeholder="Select Sub Category">>
               <option value="NA">Not Available</option>
-            </select>
+            </select> -->
+            <label>Firm Name</label>
+            <input type="text" [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.businessSubCategory"
+              name="businessSubCategory" value="" class="form_input" formControlName="businessSubCategory">
           </div>
 
           <div class="form_row">
@@ -216,8 +225,8 @@
           <div class="form_row">
             <label>Volunteer Blood Donation:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="bloodDonation"
-              placeholder="Select Volunteer Blood Donatio">
-              <option value="option">Select Volunteer Blood Donatio</option>
+              placeholder="Select Volunteer Blood Donation">
+              <option value="option">Select Volunteer Blood Donation</option>
               <option value="YES">YES</option>
               <option value="NO">NO</option>
             </select>
@@ -252,27 +261,22 @@
             </ion-label>
           </ion-item>
           <ion-item lines="full">
-            <!-- <ion-avatar slot="start">
-                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-                </ion-avatar>
-            <ion-button *ngIf="!isDetail">
-              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-              <input formControlName="userImage" (change)="loadImageFromDevice($event)" type="file" id="userImageInput" accept="image/png, image/jpeg">
-            </ion-button>
-            <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.userImageByte)">
-              <ion-text>Click to View User Image</ion-text>
-            </ion-button> -->
-            <ion-avatar slot="start" style="float: left;">
-              <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)"
-                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-            </ion-avatar>
-            <ion-button *ngIf="!isDetail">
-              <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
-              <input type="file" style="width: 90%;" formControlName="userImage" (change)="loadImageFromDevice($event)" id="userImageInput"
-                accept="image/png, image/jpeg">
-            </ion-button>
-            <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
-              (click)="presentPopover(userModel.userImageByte)" value="Click to View User Image">
+            <div>
+              <ion-avatar slot="start" style="float: left;">
+                <img *ngIf="userModel.userImageByte"
+                  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                <img *ngIf="!userModel.userImageByte" [src]="homeService.getImage('directory',userModel.userImageName)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              </ion-avatar>
+              <ion-button *ngIf="!isDetail">
+                <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
+                <input type="file" style="width: 90%;" formControlName="userImage"
+                  (change)="loadImageFromDevice($event)" id="userImageInput" accept="image/png, image/jpeg">
+              </ion-button>
+              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button" (click)="userModel.userImageByte ? openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.userImageByte)) 
+              : openPreview(homeService.getImage('directory',userModel.userImageName))" value="View User Image">
+            </div>
           </ion-item>
           <div class="form-error-margin">
             <ion-label *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched">
@@ -287,28 +291,27 @@
             </ion-label>
           </ion-item>
           <ion-item lines="full">
-            <!-- <ion-avatar slot="start">
-                  <img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-                </ion-avatar>
+            <div>
+              <ion-avatar slot="start" style="float: left;">
+                <img *ngIf="userModel.idProofByte"
+                  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+
+                <img *ngIf="!userModel.idProofByte" [src]="homeService.getImage('directory',userModel.idProofImage)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              </ion-avatar>
               <ion-button *ngIf="!isDetail">
-                <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-                <input type="file" formControlName="idProof"  (change)="loadImageFromDevice($event)"  id="idProofInput" accept="image/png, image/jpeg">
+                <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
+                <input type="file" style="width: 90%;" formControlName="idProof" (change)="loadImageFromDevice($event)"
+                  id="idProofInput" accept="image/png, image/jpeg">
               </ion-button>
-              <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.idProofByte)">
-                <ion-text>Click to View Id Proof</ion-text>
-              </ion-button> -->
-            <ion-avatar slot="start" style="float: left;">
-              <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
-                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-            </ion-avatar>
-            <ion-button *ngIf="!isDetail">
-              <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
-              <input type="file" style="width: 90%;" formControlName="idProof" (change)="loadImageFromDevice($event)" id="idProofInput"
-                accept="image/png, image/jpeg">
-            </ion-button>
-            <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
-              (click)="presentPopover(userModel.idProofByte)" value="Click to View DOB Proof">
+              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button" 
+              (click)="userModel.idProofByte ? openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)) 
+                        : openPreview(homeService.getImage('directory',userModel.idProofImage))"
+                value="View DOB Proof">
+            </div>
           </ion-item>
+
           <div class="form-error-margin">
             <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
               <ion-text color="danger" class="form-error">
@@ -322,28 +325,24 @@
             </ion-label>
           </ion-item>
           <ion-item lines="full">
-            <!-- <ion-avatar slot="start">
-                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
-                </ion-avatar>
-              <ion-button *ngIf="!isDetail">
-                <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-                <input type="file" formControlName="addressProof" (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
-              </ion-button>
-              <ion-button *ngIf="isDetail" (click)="presentPopover(userModel.addressProofByte)">
-                <ion-text>Click to View Address Proof</ion-text>
-              </ion-button> -->
             <div>
               <ion-avatar slot="start" style="float: left;">
-                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"
+                <img *ngIf="userModel.addressProofByte"
+                  [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"
+                  onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                <img *ngIf="!userModel.addressProofByte"
+                  [src]="homeService.getImage('directory',userModel.adressProofImage)"
                   onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
               </ion-avatar>
               <ion-button *ngIf="!isDetail">
                 <!-- <ion-icon lazy="true" slot="start" name="image"></ion-icon> -->
-                <input type="file" style="width: 90%;" formControlName="addressProof" (change)="loadImageFromDevice($event)"
-                  id="addressProofInput" accept="image/png, image/jpeg">
+                <input type="file" style="width: 90%;" formControlName="addressProof"
+                  (change)="loadImageFromDevice($event)" id="addressProofInput" accept="image/png, image/jpeg">
               </ion-button>
-              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button"
-                (click)="presentPopover(userModel.addressProofByte)" value="Click to View Address Proof">
+              <input *ngIf="isDetail" style="float: left; margin-top: 10px; margin-left: 10px;" type="button" 
+              (click)="userModel.addressProofByte ? openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte))
+                          : openPreview(homeService.getImage('directory',userModel.adressProofImage))"
+                value="View Address Proof">
             </div>
           </ion-item>
           <div class="form-error-margin">
@@ -354,7 +353,8 @@
               </ion-text>
             </ion-label>
           </div>
-          <ion-item *ngIf="isDetail && currentUserType !== 'Approved'" [class]="isDetail? 'registration-detail-form': 'registration-form'">
+          <ion-item *ngIf="isDetail && currentUserType !== 'Approved'"
+            [class]="isDetail? 'registration-detail-form': 'registration-form'">
             <ion-label position="floating" color="dark">Reject Reason</ion-label>
             <ion-textarea formControlName="rejectReason" type="text"></ion-textarea>
           </ion-item>
@@ -367,18 +367,18 @@
               </ion-item>
               <ion-item *ngIf="!isDetail">
                 <input type="submit" [disabled]="registrationForm.invalid" (click)="updateUser()" name="Sign Up"
-              class="form_approve" id="submit" value="Update User">
+                  class="form_approve" id="submit" value="Update User">
                 <!-- <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
                   color="secondary" expand="block" (click)="updateUser()">Update User</ion-button> -->
               </ion-item>
             </ion-toolbar>
             <ion-toolbar *ngIf="isTempUser">
               <ion-item *ngIf="!isDetail">
-                <input type="submit" *ngIf="!isPay" [disabled]="registrationForm.invalid" (click)="updateUser()" name="Sign Up"
-                class="form_approve" id="submit" value="Update User">
+                <input type="submit" *ngIf="!isPay" [disabled]="registrationForm.invalid" (click)="updateUser()"
+                  name="Sign Up" class="form_approve" id="submit" value="Update User">
 
-                <input type="submit" *ngIf="isPay" [disabled]="registrationForm.invalid" (click)="payAndRaiseUpdate()" name="payUpdate"
-                class="form_approve" id="pay" value="Pay & Update">
+                <input type="submit" *ngIf="isPay" [disabled]="registrationForm.invalid" (click)="payAndRaiseUpdate()"
+                  name="payUpdate" class="form_approve" id="pay" value="Pay & Update">
                 <!-- <ion-button class="button-center-align" [disabled]="registrationForm.invalid" type="submit"
                   color="secondary" expand="block" (click)="updateUser()">Update User</ion-button> -->
               </ion-item>

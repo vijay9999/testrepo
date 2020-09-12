@@ -23,7 +23,7 @@
           <div *ngFor="let user of usersModel" class="item-content" style="float: left; background-color: #d0f0c4;; margin-bottom: 10px;">
             <div style="float: left; width: 98%;">
               <img class="famous_image"
-              [src]="homeService.getImage('personality',user.userImage)"
+              [src]="homeService.getImage('personality',user.userImageName)"
               onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
             </div>
             <!-- <ion-avatar slot="start">

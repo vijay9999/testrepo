@@ -7,6 +7,10 @@ import { LoginService } from '../services/login.service';
 import { HomeService } from '../services/home.service';
 import { Platform } from '@ionic/angular';
 import { WebIntent } from '@ionic-native/web-intent/ngx';
+import { StorageService } from '../services/storage.service';
+import { AppConstant } from '../common/constant';
+import { ConfigModel } from '../interfaces/configuration-model';
+import { UpiModel } from '../interfaces/upi-model';
 
 @Component({
   selector: 'app-charity',
@@ -16,11 +20,21 @@ import { WebIntent } from '@ionic-native/web-intent/ngx';
 export class CharityPage implements OnInit {
   charityForm: FormGroup;
   charityModel: CharityModel;
+  upiModel: UpiModel = {
+    payeeName: '',
+    payeeVpa: '',
+    amount: '',
+    currency: '',
+    transactionNote: ''
+  };
   constructor(private modalService: ModalService,
               private alertService: AlertSrevice,
               private homeService: HomeService,
               private platform: Platform,
-              private webIntent: WebIntent) { }
+              private webIntent: WebIntent,
+              private storageService: StorageService) {
+                this.getUpiDetails();
+  }
 
   ngOnInit() {
     this.charityForm = new FormGroup({
@@ -29,6 +43,7 @@ export class CharityPage implements OnInit {
       amount: new FormControl(null, Validators.required),
       socialServiceDonation: new FormControl(null),
       marraigeDonation: new FormControl(null),
+      medicalDonation: new FormControl(null),
       educationDonation: new FormControl(null),
       charityMessage: new FormControl(null)
     });
@@ -42,11 +57,76 @@ export class CharityPage implements OnInit {
     const onClosedData = 'Wrapped Up!';
     await this.modalService.dismiss(onClosedData);
   }
+  getUpiDetails() {
+    this.storageService.getObject(AppConstant.StorageConstant.Payment).then((data) => {
+      if (data && data != null) {
+        this.upiModel = data as any as UpiModel;
+      } else {
+        this.homeService.getConfigSectionValue(AppConstant.StorageConstant.Payment, true).then((data2: any) => {
+          if (data2 && data2.configValueList) {
+            const configValueList = data2.configValueList as ConfigModel[];
+            const payeeVpa = configValueList.find(config => config.key === 'Vpa');
+            const payeeName = configValueList.find(config => config.key === 'Name');
+            const currency = configValueList.find(config => config.key === 'Currency');
+            const transactionNote = configValueList.find(config => config.key === 'TransactionNote');
+            const amount = configValueList.find(config => config.key === 'Amount');
+            if (payeeVpa) {
+              this.upiModel.payeeVpa = payeeVpa.value;
+            }
+            if (payeeName) {
+              this.upiModel.payeeName = payeeName.value;
+            }
+            if (currency) {
+              this.upiModel.currency = currency.value;
+            }
+            if (transactionNote) {
+              this.upiModel.transactionNote = transactionNote.value;
+            }
+            if (amount) {
+              this.upiModel.amount = amount.value;
+            }
+            this.storageService.setObject(AppConstant.StorageConstant.Payment, this.upiModel);
+          }
+        });
+      }
+    }).catch(() => {
+      this.homeService.getConfigSectionValue(AppConstant.StorageConstant.Payment, true).then((data: any) => {
+        if (data && data.configValueList) {
+          const configValueList = data.configValueList as ConfigModel[];
+          const payeeVpa = configValueList.find(config => config.key === 'Vpa');
+          const payeeName = configValueList.find(config => config.key === 'Name');
+          const currency = configValueList.find(config => config.key === 'Currency');
+          const transactionNote = configValueList.find(config => config.key === 'TransactionNote');
+          const amount = configValueList.find(config => config.key === 'Amount');
+          if (payeeVpa) {
+            this.upiModel.payeeVpa = payeeVpa.value;
+          }
+          if (payeeName) {
+            this.upiModel.payeeName = payeeName.value;
+          }
+          if (currency) {
+            this.upiModel.currency = currency.value;
+          }
+          if (transactionNote) {
+            this.upiModel.transactionNote = transactionNote.value;
+          }
+          if (amount) {
+            this.upiModel.amount = amount.value;
+          }
+          this.storageService.setObject(AppConstant.StorageConstant.Payment, this.upiModel);
+        }
+      });
+    });
+  }
+
   payCharity() {
     if (this.validateDonationReason() && this.charityForm.valid) {
       this.charityModel = { ...this.charityModel, ...this.charityForm.value };
       if (this.charityModel) {
-        if (this.platform.is('mobile') && !this.platform.is('android')){
+        if (!this.charityModel.mobileNumber){
+          this.charityModel.mobileNumber = 0;
+        }
+        if (this.platform.is('mobile') && !this.platform.is('android')) {
           this.homeService.addCharity(this.charityModel).then(data => {
             this.alertService.presentAlert('Payment Successfull', AlertType.sucess);
             this.closeModal();
@@ -54,21 +134,21 @@ export class CharityPage implements OnInit {
           ).catch(data => {
             console.log(data);
           });
-        } else{
-          const payeeVPA = '918860007378@scb';
-          const payeeName = 'Ankur Patro';
-          const payAmount = 10;
-          const transectionReference = '#1234456778';
-          const transectionNote = 'Payment for Punjabi Samaj';
-          const currency = 'INR';
-          const url = 'upi://pay?pa=' + payeeVPA + '&pn=' + payeeName + '&tr=' + transectionReference +
-        '&tn=' + transectionNote + '&am=' + payAmount + '&cu=' + currency;
+        } else {
+          const payeeVPA = this.upiModel.payeeVpa;
+          const payeeName = this.upiModel.payeeName;
+          const payAmount = this.upiModel.amount;
+          const transectionNote = this.upiModel.transactionNote;
+          const currency = this.upiModel.currency;
+          const url = 'upi://pay?pa=' + payeeVPA + '&pn=' + payeeName + '&tn=' + transectionNote +
+            '&am=' + payAmount + '&cu=' + currency;
           const option = {
-        action: this.webIntent.ACTION_VIEW,
-        url
-      };
+            action: this.webIntent.ACTION_VIEW,
+            url
+          };
           this.webIntent.startActivityForResult(option).then(Response => {
             if (Response.extras.Status === 'SUCCESS') {
+              console.log(Response);
               this.homeService.addCharity(this.charityModel).then(data => {
                 this.alertService.presentAlert('Payment Successfull', AlertType.sucess);
                 this.closeModal();

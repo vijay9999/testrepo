@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ModalService {
+  isActive: boolean;
   constructor(public modalController: ModalController) {
 
   }
@@ -17,6 +18,7 @@ export class ModalService {
     });
     // Get the data returned from the Modal and add to global variable
     modal.onDidDismiss().then((modalData) => {
+      this.isActive = false;
       // this.finalModalData = modalData.data;
 
       // Run check updates when modal returns
@@ -25,13 +27,14 @@ export class ModalService {
         callBackMethod();
       }
     });
-
+    this.isActive = true;
     return await modal.present();
   }
 
   dismiss(paramData: any) {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
+    this.isActive = false;
     this.modalController.dismiss(paramData);
   }
 }

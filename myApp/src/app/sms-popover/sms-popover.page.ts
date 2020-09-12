@@ -18,6 +18,7 @@ export class SmsPopOverPage implements OnInit {
   message: string;
   ngOnInit(): void {
     this.userMobileNumberList = this.navParam.data.userSmsList;
+    this.message = 'Dear User,                         Thanks Punjabi Samaj Rewari';
   }
 
   /**

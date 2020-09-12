@@ -1,16 +1,17 @@
 <!-- <ion-card style="background-color: white; border-color: 2px solid #1d808c"> -->
-<div style="text-align: right;" (click)="closePopOver()">
+<div style="text-align: right; background: #f5eabb;" (click)="closePopOver()">
   <ion-icon name="close" style="font-size: 25px;" color="secondary"></ion-icon>
 </div>
 
 <div style="text-align: center;">
-  <ion-item>
+  <div>
     <ion-label position="floating">Enter Messsage</ion-label>
     <ion-textarea [(ngModel)]="message"></ion-textarea>
-  </ion-item>
-  <ion-button (click)="sendSms()" color="primary" expand="block" fill="primary" shape="round">
+  </div>
+  <input type="submit" style="border-radius: 10px; background: #f5eabb;;" (click)="sendSms()" value="Send Message">
+  <!-- <ion-button (click)="sendSms()" color="primary" expand="block" fill="primary" shape="round">
     Send Message
-  </ion-button>
+  </ion-button> -->
 </div>
 
 <!-- </ion-card> -->

@@ -35,13 +35,17 @@ export interface UserModel {
     isDoucmentRejected: boolean;
     isProfileApproved: boolean;
     isPaymentApproved: boolean;
-    // isPaymentRejected: boolean;
+    isPaymentRejected: boolean;
     isPaymentDone: boolean;
     isProfileUpdationRequired: boolean;
     updateUserId: number;
-    // documentRejectReason: string;
-    // paymentRejectReason: string;
-    // isProfileUpdationApproved: boolean;
-    // isProfileUpdationRejected: boolean;
-    // rejectReason: string;
+    documentRejectReason: string;
+    paymentRejectReason: string;
+    isProfileUpdationApproved: boolean;
+    isProfileUpdationRejected: boolean;
+    rejectReason: string;
+    isChecked: boolean;
+    userImageName: string;
+    adressProofImage: string;
+    idProofImage: string;
 }

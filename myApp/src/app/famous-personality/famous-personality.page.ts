@@ -23,10 +23,7 @@ export class FamousPersonalityPage implements OnInit {
 
   getFamousPersonality() {
     this.homeService.getFamousPersonality().then((data: UserListModel[]) => {
-        this.usersModel = [{id: 1, firstName: 'Vijay7', lastName: 'Sain', contactNumber: 1234567890,
-        designation: 'Manager' , userImage: 'gajab.jpg',description: 'Great Manager', isActive:true },
-      { id: 2, firstName: 'Bhaskar7', lastName: 'Vij', contactNumber: 1234567890,
-      designation: 'Manager' , userImage: 'gajab.jpg',description: 'Great Manager', isActive:true }];
+        this.usersModel = data;
         this.isDataRecieved = true;
     });
 }

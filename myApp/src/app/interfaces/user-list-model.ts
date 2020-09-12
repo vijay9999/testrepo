@@ -7,4 +7,7 @@ export interface UserListModel {
     userImage: string;
     contactNumber: number;
     isActive: boolean;
+    gender: string;
+    mobileNumber: number;
+    userImageByte: string;
 }

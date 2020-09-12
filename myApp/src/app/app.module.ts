@@ -23,6 +23,7 @@ import { HomeService } from './services/home.service';
 import { LanguageService } from './services/language.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ActionSheetService } from './services/action-sheet.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -59,7 +60,8 @@ export function createTranslateLoader(http: HttpClient) {
     ModalService,
     LanguageService,
     LoginService,
-    HomeService
+    HomeService,
+    ActionSheetService
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HttpConfigInterceptor,

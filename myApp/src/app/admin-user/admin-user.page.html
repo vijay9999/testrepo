@@ -1,103 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons> 
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{'Admin Profile' | translate}}</ion-title>
-    <ion-buttons  slot="end" (click)="logOut()">
-      <ion-icon  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
-      <ion-icon style="width: 90px;
-      height: 30px;" name="log-out" ></ion-icon>
-    </ion-buttons>
-
-  </ion-toolbar>
-</ion-header>
-
-<ion-content *ngIf="dataAvailable">
-  <ion-content fullscreen="true" slot="fixed">
-    <div class="card">
-      <div class="header">
-        <div class="avatar">
-          <img src="../../assets/img/sonam_bajwa.jpg" alt="">
-          <img style="height: 150px;
-          width: 100%;" [src]='userImage' onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'" />
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="user-meta ion-text-center">
-          <h3 class="playername">{{adminUserModel.firstName}} {{adminUserModel.lastName}}</h3>
-          <h5 class="country">{{adminUserModel.email}}</h5>
-          <ion-item>
-            <ion-text>{{'Document Approved' | translate}}</ion-text>
-            <ion-img class="iconimg" src="assets/img/checkmark-filled.png"></ion-img>
-          </ion-item>
-           <h6 class="ranking">Current ranking: <ion-chip>
-              <ion-label>2</ion-label>
-            </ion-chip>
-          </h6>
-        </div>
-
-      </div>
-    </div>
-    <div>
-      <ion-card>
-        <ion-card>
-          <ion-item color="cardheader">
-            <ion-label class="ion-text-center">{{'Address' | translate}}</ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
-            <ion-text>{{adminUserModel.address}}</ion-text>
-          </ion-item>
-        </ion-card>
-
-        <ion-card>
-          <ion-item color="cardheader">
-            <ion-label class="ion-text-center">{{'Date of Birth' | translate}}</ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
-            <ion-text>{{adminUserModel.dob}}</ion-text>
-          </ion-item>
-        </ion-card>
-
-        <ion-card>
-          <ion-item color="cardheader">
-            <ion-label class="ion-text-center">{{'Aadhar Number' | translate}}</ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
-            <ion-text>{{adminUserModel.aadharNumber}}</ion-text>
-          </ion-item>
-        </ion-card>
-
-        <ion-card>
-          <ion-item color="cardheader">
-            <ion-label class="ion-text-center">{{'Pan Number' | translate}}</ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
-            <ion-text>{{adminUserModel.panNumber}}</ion-text>
-          </ion-item>
-        </ion-card>
-
-        <ion-card>
-          <ion-item color="cardheader">
-            <ion-label class="ion-text-center">{{'Blood Group' | translate}}</ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-img class="iconimg" src="assets/img/address.webp"></ion-img>
-            <ion-text>{{adminUserModel.bloodGroup}}</ion-text>
-          </ion-item>
-        </ion-card>
-      </ion-card>
-    </div>
-  </ion-content>
-</ion-content> -->
-
 <div data-page="form" class="page no-toolbar no-navbar page-on-center user-detail-page">
   <div class="page-content">
     <div class="navbarpages">
@@ -130,8 +30,16 @@
           <div class="user_details">
             <p>Welcome, <span class="">{{adminUserModel.firstName}} {{adminUserModel.lastName}}</span></p>
           </div>
-          <div class="user_avatar"><img [src]='userImage' alt="" title=""
-              onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"></div>
+          <div class="user_avatar">
+            <img *ngIf="adminUserModel.userImageByte" style="width: 102px; height: 102px;"
+              [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.userImageByte)"
+              (click)="openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.userImageByte))" alt=""
+              title="" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              <img *ngIf="!adminUserModel.userImageByte" style="width: 102px; height: 102px;"
+                [src]="homeService.getImage('directory',adminUserModel.userImageName)"
+                (click)="openPreview(homeService.getImage('directory',adminUserModel.userImageName))"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+          </div>
         </div>
 
       </div>
@@ -162,7 +70,7 @@
           <li>
             <div class="feat_small_details">
               <h4><a>Date Of Birth</a></h4>
-              <a>{{adminUserModel.dob}}</a>
+              <a>{{adminUserModel.dob | date:'yyyy-MM-dd'}}</a>
             </div>
           </li>
 
@@ -195,7 +103,8 @@
           <li>
             <div class="feat_small_details">
               <h4><a>Blood Donation</a></h4>
-              <a>{{adminUserModel.bloodDonation}}</a>
+              <a *ngIf="adminUserModel.bloodDonation == 1">YES</a>
+              <a *ngIf="adminUserModel.bloodDonation != 1">NO</a>
             </div>
           </li>
           <li>
@@ -206,7 +115,7 @@
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Business SubCategory</a></h4>
+              <h4><a>Firm Name</a></h4>
               <a>{{adminUserModel.businessSubCategory}}</a>
             </div>
           </li>
@@ -231,7 +140,8 @@
           <li>
             <div class="feat_small_details">
               <h4><a>Social Service</a></h4>
-              <a>{{adminUserModel.socialServices}}</a>
+              <a *ngIf="adminUserModel.socialServices == 1">YES</a>
+              <a *ngIf="adminUserModel.socialServices != 1">NO</a>
             </div>
           </li>
           <li>
@@ -250,11 +160,14 @@
             <div class="feat_small_details">
               <h4><a>DOB proof</a></h4>
               <a>
-                <ion-avatar slot="start">
-                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.idProofByte)"
+                <ion-avatar slot="start"  style="float: left;">
+                  <img *ngIf="adminUserModel.idProofByte" [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.idProofByte)"
                     onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                  <img *ngIf="!adminUserModel.idProofByte"  [src]="homeService.getImage('directory',adminUserModel.idProofImage)"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'" (click)="openPreview(adminUserModel.idProofImage)">
                 </ion-avatar>
-                <input type="button" (click)="presentPopover(adminUserModel.idProofByte)" value="Click to View DOB Proof">
+                <input *ngIf="adminUserModel.idProofByte" style="margin-left: 20px; margin-top: 10px; width: 55%;" type="button" (click)="openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.idProofByte))" value="Click to View DOB Proof">
+                <input *ngIf="!adminUserModel.idProofByte" style="margin-left: 20px; margin-top: 10px; width: 55%;" type="button" (click)="openPreview(homeService.getImage('directory',adminUserModel.idProofImage))" value="Click to View DOB Proof">
               </a>
             </div>
           </li>
@@ -262,13 +175,15 @@
             <div class="feat_small_details">
               <h4><a>Address proof</a></h4>
               <a>
-                <ion-avatar slot="start">
-                  <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.addressProofByte)"
+                <ion-avatar slot="start" style="float: left;">
+                  <img *ngIf="adminUserModel.addressProofByte" [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.addressProofByte)"
+                    onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+                    <img *ngIf="!adminUserModel.addressProofByte"  [src]="homeService.getImage('directory',adminUserModel.adressProofImage)"
                     onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
                 </ion-avatar>
-                <input type="button" (click)="presentPopover(adminUserModel.addressProofByte)" value="Click to View Address Proof">
-
-              </a>
+                <input *ngIf="adminUserModel.addressProofByte" style="margin-top: 10px; margin-left: 20px; width: 55%;" type="button" (click)="openPreview(sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + adminUserModel.addressProofByte))" value="Click to View Address Proof">
+                <input *ngIf="!adminUserModel.addressProofByte" style="margin-top: 10px; margin-left: 20px; width: 55%;" type="button" (click)="openPreview(homeService.getImage('directory',adminUserModel.adressProofImage))" value="Click to View Address Proof">            
+               </a>
             </div>
           </li>
         </ul>

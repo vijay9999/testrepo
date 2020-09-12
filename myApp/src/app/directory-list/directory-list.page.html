@@ -16,22 +16,31 @@
     <div id="pages_maincontent" class="">
 
       <h2 class="page_title">Directory List</h2>
-
+      <ion-toolbar>
+        <ion-searchbar (ionInput)="filterList($event)"></ion-searchbar>
+      </ion-toolbar>
       <div class="page_single layout_fullwidth_padding">
 
         <div class="contactform">
           <div *ngFor="let user of usersModel" class="item-content" style="float: left; background-color: #d0f0c4;; margin-bottom: 10px; width: 98%;">
             <div>
-              <img class="famous_image" style="width: 95px; float: left;height: 95px;"
+              <img *ngIf="user.userImageByte" class="famous_image" style="width: 95px; float: left;height: 95px;"
+              [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + user.userImageByte)" alt=""
+              title="" onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+              <img *ngIf="!user.userImageByte" class="famous_image" style="width: 95px; float: left;height: 95px;"
                 [src]="homeService.getImage('directory',user.userImageName)"
                 onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'">
+
+              <!-- <img 
+                [src]="homeService.getImage('directory',user.userImageName)"
+                onerror="this.onerror=null; this.src='../../assets/img/blank_profile.webp'"> -->
               <div>
-                <span style="font-size: large; padding-left: 10px;">
+                <span style="font-size: large; padding-left: 10px; font-weight: 700;">
                   {{user.firstName}} {{user.lastName}}
                 </span><br>
                 <span style="font-size: larger; padding-left: 10px;">
-                  {{user.designation}}
-                </span>
+                  {{user.mobileNumber}}
+                 </span>
               </div>
             </div>
           </div>

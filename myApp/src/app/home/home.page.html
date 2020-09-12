@@ -1,120 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      {{'Welcome' | translate}}  {{userName}}
-    </ion-title>
-    <ion-buttons  slot="end" (click)="logOut()">
-      <ion-icon style="width: 90px;
-      height: 30px;" name="log-out" ></ion-icon>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content color="light">
-    <ion-row>
-        <ion-col  style="padding-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 0px;
-        padding-right: 0px;">
-          <ion-searchbar style="padding-left: 8px;
-          padding-right: 8px;
-          padding-bottom: 8px;"></ion-searchbar>
-        </ion-col>
-        </ion-row>
-  <ion-row>
-    <ion-col>
-      <div class="tech-slideshow">
-        <div class="mover-1"></div>
-        <div class="mover-2"></div>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col width="50%">
-      <ion-button size="block" style="height: 45px;
-      width: 140px;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      background-color: cornsilk;" color="secondary">{{'Charity' | translate}}</ion-button>
-    </ion-col>
-      <ion-col width="50%">
-         
-      </ion-col>
-    
-  </ion-row>
-  
-  <ion-row>
-    <ion-col>
-      <ion-card style="height: 145px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      background-color: cornsilk;">
-        <ion-card-header style="text-align: center;
-        background-color: khaki;">
-          <ion-card-subtitle >{{'Achievers List' | translate}}</ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
- 
-  <ion-row>
-    <ion-col>
-      <ion-card style="height: 145px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      background-color: cornsilk;">
-        <ion-card-header style="text-align: center;
-        background-color: khaki;">
-          <ion-card-subtitle >{{'Famous Personalities' | translate}}</ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-
-    <ion-row>
-      <ion-col align-self-center>
-        <ion-button *ngIf="showSignUpPage" [routerLink]="['/registration']" expand="block" color="primary">{{'Sign Up' | translate}}</ion-button>
-        <ion-button *ngIf="showDetailsPage" (click)="openTempDetailPage()" expand="block" color="primary">Pending Details</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  [routerLink]="['/login']" expand="block" color="secondary">{{'Sign In' | translate}}</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-content>     
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-            <ion-label (click)="openContactUs()">
-              {{'Contact Us' | translate}}
-            </ion-label>
-        </ion-col>
-        <ion-col>
-            <ion-label>
-              {{'About Us' | translate}}
-            </ion-label>
-        </ion-col>
-        <ion-col>
-            <ion-label (click)="openGoverningBody()">
-              {{'Governing Body' | translate}}
-            </ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer> -->
-
 <div class="views">
   <div class="view view-main" data-page="index">
     <div class="pages">
@@ -131,9 +14,9 @@
               background-color: #003300;">
                 <h1 class="">
                   <img style="max-width: 30px;" src="../../assets/images/home-logo.JPG" alt="" title=""> <span style="font-size: 500;">  Punjabi Samaj Rewari</span>
-                  <ion-buttons class="logout-btn"  slot="end" (click)="logOut()">
-                    <ion-icon style="color: #ffffff;"  slot="end" name="log-out" (click)= "logOut"></ion-icon> 
-                  </ion-buttons>
+                  <!-- <ion-buttons class="logout-btn"  slot="end" (click)="openAction()">
+                    <ion-icon style="color: #ffffff;"  slot="end" name="power-outline"></ion-icon> 
+                  </ion-buttons> -->
                 </h1>
                 
               </div>
@@ -148,7 +31,7 @@
                 <span>Welcome {{userName}}</span>
               </li>
               <li class="home-banner-text">
-               <span class="move">Happy Raksha Bandhan!!</span>
+               <span class="move">{{notificationMessage}}</span>
               </li>
               <li style="width: 98%; height: 375px;">
                 <ion-slides scrollbar="true"  pager="true" [options]="slideOpts">
@@ -157,39 +40,53 @@
                   </ion-slide>
                 </ion-slides>
               </li>
+              
+                <a>
+                  Members
+                  <!-- {{'Punjabi Samaj Members' | translate}} -->
+                </a>
+                <li class="navbg8" (click)="openGoverningBody()"><a  class="navbgtransblue"><img  alt=""
+                title=""><span> {{'Governing Body' | translate}}</span></a></li>
               <!-- <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
               </li> -->
-              <li class="navbg2"><a class="navbgtransblack" (click)="openCharityPage()"><img src="mobile(1).png" alt=""
-                    title=""><span>{{'Charity' | translate}}</span></a></li>
-
-              <li class="navbg3"><a class="navbgtransblack" (click)="openAchieverListPage()"><img src="features(1).png" alt=""
-                    title=""><span>{{'Achievers List' | translate}}</span></a></li>
-              <li class="navbg4"><a class="navbgtransblack" (click)="openFamousPersonalityPage()"><img src="blog(1).png" alt=""
-                    title=""><span>{{'Famous Personalities' | translate}}</span></a></li>
-
-              <li class="navbg5"><a class="navbgtransblue" (click)="openPhotoGallery()"><img src="photos(1).png" alt="" title=""><span>Photo
-                Gallery</span></a></li>
-              <li class="navbg6"><a class="navbgtransblue" (click)="openDirectoryListPage()"><img src="features(1).png" alt="" title=""><span>
-                    Directory List</span></a></li>
-              <li class="navbg7"><a class="navbgtransblue" (click)="openBusinessSearchPage()"><img src="features(1).png" alt="" title=""><span>
-                Business Search</span></a></li>
-              <li *ngIf="showSignInPage" class="navbg8"><a [routerLink]="['/login']" class="navbgtransblack"><img src="video(1).png" alt=""
-                    title=""><span>{{'Sign In' | translate}}</span></a></li>
-
-
-              <li *ngIf="showSignUpPage" class="navbg9">
-                <a [routerLink]="['/registration']" class="navbgtransblue">
-                  <img src="shop(1).png" alt="" title=""><span>{{'Sign Up' | translate}}</span>
+              <li class="navbg1" (click)="openDirectoryListPage()"><a class="navbgtransblue" ><img alt="" title=""><span>
+                Directory List</span></a></li>
+                <li class="navbg5 full-width" (click)="openPhotoGallery()">
+                  <a class="navbgtransblue full-width" ><img  alt="" title=""><span>Photo
+                  Gallery</span></a></li>
+                <a>
+                  Profile
+                  <!-- {{'User Management and Overview' | translate}} -->
                 </a>
-              </li>
-              <li *ngIf="showDetailsPage" class="navbg10"><a (click)="openTempDetailPage()" class="navbgtransblack"><img
-                    src="shop(1).png" alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li>
-              <li class="navbg8"><a (click)="openGoverningBody()" class="navbgtransblue"><img src="cart(1).png" alt=""
-                    title=""><span> {{'Governing Body' | translate}}</span></a></li>
+                <li class="navbg7" (click)="openBusinessSearchPage()"><a class="navbgtransblue" ><img  alt="" title=""><span>
+                  Business Search</span></a></li>
+                <li class="navbg6" (click)= "openSignIn()">
+                  <a class="navbgtransblack"><img  alt="" title=""><span>{{'Sign In' | translate}} | {{'Sign Up' | translate}}</span></a></li>
+  
+  
+            <!-- <li *ngIf="showSignUpPage" class="navbg9"  [routerLink]="['/registration']">
+              <a class="navbgtransblue">
+                <img  alt="" title=""><span>{{'Sign Up' | translate}}</span>
+              </a>
+            </li>
+            <li *ngIf="showDetailsPage" class="navbg10" (click)="openTempDetailPage()"><a  class="navbgtransblack"><img
+                  alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li> -->
+            
+              <a>{{'Personalities' | translate}}</a>
+              <li class="navbg4" (click)="openFamousPersonalityPage()"><a class="navbgtransblack" ><img alt=""
+                title=""><span>{{'Famous Personalities' | translate}}</span></a></li>
+          
+              <li class="navbg3" (click)="openAchieverListPage()"><a class="navbgtransblack" ><img  alt=""
+                    title=""><span>{{'Achievers List' | translate}}</span></a></li>
 
-              <!-- <li class="navbg9"><a data-popup=".popup-login" class="open-popup navbgtransviolet"><img
-                    src="lock(1).png" alt="" title=""><span>Login</span></a></li>
-              <li class="navbg10"><a  data-panel="right" class="open-panel navbgtransblack"><img
+              
+                <a>{{'Social help' | translate}}</a>
+                <li class="navbg2" style="margin-top: 1%;" (click)="openCharityPage()"><a class="navbgtransblack" ><img  alt=""
+                  title=""><span>{{'Charity' | translate}}</span></a></li>
+               
+               <li class="navbg9" (click)="openMatrimonyPage()"><a class="navbgtransblack"><img alt="" 
+                title=""><span>Matrimony</span></a></li>
+              <!-- <li class="navbg10"><a  data-panel="right" class="open-panel navbgtransblack"><img
                     src="users(1).png" alt="" title=""><span>Account</span></a></li> -->
             </ul>
           </nav>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { WebIntent } from '@ionic-native/web-intent/ngx';
@@ -18,19 +18,26 @@ import { FamousPersonalityPage } from '../famous-personality/famous-personality.
 import { ImageGalleryPage } from '../image-gallery/image-gallery.page';
 import { DirectoryListPage } from '../directory-list/directory-list.page';
 import { BusinessSearchPage } from '../business-search/business-search.page';
+import { HomeService } from '../services/home.service';
+import { ActionSheetService } from '../services/action-sheet.service';
+import { Platform } from '@ionic/angular';
+import { MatrimonyPage } from '../matrimony/matrimony.page';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit, OnDestroy {
   userName: string;
   userDetails: UserModel;
   showSignUpPage: boolean;
   showDetailsPage: boolean;
   showSignInPage: boolean;
-  images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg'];
+  mobileNumber: number;
+  backButtonSubscription;
+  images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg',
+  '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpeg', '14.jpg', '15.jpg', '16.jpg'];
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -38,15 +45,17 @@ export class HomePage implements OnInit {
     autoplay: true,
     slidesperview: 1.5
   };
-
+  notificationMessage = '';
   constructor(private router: Router, private storageService: StorageService,
               private webIntent: WebIntent, private modalService: ModalService,
-              private loginService: LoginService) {
-    console.log('Initialized');
+              private loginService: LoginService, private homeService: HomeService,
+              private actionSheetService: ActionSheetService,
+              private platform: Platform){
+            this.getNotificationMessage();
   }
 
-  openPreview(image){
-    this.modalService.presentModal(ImageModalPage, { img: image, type: 'slide'});
+  openPreview(image) {
+    this.modalService.presentModal(ImageModalPage, { img: image, type: 'slide' });
   }
   ngOnInit() {
     // getting username from route
@@ -56,17 +65,23 @@ export class HomePage implements OnInit {
     //   this.getUserDetailsByMobile(+data);
     // });
     this.storageService.getString(AppConstant.StorageConstant.UserName).then((data) => this.userName = data);
+    this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
+      this.mobileNumber = +data;
+      this.getUserDetailsByMobile(+data, false);
+    });
   }
   ionViewWillEnter() {
-    this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
-      this.getUserDetailsByMobile(+data);
-    });
+    this.showSignUpPage = false;
+    this.showDetailsPage = false;
+    this.showSignInPage = false;
+    // this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
+    //   this.getUserDetailsByMobile(+data);
+    // });
   }
 
   logOut() {
     this.router.navigate(['/otp-login']);
   }
-
 
   openContactUs() {
     this.modalService.presentModal(ContactUsPage, '');
@@ -98,46 +113,92 @@ export class HomePage implements OnInit {
     this.modalService.presentModal(EditUserDetailPage, {
       userModel: this.userDetails,
       currentUserType: AppConstant.UserTypeConstant.TempUserDetail
-    }, this.refreshTabs.bind(this));
+    });
+    // , this.refreshTabs.bind(this));
   }
 
-  refreshTabs(){
-    this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
-      this.getUserDetailsByMobile(+data);
-    });
-  }
+  // refreshTabs(){
+  //   this.storageService.getString(AppConstant.StorageConstant.MobileNumber).then((data) => {
+  //     this.getUserDetailsByMobile(+data);
+  //   });
+  // }
 
   openCharityPage() {
     this.modalService.presentModal(CharityPage, '');
   }
 
-  getUserDetailsByMobile(mobileNumber: number) {
-    this.loginService.getUserByMobile(mobileNumber).then((data: UserModel) => {
-      // if (data && data != null) {
-      //   this.userDetails = data;
-      //   this.showSignUpPage = false;
-      //   if (!data.memberID) {
-      //     this.showDetailsPage = true;
-      //     this.showSignInPage = false;
-      //   } else {
-      //     this.showSignInPage = true;
-      //   }
-      // } else {
-      //   this.showSignUpPage = true;
-      //   this.showDetailsPage = false;
-      //   this.showSignInPage = false;
-      this.showSignUpPage = true;
-      this.showDetailsPage = true;
-      this.showSignInPage = true;
-      this.userDetails =  {id: 1, firstName: 'Vijay', lastName: 'Sain', address: 'Rajasthan' , aadharNumber: 10000, email: 'vijay.sain@gmail.com'
-        , careTakerName: 'Vijay', gender: 'M', bloodGroup: 'AB+', dob: '28-08-1991', bloodDonation: 'YES', businessCategory: 'TBD'
-      , businessSubCategory: 'TBD' , isDocumentApproved: true, isDoucmentRejected: false, isPaymentApproved: false,
-       mobileNumber: 1234567890, userRole: 'Admin', occupation: 'BS'
-      , panNumber: '1000', whatsAppNumber: 1234567890, memberID: 1001,
-      qualification: 'HS', socialServices: 'YES', wardNumber: '14', createdBy: 'Admin', addressProof: null,
-       addressProofByte: null, approvedBy: 'Admin', dateOfRegister: new Date('08-07-2020'),
-       paymentStatus: null, idProof: null, idProofByte: null, isPaymentDone: false
-      , isProfileApproved: false, isProfileUpdationRequired: false, updateUserId: 1001, userImage: null, userImageByte: null  };
+  getUserDetailsByMobile(mobileNumber: number, callOpenSignIn: boolean) {
+    this.showSignUpPage = false;
+    this.showDetailsPage = false;
+    this.showSignInPage = false;
+    this.loginService.getUserByMobile(mobileNumber, false).then((data: UserModel) => {
+      if (data && data != null) {
+        this.userDetails = data;
+        this.showSignUpPage = false;
+        if (!data.memberID) {
+          this.showDetailsPage = true;
+          this.showSignInPage = false;
+        } else {
+          this.showSignInPage = true;
+          this.showDetailsPage = false;
+        }
+      } else {
+        this.showSignUpPage = true;
+        this.showDetailsPage = false;
+        this.showSignInPage = false;
+      }
+      if (callOpenSignIn) {
+        this.openSignIn();
+      }
     });
-}
+  }
+
+  openSignIn() {
+    if (this.showSignInPage) {
+      this.router.navigate(['/login']);
+    } else if (this.showSignUpPage) {
+      this.router.navigate(['/registration']);
+    } else if (this.showDetailsPage) {
+      this.loginService.getUserByMobile(this.mobileNumber, false).then((data: UserModel) => {
+        if (data && data != null) {
+          this.userDetails = data;
+          this.openTempDetailPage();
+        }
+      });
+    } else {
+      this.getUserDetailsByMobile(this.mobileNumber, true);
+    }
+  }
+
+  getNotificationMessage() {
+    this.homeService.getConfigValue('HomeNotification', false).then((data: any) => {
+      if (data && data.configValue) {
+        this.notificationMessage = data.configValue;
+      }
+    });
+  }
+
+  openMatrimonyPage(){
+    this.modalService.presentModal(MatrimonyPage, '');
+  }
+
+  openAction() {
+    this.actionSheetService.presentLogoutActionSheet(this.logOut.bind(this));
+  }
+
+  ngAfterViewInit() {
+    console.log(this.router.routerState.snapshot.url);
+    this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+      if (this.modalService.isActive) {
+        this.modalService.dismiss('');
+      } else if (this.router.routerState.snapshot.url === '/home') {
+        // tslint:disable-next-line: no-string-literal
+        navigator['app'].exitApp();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.backButtonSubscription.unsubscribe();
+  }
 }

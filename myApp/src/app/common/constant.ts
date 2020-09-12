@@ -3,7 +3,12 @@ export const AppConstant  = {
         LoggedInUser: 'LoggedInUser',
         MobileNumber: 'MobileNumber',
         MemberId: 'MemberId',
-        UserName: 'UserName'
+        UserName: 'UserName',
+        Occupation: 'Occupation',
+        BusinessCategory: 'BusinessCategory',
+        Qualification: 'Qualification',
+        AllBusinessCode: 'AllBusinessCode',
+        Payment: 'Payment'
     },
     UserTypeConstant: {
         Pending: 'Pending',
@@ -16,8 +21,8 @@ export const AppConstant  = {
     },
     NotificationConstant: {
         Pending: 'Profile is pending for Approval',
-        Rejected: 'Profile Rejected.. Please Update Profile..!!',
-        Approved: 'Profile Approved.. Payment Approval Pending',
+        DocumentRejected: 'Profile Rejected.. Please Update Profile..!!',
+        DoucmentApproved: 'Profile Approved.. Payment Approval Pending',
         PaymentRejected: 'Payment Rejected.. Please Pay',
         UpdationPending: 'Updation approval pending..'
     },

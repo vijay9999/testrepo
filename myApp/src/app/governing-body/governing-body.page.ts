@@ -26,10 +26,7 @@ export class GoverningBodyPage implements OnInit {
 
     getGoverningBody() {
         this.homeService.getGoverningBody().then((data: UserListModel[]) => {
-            this.usersModel = [{id: 1, firstName: 'Vijay6', lastName: 'Sain', contactNumber: 1234567890,
-            designation: 'Manager' , userImage: null,description: 'Great Manager', isActive:true },
-          { id: 2, firstName: 'Bhaskar', lastName: 'Vij', contactNumber: 1234567890,
-          designation: 'Manager' , userImage: null,description: 'Great Manager', isActive:true }];
+            this.usersModel = data;
             this.isDataRecieved = true;
         });
     }
