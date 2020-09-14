@@ -8,47 +8,144 @@
           <!-- <div class="homenavbar">
             <h1 class=""><img src="../../assets/images/home-logo.JPG" alt="" title=""> Punjabi<span>Samaj</span></h1>
           </div> -->
-            <div >
-              <div class="homenavbar" style="float: left;
-              width: 100%;
-              background-color: #003300;">
-                <h1 class="">
-                  <img style="max-width: 30px;" src="../../assets/images/home-logo.JPG" alt="" title=""> <span style="font-size: 500;">  Punjabi Samaj Rewari</span>
-                  <!-- <ion-buttons class="logout-btn"  slot="end" (click)="openAction()">
+          <div>
+            <div class="homenavbar">
+              <img class="home-logo" src="../../assets/images/logo.png" alt="" title="">
+              <div class="logo-right-sec">
+              <span class="home-tagline"> Punjabi Samaj Rewari</span>
+              <!-- <ion-buttons class="logout-btn"  slot="end" (click)="openAction()">
                     <ion-icon style="color: #ffffff;"  slot="end" name="power-outline"></ion-icon> 
                   </ion-buttons> -->
-                </h1>
-                
-              </div>
-              <!-- <div style="float: right; width: 20%;">
+                  <div class="username">
+                    <span>Welcome {{userName}}</span>
+                  </div>
+            </div>
+          </div>
+            <!-- <div style="float: right; width: 20%;">
                
               </div> -->
+          
+            <!-- <div class="home-banner-text">
+              <span class="move">{{notificationMessage}}</span>
+            </div> -->
+            <!-- <div style="width: 98%; height: 375px;">
+              <ion-slides scrollbar="true" pager="true" [options]="slideOpts">
+                <ion-slide *ngFor="let img of images">
+                  <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)" />
+                </ion-slide>
+              </ion-slides>
+            </div> -->
 
-              
-          <nav class="main-nav">
+<div class="home-links">
+  <div class="home-link-container">
+    <div class="title">Members</div>
+  <ul>
+    <li>
+      <a href="#">
+        <span class="img-sec">
+     <img src="../../assets/images/government-body.png"/>
+    </span>
+     <span>Government Body</span>
+    </a>
+
+    </li>
+    <li>
+      <a href="#">
+        <span class="img-sec">
+     <img src="../../assets/images/directory-list.png"/>
+        </span>
+     <span>Directory List</span>
+    </a>
+
+    </li>
+    <li>
+      <a href="#">
+        <span class="img-sec">
+     <img src="../../assets/images/photo-gallery.png"/>
+        </span>
+     <span>Photo Gallery</span>
+    </a>
+
+    </li>
+  </ul>
+</div>
+<div class="home-link-container">
+  <div class="title">Profile</div>
+<ul>
+  <li>
+    <a href="#">
+      <span class="img-sec">
+   <img src="../../assets/images/business-search.png"/>
+      </span>
+   <span>Business Search</span>
+  </a>
+
+  </li>
+  <li>
+    <a href="#">
+      <span class="img-sec">
+   <img src="../../assets/images/sign-up.png"/>
+      </span>
+   <span>Sign Up</span>
+  </a>
+
+  </li>
+</ul>
+</div>
+
+<div class="home-link-container">
+  <div class="title">Personalities</div>
+<ul>
+  <li>
+    <a href="#">
+      <span class="img-sec">
+   <img src="../../assets/images/famous-personality.png"/>
+      </span>
+   <span>Famous personalities</span>
+  </a>
+
+  </li>
+  <li>
+    <a href="#">
+      <span class="img-sec">
+   <img src="../../assets/images/achiever.png"/>
+      </span>
+   <span>Achiever List</span>
+  </a>
+
+  </li>
+
+</ul>
+</div>
+<div class="home-link-container">
+  <div class="title">Social Help</div>
+<ul>
+  <li>
+    <a href="#">
+      <span class="img-sec">
+   <img src="../../assets/images/charity.png"/>
+      </span>
+   <span>Charity</span>
+  </a>
+
+  </li>
+
+
+</ul>
+</div>
+</div>
+
+
+            <!-- <nav class="main-nav">
             <ul>
-              <li class="username">
-                <span>Welcome {{userName}}</span>
-              </li>
-              <li class="home-banner-text">
-               <span class="move">{{notificationMessage}}</span>
-              </li>
-              <li style="width: 98%; height: 375px;">
-                <ion-slides scrollbar="true"  pager="true" [options]="slideOpts">
-                  <ion-slide *ngFor="let img of images">
-                    <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)"/>
-                  </ion-slide>
-                </ion-slides>
-              </li>
-              
                 <a>
                   Members
-                  <!-- {{'Punjabi Samaj Members' | translate}} -->
+                  {{'Punjabi Samaj Members' | translate}}
                 </a>
                 <li class="navbg8" (click)="openGoverningBody()"><a  class="navbgtransblue"><img  alt=""
                 title=""><span> {{'Governing Body' | translate}}</span></a></li>
-              <!-- <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
-              </li> -->
+              <li class="navbg1"><a class="navbgtransblue"><img src="home(1).png" alt="" title=""><span>Home</span></a>
+              </li> 
               <li class="navbg1" (click)="openDirectoryListPage()"><a class="navbgtransblue" ><img alt="" title=""><span>
                 Directory List</span></a></li>
                 <li class="navbg5 full-width" (click)="openPhotoGallery()">
@@ -56,7 +153,7 @@
                   Gallery</span></a></li>
                 <a>
                   Profile
-                  <!-- {{'User Management and Overview' | translate}} -->
+                   {{'User Management and Overview' | translate}}
                 </a>
                 <li class="navbg7" (click)="openBusinessSearchPage()"><a class="navbgtransblue" ><img  alt="" title=""><span>
                   Business Search</span></a></li>
@@ -64,13 +161,13 @@
                   <a class="navbgtransblack"><img  alt="" title=""><span>{{'Sign In' | translate}} | {{'Sign Up' | translate}}</span></a></li>
   
   
-            <!-- <li *ngIf="showSignUpPage" class="navbg9"  [routerLink]="['/registration']">
+             <li *ngIf="showSignUpPage" class="navbg9"  [routerLink]="['/registration']">
               <a class="navbgtransblue">
                 <img  alt="" title=""><span>{{'Sign Up' | translate}}</span>
               </a>
             </li>
             <li *ngIf="showDetailsPage" class="navbg10" (click)="openTempDetailPage()"><a  class="navbgtransblack"><img
-                  alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li> -->
+                  alt="" title=""><span>{{'Profile Status' | translate}}</span></a></li>
             
               <a>{{'Personalities' | translate}}</a>
               <li class="navbg4" (click)="openFamousPersonalityPage()"><a class="navbgtransblack" ><img alt=""
@@ -86,26 +183,26 @@
                
                <li class="navbg9" (click)="openMatrimonyPage()"><a class="navbgtransblack"><img alt="" 
                 title=""><span>Matrimony</span></a></li>
-              <!-- <li class="navbg10"><a  data-panel="right" class="open-panel navbgtransblack"><img
-                    src="users(1).png" alt="" title=""><span>Account</span></a></li> -->
+               <li class="navbg10"><a  data-panel="right" class="open-panel navbgtransblack"><img
+                    src="users(1).png" alt="" title=""><span>Account</span></a></li>
             </ul>
-          </nav>
+          </nav> -->
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom Toolbar-->
-    <div class="toolbar">
-      <div class="toolbar-inner">
-        <ul class="toolbar_icons">
-          <li><a href="#" data-panel="right" class="open-panel"><img src="../../assets/images/home-icons/user.png"
-                alt="" title=""></a></li>
+      <!-- Bottom Toolbar-->
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <ul class="toolbar_icons">
+            <li><a href="#" data-panel="right" class="open-panel"><img src="../../assets/images/home-icons/user.png"
+                  alt="" title=""></a></li>
 
-          <li><a href="tel:123456789" class="external"><img src="../../assets/images/home-icons/phone.png" alt=""
-                title=""></a></li>
-        </ul>
+            <li><a href="tel:123456789" class="external"><img src="../../assets/images/home-icons/phone.png" alt=""
+                  title=""></a></li>
+          </ul>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>

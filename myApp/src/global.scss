@@ -8945,19 +8945,7 @@ background-color: #4b4b4b;
  color: #fffdcb !important;
  text-align: center;
  }
- .homenavbar img{
-   width: 30px;
-   height: 30px;
-   border-radius: 100%;
-   display: inline-block;
-   margin: 10px 0 0 0;
-   float: left;
- }
- .homenavbar span{
-  display: inline-block;
-  text-align: center;
-  margin: 10px 0;
- }
+
  .toolbar-icon a img{
  margin:20% auto 0 auto;
  }
@@ -10845,4 +10833,96 @@ padding: 0;
   border-radius: 3px;
   margin-top: 9%;
   text-align: center;
+  }
+
+
+  /*Home Page CSS*/
+  .homenavbar{
+    float: left;
+    width: 100%;
+    padding: 15px;
+  }
+  .home-logo{
+    float: left;
+    width: 65px;
+  }
+  .logo-right-sec{
+    float: left;
+    width: calc(100% - 65px);
+    text-align: center;
+  }
+  .logo-right-sec .home-tagline{
+    float: left;
+    width: 100%;
+    color: #10610e;
+    font-family: candara;
+    font-size: 20px;
+    margin-bottom:10px;
+    font-weight: bold;
+  }
+  .logo-right-sec .username{
+    float: left;
+    width: 100%;
+    color: #9b140a;
+    font-family: candara;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .home-links{
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .home-link-container{
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .home-link-container .title{
+    float: left;
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    font-family: candara;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 0;
+  }
+  .home-link-container ul{
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+  }
+  .home-link-container ul li{
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+  }
+  .home-link-container ul li a{
+    display: inline-block;
+  }
+  .home-link-container ul li a .img-sec{
+    display: inline-block;
+    width: 80px;
+    height: 60px;
+    padding: 5px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+  .home-link-container ul li img{
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .home-link-container ul li span{
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0 0 0;
+    color: #000;
+    font-family: candara;
+    font-size: 14px;
   }
