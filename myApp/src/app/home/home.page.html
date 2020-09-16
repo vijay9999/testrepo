@@ -24,7 +24,7 @@
             <div style="float: left;" class="home-banner-text">
               <span class="move">{{notificationMessage}}</span>
             </div>
-            <div style="width: 98%; height: 375px; float: left;">
+            <div class="home-slider">
               <ion-slides scrollbar="true" pager="true" [options]="slideOpts">
                 <ion-slide *ngFor="let img of images">
                   <img src="assets/img/{{img}}" class="thumb-img" tappable (click)="openPreview(img)" />
