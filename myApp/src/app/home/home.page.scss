@@ -104,18 +104,26 @@ ion-slides {
 
 .move {
   width: 80%;
-  height: 100px;
   position: relative;
   text-align: left;
+  float: left;
+  margin-top: 6px;
   margin-left: 5px;
   animation: myfirst 10s infinite;
   animation-direction: normal;
 }
 
 @keyframes myfirst {
-  0%   { left: 0px; top: 0px; color: white;}
-  25%  { left: 50%; top: 0px; color: white;}
-  50%  { left: 50%; top: 0px; color: white;}
-  75%  { left: 0px; top: 0px; color: rgb(182, 176, 176);}
-  100% {left: 0px; top: 0px; color: white;}
+  0%   { left: 0px; top: 0px}
+  25%  { left: 50%; top: 0px;}
+  50%  { left: 50%; top: 0px;}
+  75%  { left: 0px; top: 0px;}
+  100% {left: 0px; top: 0px;}
+}
+.home-banner-text{
+    float: left;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    height: 32px;
+    width: 100%;
 }

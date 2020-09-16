@@ -146,12 +146,16 @@ export class LoginService {
     return promise;
   }
 
-  getUserByType(userType: string) {
-    this.loadingService.presentLoading();
+  getUserByType(userType: string, showLoader: boolean) {
+    if (showLoader){
+     this.loadingService.presentLoading();
+    }
     const getUserUrl = this.url + 'user/GetUsersByType';
     const promise = new Promise(resolve => {
       this.httpClient.get(`${getUserUrl}` + '?userType=' + userType).subscribe(data => {
+        if (showLoader){
         this.loadingService.dimissLoading();
+        }
         resolve(data);
       }, (error) => {
         this.handleErrorMessage(error);

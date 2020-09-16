@@ -9,7 +9,7 @@
         </ion-buttons>
       </div>
       <div class="navbar_left">
-        <div class="logo_text"><a><span>Punjabi Samaj Rewari</span></a></div>
+        <div class="logo_text"><a><span>{{'Punjabi Samaj Rewari' | translate}}</span></a></div>
       </div>
     </div>
     <div id="pages_maincontent" class="">
@@ -140,7 +140,7 @@
             </div>
 
             <div class="form_row">
-              <label>Firm Name</label>
+              <label>{{'Firm Name' | translate}}</label>
               <input type="text" name="businessSubCategory" value="" class="form_input" formControlName="businessSubCategory">
               <!-- <label>{{'Business Sub Category' | translate}}<span class="error">*</span></label>
               <select name="" class="form_select" formControlName="businessSubCategory"
@@ -220,7 +220,7 @@
             <div class="form_row">
               <label for="TC">
                 <input type="checkbox" name="TC" required formControlName="termsCondition" value="Terms Condition">
-                I agree all the information provided are valid to prove my identity</label><br>
+                {{'I agree all the information provided are valid to prove my identity' | translate}}</label><br>
             </div>
             <input *ngIf="isAdmin" type="submit" [disabled]="registrationForm.invalid" (click)="registerUser()" name="Sign Up"
               class="form_submit" id="submit" value="{{'Sign Up' | translate}}">

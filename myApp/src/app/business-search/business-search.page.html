@@ -15,14 +15,14 @@
     </div>
     <div id="pages_maincontent" class="">
 
-      <h2 class="page_title">Business Search</h2>
+      <h2 class="page_title">{{'Business Search' | translate}}</h2>
       <ion-toolbar>
         <ion-searchbar placeholder="Search By Business" (ionInput)="filterList($event)"></ion-searchbar>
       </ion-toolbar>
       <form [formGroup]="businessForm" class="contactform">
         <div class="form_row" style="width: 90%;
         margin-left: 16px;">
-          <label>Business Category</label>
+          <label>{{'Business Category' | translate}}</label>
           <select name="" class="form_select" (change)="filterList($event)" formControlName="businessCategory" placeholder="Select Category">
             <option value="All">Select All</option>
             <option *ngFor="let category of businessCatModel" [value]="category.key">

@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UsersListPageModule } from '../users-list/users-list.module';
 import { UsersListPageRoutingModule } from '../users-list/users-list-routing.module';
 
+
 @NgModule({
   imports: [
     CommonModule,

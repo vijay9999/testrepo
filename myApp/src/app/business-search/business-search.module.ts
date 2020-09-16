@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { BusinessSearchPageRoutingModule } from './business-search-routing.module';
 
 import { BusinessSearchPage } from './business-search.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { BusinessSearchPage } from './business-search.page';
     FormsModule,
     IonicModule,
     BusinessSearchPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [BusinessSearchPage]
 })

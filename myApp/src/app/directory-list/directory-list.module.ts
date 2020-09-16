@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DirectoryListPageRoutingModule } from './directory-list-routing.module';
 
 import { DirectoryListPage } from './directory-list.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DirectoryListPageRoutingModule
+    DirectoryListPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DirectoryListPage]
 })

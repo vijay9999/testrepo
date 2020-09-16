@@ -24,43 +24,43 @@
           <form [formGroup]="charityForm">
             <div class="form_row">
               <label>
-                <h4> Charity Reason <span style='color:red'>*</span> </h4>
+                <h4> {{'Charity Reason' | translate}} <span style='color:red'>*</span> </h4>
               </label>
               <label for="SSR">
                 <input type="checkbox" name="SSR" formControlName="socialServiceDonation" value="Social Services">
-                Social Services Donation</label><br>
+                {{'Social Services Donation' | translate}}</label><br>
               <label for="ST">
                 <input type="checkbox" name="ST" formControlName="educationDonation" value="Study">
-                Education</label><br>
+                {{'Education' | translate}}</label><br>
               <label for="MG">
                 <input type="checkbox" name="MG" formControlName="marraigeDonation" value="Marraige">
-                Marraige</label><br>
+                {{'Marraige' | translate}}</label><br>
                 <label for="MD">
                   <input type="checkbox" name="MD" formControlName="medicalDonation" value="Medical Donation">
-                  Medical Donation</label><br>
+                  {{'Medical Donation' | translate}}</label><br>
             </div>
             <div class="form_row">
-              <label>Name:</label>
+              <label>{{'Name' | translate}}:</label>
               <input type="text" name="first-name" value="" class="form_input" formControlName="name">
               <!-- <span class="form-error"
                 *ngIf="charityForm.get('firstName').invalid && charityForm.get('firstName').touched">
                 {{'Please enter a valid name.' | translate}}</span> -->
             </div>
             <div class="form_row">
-              <label>Mobile Number:</label>
+              <label>{{'Mobile Number' | translate}}:</label>
               <input type="tel" name="MobileNumber" maxlength="10" value="" class="form_input"
                 formControlName="mobileNumber">
               <!-- <span class="form-error"
                 *ngIf="charityForm.get('mobileNumber').invalid && charityForm.get('mobileNumber').touched">{{'Please enter a valid mobile Number.' | translate}}</span> -->
             </div>
             <div class="form_row">
-              <label>Amount: <span style='color:red'>*</span></label>
+              <label>{{'Amount' | translate}}: <span style='color:red'>*</span></label>
               <input type="text" name="amount" value="" class="form_input" formControlName="amount">
               <span class="form-error" *ngIf="charityForm.get('amount').invalid && charityForm.get('amount').touched">
                 Please enter valid amount</span>
             </div>
             <div class="form_row">
-              <label>Message for Charity:</label>
+              <label>{{'Message for Charity' | translate}}:</label>
               <input type="text" name="charityMessage" value="" class="form_input" formControlName="charityMessage">
               <!-- <span class="form-error"
                 *ngIf="charityForm.get('charityMessage').invalid && charityForm.get('charityMessage').touched">

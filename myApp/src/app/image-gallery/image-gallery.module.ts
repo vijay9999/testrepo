@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ImageGalleryPageRoutingModule } from './image-gallery-routing.module';
 
 import { ImageGalleryPage } from './image-gallery.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ImageGalleryPageRoutingModule
+    ImageGalleryPageRoutingModule,
+    TranslateModule
   ],
   declarations: [ImageGalleryPage]
 })

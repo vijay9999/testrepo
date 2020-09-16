@@ -39,22 +39,22 @@ export class UsersListPage implements OnInit {
               private homeService: HomeService) {
     this.route.queryParams.subscribe(params => {
       this.usersAvailable = false;
-      this.getUserByType(params.userType);
+      this.getUserByType(params.userType, true);
       this.userSmsList = [];
       this.selectAllChk.isChecked = false;
     });
-    
+
     // this.getAllUser();
     // this.usersAvailable = false;
   }
 
-  getUserByType(userType: string) {
+  getUserByType(userType: string, showloader: boolean) {
     switch (userType) {
       case AppConstant.UserTypeConstant.Pending:
-        this.getPendingUser();
+        this.getPendingUser(showloader);
         break;
       case AppConstant.UserTypeConstant.Approved:
-        this.getApprovedUser();
+        this.getApprovedUser(showloader);
         break;
       // case AppConstant.UserTypeConstant.PendingPayment:
       //   this.getPendingPaymentUser();
@@ -63,10 +63,10 @@ export class UsersListPage implements OnInit {
       //     this.getPaymentDoneUser();
       //     break;
       case AppConstant.UserTypeConstant.Rejected:
-        this.getRejectedUser();
+        this.getRejectedUser(showloader);
         break;
       case AppConstant.UserTypeConstant.UpdationRequest:
-        this.getAllUpdationRequest();
+        this.getAllUpdationRequest(showloader);
         break;
       default:
         break;
@@ -78,8 +78,8 @@ export class UsersListPage implements OnInit {
       // for (const eachUser of data) {
       //     console.log(eachUser);
       // }
-      this.users = data;
-      this.usersCopy = data;
+      this.users = data.sort(this.sortByMemberId);
+      this.usersCopy = data.sort(this.sortByMemberId);
       if (this.users && this.users.length > 0){
         this.usersAvailable = true;
         this.uniqueMobUserLength =
@@ -89,9 +89,15 @@ export class UsersListPage implements OnInit {
     });
   }
 
-  getPendingUser() {
+  sortByMemberId(a, b) {
+    if (a.memberID < b.memberID) { return -1; }
+    if (a.memberID > b.memberID) { return 1; }
+    return 0;
+  }
+
+  getPendingUser(showLoader: boolean) {
     // this.loadingService.presentLoading();
-    this.loginService.getUserByType(AppConstant.UserTypeConstant.Pending).then((data: UserModel[]) => {
+    this.loginService.getUserByType(AppConstant.UserTypeConstant.Pending, showLoader).then((data: UserModel[]) => {
       this.users = data;
       this.usersCopy = data;
       if (this.users && this.users.length > 0){
@@ -107,11 +113,11 @@ export class UsersListPage implements OnInit {
     );
   }
 
-  getApprovedUser() {
+  getApprovedUser(showLoader: boolean) {
     // this.loadingService.presentLoading();
-    this.loginService.getUserByType('Approved').then((data: UserModel[]) => {
-      this.users = data;
-      this.usersCopy = data;
+    this.loginService.getUserByType('Approved', showLoader).then((data: UserModel[]) => {
+      this.users = data.sort(this.sortByMemberId);
+      this.usersCopy = data.sort(this.sortByMemberId);
       if (this.users && this.users.length > 0){
         this.usersAvailable = true;
         this.uniqueMobUserLength =
@@ -125,8 +131,8 @@ export class UsersListPage implements OnInit {
     );
   }
 
-  getRejectedUser() {
-    this.loginService.getUserByType('Rejected').then((data: UserModel[]) => {
+  getRejectedUser(showLoader: boolean) {
+    this.loginService.getUserByType('Rejected', showLoader).then((data: UserModel[]) => {
       this.users = data;
       this.usersCopy = data;
       if (this.users && this.users.length > 0){
@@ -158,8 +164,8 @@ export class UsersListPage implements OnInit {
   //     this.headerName = 'Payment Recieved Users';
   //   });
   // }
-  getAllUpdationRequest() {
-    this.loginService.getUserByType('UpdationRequest').then((data: UserModel[]) => {
+  getAllUpdationRequest(showLoader: boolean) {
+    this.loginService.getUserByType('UpdationRequest', showLoader).then((data: UserModel[]) => {
       this.users = data;
       this.usersCopy = data;
       if (this.users && this.users.length > 0){
@@ -178,7 +184,7 @@ export class UsersListPage implements OnInit {
   }
 
   refreshOnModalClose() {
-    this.getUserByType(this.currentUserType);
+    this.getUserByType(this.currentUserType, false);
     console.log('modal close.. refresh..');
   }
   ngOnInit() {
@@ -251,4 +257,23 @@ export class UsersListPage implements OnInit {
     //  console.log(event);
   }
 
+  getFormattedMemberId(memberId: string){
+    switch (memberId.toString().length) {
+      case 1:
+        return '0000' + memberId;
+        break;
+      case 2:
+          return '000' + memberId;
+          break;
+      case 3:
+        return '00' + memberId;
+        break;
+      case 4:
+        return '0' + memberId;
+        break;
+      default:
+        return memberId;
+        break;
+    }
+  }
 }

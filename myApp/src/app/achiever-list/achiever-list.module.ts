@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AchieverListPageRoutingModule } from './achiever-list-routing.module';
 
 import { AchieverListPage } from './achiever-list.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AchieverListPageRoutingModule
+    AchieverListPageRoutingModule,
+    TranslateModule
   ],
   declarations: [AchieverListPage]
 })

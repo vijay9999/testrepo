@@ -5,7 +5,7 @@
 
 <div style="text-align: center;">
   <div>
-    <ion-label position="floating">Enter Messsage</ion-label>
+    <ion-label position="floating">{{'Enter Messsage' | translate}}</ion-label>
     <ion-textarea [(ngModel)]="message"></ion-textarea>
   </div>
   <input type="submit" style="border-radius: 10px; background: #f5eabb;;" (click)="sendSms()" value="Send Message">

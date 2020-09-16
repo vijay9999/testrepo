@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ImageModalPageRoutingModule } from './image-modal-routing.module';
 
 import { ImageModalPage } from './image-modal.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ImageModalPageRoutingModule
+    ImageModalPageRoutingModule,
+    TranslateModule
   ],
   declarations: [ImageModalPage]
 })

@@ -10,7 +10,7 @@
         <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
           <!-- [routerLink]="page.path" -->
           <ion-item (click)="onClick(page.path,page.param)" routerDirection="root" [class.active-menu]="activePath === page.path">
-            {{page.name}}
+            {{ page.name | translate}}
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

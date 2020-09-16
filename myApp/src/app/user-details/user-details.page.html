@@ -8,7 +8,7 @@
         </ion-buttons>
       </div>
       <div class="navbar_left">
-        <div class="logo_text"><a><span>Punjabi Samaj Rewari</span></a></div>
+        <div class="logo_text"><a><span>{{'Punjabi Samaj Rewari' | translate}}</span></a></div>
       </div>
       <div style="float: right;">
         <ion-buttons  slot="end" (click)="logOut()">
@@ -20,7 +20,7 @@
     </div>
     <div id="pages_maincontent" class="">
 
-      <h2 class="page_title">User Profile</h2>
+      <h2 class="page_title">{{'User Profile' | translate}}</h2>
 
 
 
@@ -28,7 +28,7 @@
 
         <div class="user_thumb">
           <div class="user_details">
-            <p>Welcome, <span class="">{{userModel.firstName}} {{userModel.lastName}}</span></p>
+            <p>{{'Welcome' | translate}}, <span class="">{{userModel.firstName}} {{userModel.lastName}}</span></p>
           </div>
           <div class="user_avatar">
             <img *ngIf="userModel.userImageByte" style="width: 102px; height: 102px;"
@@ -50,115 +50,115 @@
 
           <li>
             <div class="feat_small_details">
-              <h4><a>Email</a></h4>
+              <h4><a>{{'Email' | translate}}</a></h4>
               <a>{{userModel.email}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Gender</a></h4>
+              <h4><a>{{'Gender' | translate}}</a></h4>
               <a>{{userModel.gender}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Address</a></h4>
+              <h4><a>{{'Address' | translate}}</a></h4>
               <a>{{userModel.address}}</a>
             </div>
           </li>
 
           <li>
             <div class="feat_small_details">
-              <h4><a>Date Of Birth</a></h4>
+              <h4><a>{{'Date Of Birth' | translate}}</a></h4>
               <a>{{userModel.dob | date:'yyyy-MM-dd'}}</a>
             </div>
           </li>
 
           <li>
             <div class="feat_small_details">
-              <h4><a>Aadhar number</a></h4>
+              <h4><a>{{'Aadhar number' | translate}}</a></h4>
               <a>{{userModel.aadharNumber}}</a>
             </div>
           </li>
 
           <li>
             <div class="feat_small_details">
-              <h4><a>PAN Number</a></h4>
+              <h4><a>{{'PAN Number' | translate}}</a></h4>
               <a>{{userModel.panNumber}}</a>
             </div>
           </li>
 
           <li>
             <div class="feat_small_details">
-              <h4><a>Blood group</a></h4>
+              <h4><a>{{'Blood group' | translate}}</a></h4>
               <a>{{userModel.bloodGroup}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Care Taker Name</a></h4>
+              <h4><a>{{'Care Taker Name' | translate}}</a></h4>
               <a>{{userModel.careTakerName}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Blood Donation</a></h4>
-              <a *ngIf="userModel.bloodDonation == 1">YES</a>
-              <a *ngIf="userModel.bloodDonation != 1">NO</a>
+              <h4><a>{{'Blood Donation' | translate}}</a></h4>
+              <a *ngIf="userModel.bloodDonation == 1">{{'YES' | translate}}</a>
+              <a *ngIf="userModel.bloodDonation != 1">{{'NO' | translate}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Business Category</a></h4>
+              <h4><a>{{'Business Category' | translate}}</a></h4>
               <a>{{userModel.businessCategory}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Firm Name</a></h4>
+              <h4><a>{{'Firm Name' | translate}}</a></h4>
               <a>{{userModel.businessSubCategory}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Mobile Number</a></h4>
+              <h4><a>{{'Mobile Number' | translate}}</a></h4>
               <a>{{userModel.mobileNumber}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Occupation</a></h4>
+              <h4><a>{{'Occupation' | translate}}</a></h4>
               <a>{{userModel.occupation}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Qualification</a></h4>
+              <h4><a>{{'Qualification' | translate}}</a></h4>
               <a>{{userModel.qualification}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Social Service</a></h4>
-              <a *ngIf="userModel.socialServices == 1">YES</a>
-              <a *ngIf="userModel.socialServices != 1">NO</a>
+              <h4><a>{{'Social Service' | translate}}</a></h4>
+              <a *ngIf="userModel.socialServices == 1">{{'YES' | translate}}</a>
+              <a *ngIf="userModel.socialServices != 1">{{'NO' | translate}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Ward Number</a></h4>
+              <h4><a>{{'Ward Number' | translate}}</a></h4>
               <a>{{userModel.wardNumber}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Whatsapp Number</a></h4>
+              <h4><a>{{'Whatsapp Number' | translate}}</a></h4>
               <a>{{userModel.whatsAppNumber}}</a>
             </div>
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>DOB proof</a></h4>
+              <h4><a>{{'DOB proof' | translate}}</a></h4>
               <a>
                 <ion-avatar slot="start"  style="float: left;">
                   <img *ngIf="userModel.idProofByte" [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.idProofByte)"
@@ -173,7 +173,7 @@
           </li>
           <li>
             <div class="feat_small_details">
-              <h4><a>Address proof</a></h4>
+              <h4><a>{{'Address proof' | translate}}</a></h4>
               <a>
                 <ion-avatar slot="start" style="float: left;">
                   <img *ngIf="userModel.addressProofByte" [src]="sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + userModel.addressProofByte)"

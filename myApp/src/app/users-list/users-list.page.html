@@ -8,7 +8,7 @@
         </ion-buttons>
       </div>
       <div class="navbar_left">
-        <div class="logo_text"><a><span>Punjabi Samaj Rewari</span></a></div>
+        <div class="logo_text"><a><span>{{'Punjabi Samaj Rewari' | translate}}</span></a></div>
       </div>
       <div style="float: right;">
         <ion-buttons slot="end" (click)="logOut()">
@@ -19,14 +19,15 @@
       </div>
     </div>
     <div id="pages_maincontent" class="user-list-content">
-      <h2 class="page_title">{{headerName}}</h2>
+      <h2 class="page_title">{{headerName | translate}}</h2>
       <div>
         <div>
           <ion-toolbar>
             <ion-searchbar (ionInput)="filterList($event)"></ion-searchbar>
           </ion-toolbar>
           <ion-list *ngIf="!usersAvailable" style="text-align: center;">
-            <ion-label style="font-size: large; color: gray;">No Users Found</ion-label>
+            <ion-label style="font-size: large; color: gray;">{{'No Users Found' | translate}}
+              </ion-label>
           </ion-list>
           <ion-list *ngIf="usersAvailable">
             <!-- <ion-item slot="slot">
@@ -65,6 +66,7 @@
               </ion-avatar>
               <ion-label (click)="openPageModal(user)" style="margin-left: 20px;">
                 <p style="font-weight: 700; padding:  0 0 0 0;">{{user.firstName}} {{user.lastName}}</p>
+                <p *ngIf="user.memberID && user.memberID !== 0" style="padding:  0 0 0 0;">{{getFormattedMemberId(user.memberID)}}</p>
                 <p style="padding:  0 0 0 0;">{{user.mobileNumber}}</p>
                 <p style="padding:  0 0 0 0;">{{user.email}}</p>
               </ion-label>

@@ -3,7 +3,7 @@
   <div class="page-content">
     <div class="navbarpages">
       <div class="navbar_left">
-        <div class="logo_text"><span> Punjabi Samaj Rewari</span></div>
+        <div class="logo_text"><span>{{'Punjabi Samaj Rewari' | translate}}</span></div>
       </div>
       <div style="float: right;">
         <ion-buttons slot="end" (click)="closeModal()">
@@ -16,24 +16,24 @@
 
     <div id="pages_maincontent" class="edit-user-detail">
 
-      <h2 class="page_title">User Detail</h2>
+      <h2 class="page_title">{{'User Detail' | translate}}</h2>
       <div class="user-btn-container" *ngIf="!isTempUser">
         <button class="user-btn float-left" (click)="isDetail=true" [color]="isDetail? 'primary' : 'medium'"
-          shape="round">Details</button>
-        <button class="user-btn float-right" *ngIf="currentUserType === 'UpdationRequired' || currentUserType === 'Approved'" (click)="isDetail = false"
+          shape="round">{{'Details' | translate}}</button>
+        <button class="user-btn float-right" *ngIf="currentUserType === 'UpdationRequired'" (click)="isDetail = false"
           [color]="isDetail? 'medium' : 'secondary'" shape="round">Edit</button>
       </div>
       <div class="user-btn-container" *ngIf="isTempUser">
         <ion-chip [color]="isDetail? 'primary' : 'medium'" (click)="isDetail = true">
-          <ion-label>Details</ion-label>
+          <ion-label>{{'Details' | translate}}</ion-label>
         </ion-chip>
         <ion-chip *ngIf="showTempUpdateButton" (click)="isDetail = false;isPay=false"
           [color]="isDetail? 'medium' : 'secondary'">
-          <ion-label>Edit</ion-label>
+          <ion-label>{{'Edit' | translate}}</ion-label>
         </ion-chip>
         <ion-chip *ngIf="showTempPayButton" (click)="isDetail = false;isPay=true"
           [color]="isDetail? 'medium' : 'secondary'">
-          <ion-label>Pay & Edit</ion-label>
+          <ion-label>{{'Pay & Edit' | translate}}</ion-label>
         </ion-chip>
         <!-- <button class="user-btn float-left" (click)="isDetail = true" [color]="isDetail? 'primary' : 'medium'"
           shape="round">Details</button>
@@ -53,40 +53,40 @@
       <div class="contactform">
         <form [formGroup]="registrationForm">
           <div class="form_row">
-            <label>First Name:</label>
+            <label>{{'First Name' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" type="text" [(ngModel)]="userModel.firstName"
               name="first-name" value="" class="form_input" formControlName="firstName">
             <span class="form-error"
-              *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">Please
-              enter a valid fisrt name.</span>
+              *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
+              {{'Please enter a valid fisrt name.' | translate}}</span>
           </div>
 
           <div class="form_row">
-            <label>Last Name:</label>
+            <label>{{'Name' | translate}}:</label>
             <input type="text" [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.lastName" name="last-name"
               value="" class="form_input" formControlName="lastName">
             <span class="form-error"
-              *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">Please enter
-              a valid last name.</span>
+              *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
+              {{'Please enter a valid last name' | translate}}.</span>
           </div>
 
           <div class="form_row">
-            <label>Gender:</label>
+            <label>{{'Gender' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="gender"
               placeholder="Select Gender">
-              <option value="M">Male</option>
-              <option value="F">Female</option>
+              <option value="M">{{'Male' | translate}}</option>
+              <option value="F">{{'Female' | translate}}</option>
             </select>
           </div>
 
           <div class="form_row">
-            <label>Email:</label>
+            <label>{{'Email' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.email" type="text" name="email"
               value="" class="form_input" formControlName="email" type="email"
               pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
             <span class="form-error"
-              *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">Please enter a
-              valid email.</span>
+              *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+              {{'Please enter a valid email' | translate}}.</span>
           </div>
 
 
@@ -95,73 +95,73 @@
             <ion-datetime style="border: 1px solid lightgray;" [attr.disabled]="isDetail? true: null"
               [(ngModel)]="userModel.dob" formControlName="dob" displayFormat="DD-MM-YYYY"></ion-datetime>
             <span class="form-error"
-              *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched">Please enter a valid
-              date of birth.</span>
+              *ngIf="registrationForm.get('dob').invalid && registrationForm.get('dob').touched">
+              {{'Please enter a valid date of birth' | translate}}.</span>
           </div>
 
 
           <div class="form_row">
-            <label>Care Taker Name:</label>
+            <label>{{'Care Taker Name' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.careTakerName" type="text"
               name="careTakerName" value="" class="form_input" formControlName="careTakerName">
             <span class="form-error"
               *ngIf="registrationForm.get('careTakerName').invalid && registrationForm.get('careTakerName').touched">Please
-              enter a valid care taker name.</span>
+              {{'Please enter a valid care taker name' | translate}}.</span>
           </div>
 
           <div class="form_row">
-            <label>Mobile Number:</label>
+            <label>{{'Mobile Number' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.mobileNumber" type="number"
               pattern="\d*" onKeyPress="if(this.value.length==10) return false;" name="MobileNumber" value=""
               class="form_input" formControlName="mobileNumber">
             <span class="form-error"
               *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">Please
-              enter a valid mobileNumber.</span>
+              {{'Please enter a valid Mobile Number' | translate}}.</span>
           </div>
 
           <div class="form_row">
-            <label>Whatsapp Number:</label>
+            <label>{{'Whatsapp Number' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.whatsAppNumber" type="number"
               pattern="\d*" onKeyPress="if(this.value.length==10) return false;" name="WhatsappNumber" value=""
               class="form_input" formControlName="whatsappNumber">
             <span class="form-error"
-              *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">Please
-              enter a valid whatsapp number.</span>
+              *ngIf="registrationForm.get('whatsappNumber').invalid && registrationForm.get('whatsappNumber').touched">
+              {{'Please enter a valid whatsapp number' | translate}}.</span>
           </div>
 
           <div class="form_row">
-            <label>Address:</label>
+            <label>{{'Address' | translate}}:</label>
             <textarea [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.address" type="text" name="address"
               value="" class="form_textarea" formControlName="address"></textarea>
             <span class="form-error"
-              *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">Please enter a
-              valid Address.</span>
+              *ngIf="registrationForm.get('address').invalid && registrationForm.get('address').touched">
+              {{'Please enter a valid Address' | translate}}.</span>
           </div>
 
           <div class="form_row">
-            <label>Ward Number:</label>
+            <label>{{'Ward Number' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.wardNumber" type="text"
               name="wardNumber" value="" class="form_input" formControlName="wardNumber">
             <span class="form-error"
-              *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">Please
-              enter a valid ward number.</span>
+              *ngIf="registrationForm.get('wardNumber').invalid && registrationForm.get('wardNumber').touched">
+              {{'Please enter a valid ward number' | translate}}.</span>
           </div>
 
 
           <div class="form_row">
-            <label>Highest Qualification:</label>
+            <label>{{'Highest Qualification' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="qualification"
               placeholder="Select Qualification">
-              <option value="option">Select Qualification</option>
-              <option value="HS">High School</option>
-              <option value="SS">Sr. Secondary</option>
-              <option value="GD">Graduation</option>
-              <option value="PG">Post Graduation</option>
+              <option value="option">{{'Select Qualification' | translate}}</option>
+              <option value="HS">{{'High School' | translate}}</option>
+              <option value="SS">{{'Sr. Secondary' | translate}}</option>
+              <option value="GD">{{'Graduation' | translate}}></option>
+              <option value="PG">{{'Post Graduation' | translate}}</option>
             </select>
           </div>
 
           <div class="form_row">
-            <label>Occupation:</label>
+            <label>{{'Occupation' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="occupation"
               placeholder="Select Occupation" (change)="onOccupationChange($event.target.value)">
               <!-- <option value="option">Select Occupation</option>
@@ -176,7 +176,7 @@
           </div>
 
           <div class="form_row">
-            <label>Business Category:</label>
+            <label>{{'Business Category' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select"
               formControlName="businessCategory" placeholder="Select Category">
               <option *ngFor="let category of businessCatModel" [value]="category.key">
@@ -200,13 +200,13 @@
               formControlName="businessSubCategory" placeholder="Select Sub Category">>
               <option value="NA">Not Available</option>
             </select> -->
-            <label>Firm Name</label>
+            <label>{{'Firm Name' | translate}}</label>
             <input type="text" [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.businessSubCategory"
               name="businessSubCategory" value="" class="form_input" formControlName="businessSubCategory">
           </div>
 
           <div class="form_row">
-            <label>Blood Group:</label>
+            <label>{{'Blood Group' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="bloodGroup"
               placeholder="Select Blood Group">
               <option value="option">Select Blood Group</option>
@@ -223,41 +223,41 @@
           </div>
 
           <div class="form_row">
-            <label>Volunteer Blood Donation:</label>
+            <label>{{'Volunteer Blood Donation' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="bloodDonation"
               placeholder="Select Volunteer Blood Donation">
-              <option value="option">Select Volunteer Blood Donation</option>
-              <option value="YES">YES</option>
-              <option value="NO">NO</option>
+              <option value="option">{{'Name' | translate}}Select Volunteer Blood Donation</option>
+              <option value="YES">{{'YES' | translate}}</option>
+              <option value="NO">{{'NO' | translate}}</option>
             </select>
           </div>
 
           <div class="form_row">
-            <label>Volunteer Social Service:</label>
+            <label>{{'Volunteer Social Service' | translate}}:</label>
             <select [attr.disabled]="isDetail? true: null" name="" class="form_select" formControlName="socialServices"
               placeholder="Select Volunteer Social Service">
               <option value="option">Select Social Service</option>
-              <option value="YES">YES</option>
-              <option value="NO">NO</option>
+              <option value="YES">{{'YES' | translate}}</option>
+              <option value="NO">{{'NO' | translate}}</option>
             </select>
           </div>
 
           <div class="form_row">
-            <label>Aadhar Number:</label>
+            <label>{{'Aadhar Number' | translate}}:</label>
             <input [attr.disabled]="isDetail? true: null" [(ngModel)]="userModel.aadharNumber" type="number"
               name="aadharNumber" value="" class="form_input" formControlName="aadharNumber">
             <span class="form-error"
-              *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">Please
-              enter a valid aadhar number.</span>
+              *ngIf="registrationForm.get('aadharNumber').invalid && registrationForm.get('aadharNumber').touched">
+              {{'Please enter a valid aadhar number' | translate}}.</span>
           </div>
           <div class="form_row">
-            <label>Pan Number:</label>
+            <label>{{'Pan Number' | translate}}:</label>
             <input [(ngModel)]="userModel.panNumber" [attr.disabled]="isDetail? true: null" type="text" name="pannumber"
               value="" class="form_input" formControlName="panNumber">
           </div>
 
           <ion-item lines="none" *ngIf="!isDetail">
-            <ion-label color="dark">Upload Your Photo <ion-text color="danger">*</ion-text>
+            <ion-label color="dark">{{'Upload Your Photo' | translate}} <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
           <ion-item lines="full">
@@ -281,13 +281,13 @@
           <div class="form-error-margin">
             <ion-label *ngIf="registrationForm.get('userImage').invalid && registrationForm.get('userImage').touched">
               <ion-text color="danger" class="form-error">
-                Please upload user image.
+                {{'Please upload user image.' | translate}}
               </ion-text>
             </ion-label>
           </div>
 
           <ion-item lines="none" *ngIf="!isDetail">
-            <ion-label color="dark">Upload DOB Proof <ion-text color="danger">*</ion-text>
+            <ion-label color="dark">{{'Upload DOB Proof' | translate}} <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
           <ion-item lines="full">
@@ -315,13 +315,13 @@
           <div class="form-error-margin">
             <ion-label *ngIf="registrationForm.get('idProof').invalid && registrationForm.get('idProof').touched">
               <ion-text color="danger" class="form-error">
-                Please upload dob proof.
+                {{'Please upload dob proof.' | translate}}
               </ion-text>
             </ion-label>
           </div>
 
           <ion-item lines="none" *ngIf="!isDetail">
-            <ion-label color="dark">Upload Address Proof <ion-text color="danger">*</ion-text>
+            <ion-label color="dark">{{'Upload Address Proof' | translate}} <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
           <ion-item lines="full">
@@ -349,7 +349,7 @@
             <ion-label
               *ngIf="registrationForm.get('addressProof').invalid && registrationForm.get('addressProof').touched">
               <ion-text color="danger" class="form-error">
-                Please upload address proof.
+                {{'Please upload address proof' | translate}}.
               </ion-text>
             </ion-label>
           </div>
